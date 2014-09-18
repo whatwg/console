@@ -1,0 +1,67 @@
+<pre class="metadata">
+Title: Console Standard
+Group: WHATWG
+H1: Console
+Shortname: console
+Level: 1
+Status: DREAM
+ED: https://terinjokes.github.io/console-spec
+Editor: Terin Stock, https://terinstock.com, terin@terinstock.com
+Abstract: This specification standardizes APIs for console debugging facilities.
+Logo: http://placekitten.com/g/200/300
+!Version History: <a href="https://github.com/terinjokes/console-spec/commits">https://github.com/terinjokes/console-spec/commits</a>
+!Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
+!Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
+!Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whawg on Freenode</a>
+</pre>
+
+<h2 id="status" class="no-num no-toc">Status</h2>
+This specification is in the process of establishing itself in the WHATWG.
+As such, the term "Living Standard" indicates a goal, rather than reality.
+
+Please join us in the <a href="https://github.com/terinjokes/console-spec/issues?state=open">issue tracker</a> for more discussion.
+
+<h2 id="console-interface">Interface <code>Console</code></h2>
+
+<pre class="idl">
+interface Console {
+	// Logging
+	void assert(boolean expression, DOMString? message);
+	void clear();
+	void count(DOMString label);
+	void debug(any... obj);
+	void error(any... obj);
+	void info(any... obj);
+	void log(any... obj);
+	void table(object[] arrayOfArrays, DOMString[]? properties);
+	void trace(any... obj);
+	void warn(any... obj);
+
+	// Grouping
+	void group(any... obj);
+	void groupCollapse(any... obj);
+	void groupEnd();
+
+	// Timing
+	void time(DOMString label);
+	void timeEnd(DOMString label);
+};
+</pre>
+
+<h3 id="logging">Logging Methods</h3>
+
+<h4><dfn method for="console">assert()</dfn></h4>
+
+<h3 id="grouping">Grouping Methods</h3>
+
+<h3 id="timing">Timing Methods</h3>
+
+<h2 id="formatting">Formatting Specifiers</h2>
+
+Note: Consider keeping these format specifiers general enough to be re-used by other specifications.
+
+<h2 id="inspection">JavaScript Object inspection</h2>
+
+TODO: Define an interface that allows JavaScript objects to format themselves for inspection.
+
+<h2 id="acks" class="no-num">Acknowledgments</h2>
