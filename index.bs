@@ -24,6 +24,7 @@ Please join us in the <a href="https://github.com/terinjokes/console-spec/issues
 <h2 id="console-interface">Interface <code>Console</code></h2>
 
 <pre class="idl">
+[NoInterfaceObject]
 interface Console {
 	// Logging
 	void assert(boolean expression, DOMString? message);
@@ -45,6 +46,14 @@ interface Console {
 	// Timing
 	void time(DOMString label);
 	void timeEnd(DOMString label);
+};
+
+partial interface Window {
+	attribute any console;
+};
+
+partial interface WorkerGlobalScope {
+	attribute any console;
 };
 </pre>
 
