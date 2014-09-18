@@ -50,7 +50,7 @@ interface Console {
 
 <h3 id="logging">Logging Methods</h3>
 
-<h4><dfn method for="console">assert()</dfn></h4>
+<h4><dfn method for="Console">assert()</dfn></h4>
 
 <h3 id="grouping">Grouping Methods</h3>
 
