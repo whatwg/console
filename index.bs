@@ -49,11 +49,11 @@ interface Console {
 };
 
 partial interface Window {
-	attribute any console;
+	attribute Console console;
 };
 
 partial interface WorkerGlobalScope {
-	attribute any console;
+	attribute Console console;
 };
 </pre>
 
