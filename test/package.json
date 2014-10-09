@@ -1,0 +1,26 @@
+{
+  "name": "console-tests",
+  "version": "1.0.0",
+  "description": "Compliance test suite for Console",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terinjokes/console-spec"
+  },
+  "keywords": [
+    "console"
+  ],
+  "author": "Terin Stock <terinjokes@gmail.com> (https://terinstock.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/terinjokes/console-spec/issues"
+  },
+  "homepage": "https://github.com/terinjokes/console-spec",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "mocha": "^1.21.4"
+  }
+}
