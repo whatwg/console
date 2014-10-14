@@ -31,14 +31,14 @@ Please join us in the <a href="https://github.com/terinjokes/console-spec/issues
 [NoInterfaceObject]
 interface Console {
 	// Logging
-	void assert(boolean expression, DOMString? message);
+	void assert(boolean expression, optional any message);
 	void clear();
-	void count(DOMString label);
+	void count(optional DOMString label = "");
 	void debug(any... obj);
 	void error(any... obj);
 	void info(any... obj);
 	void log(any... obj);
-	void table(object[] arrayOfArrays, DOMString[]? properties);
+	void table(any tabularData, optional sequence&lt;DOMString> properties);
 	void trace(any... obj);
 	void warn(any... obj);
 
@@ -90,7 +90,9 @@ The side effect of running the logger function with objs and logLevel set to log
 
 <h4><dfn method for="Console">table()</dfn></h4>
 
-Construct a table with the columns of the properties of objs and rows of objs and log with a logLevel of log.
+Try to construct a table with the columns of the properties of tabularData and rows of tabularData and log it with a logLevel of log.
+Fall back to just logging the argument if it can't be parsed as tabular.
+This will need a good algorithm.
 
 <h4><dfn method for="Console">trace()</dfn></h4>
 
