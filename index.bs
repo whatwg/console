@@ -31,20 +31,20 @@ Please join us in the <a href="https://github.com/terinjokes/console-spec/issues
 [NoInterfaceObject]
 interface Console {
 	// Logging
-	void assert(boolean expression, optional any message);
+	void assert(boolean condition, optional any message);
 	void clear();
 	void count(optional DOMString label = "");
-	void debug(any... obj);
-	void error(any... obj);
-	void info(any... obj);
-	void log(any... obj);
+	void debug(any... data);
+	void error(any... data);
+	void info(any... data);
+	void log(any... data);
 	void table(any tabularData, optional sequence&lt;DOMString> properties);
-	void trace(any... obj);
-	void warn(any... obj);
+	void trace(any... data);
+	void warn(any... data);
 
 	// Grouping
-	void group(any... obj);
-	void groupCollapse(any... obj);
+	void group(any... data);
+	void groupCollapse(any... data);
 	void groupEnd();
 
 	// Timing
@@ -74,19 +74,19 @@ Counts the number of times count has been called with the provided label.
 
 <h4><dfn method for="Console">debug()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to log.
+The side effect of running the logger function with data and logLevel set to log.
 
 <h4><dfn method for="Console">error()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to error.
+The side effect of running the logger function with data and logLevel set to error.
 
 <h4><dfn method for="Console">info()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to info.
+The side effect of running the logger function with data and logLevel set to info.
 
 <h4><dfn method for="Console">log()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to log.
+The side effect of running the logger function with data and logLevel set to log.
 
 <h4><dfn method for="Console">table()</dfn></h4>
 
@@ -96,11 +96,11 @@ This will need a good algorithm.
 
 <h4><dfn method for="Console">trace()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to error.
+The side effect of running the logger function with data and logLevel set to error.
 
 <h4><dfn method for="Console">warn()</dfn></h4>
 
-The side effect of running the logger function with objs and logLevel set to warn.
+The side effect of running the logger function with data and logLevel set to warn.
 
 <h3 id="grouping">Grouping Methods</h3>
 
