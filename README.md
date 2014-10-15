@@ -13,4 +13,4 @@ It is very much a work in progress.
 ## The Specification
 
 The Console Specification is written in [`Bikeshed`](https://github.com/tabatkins/bikeshed) and is tracked in this repository as `index.bs`.
-It will soon be visible at [https://terinjokes.github.io/console-spec](http://terinjokes.github.io/console-spec/).
+The latest rendered version can be viewed at <https://terinjokes.github.io/console-spec>.
