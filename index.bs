@@ -12,7 +12,7 @@ Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd
 !Version History: <a href="https://github.com/terinjokes/console-spec/commits">https://github.com/terinjokes/console-spec/commits</a>
 !Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
 !Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
-!Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whawg on Freenode</a>
+!Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
 </pre>
 
 <h2 id="status" class="no-num no-toc">Status</h2>
