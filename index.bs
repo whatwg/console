@@ -22,8 +22,11 @@ As such, the term "Living Standard" indicates a goal, rather than reality.
 Please join us in the <a href="https://github.com/terinjokes/console-spec/issues?state=open">issue tracker</a> for more discussion.
 
 <h2 id="logger-function">Logger Function</h2>
+The logging function accepts datum and the logLevel, which is stored or displayed in a platform appropriate way.
 
-@TODO: Write this.
+TODO: Describe the interaction of format specifiers and object inspection with respect to what is stored or displayed
+
+TODO: Add notes to give examples of how a platform might implement the side effects of this logging function.
 
 <h2 id="console-interface">Interface <code>Console</code></h2>
 
@@ -64,7 +67,7 @@ partial interface WorkerGlobalScope {
 <h3 id="logging">Logging Methods</h3>
 
 <h4><dfn method for="Console">assert()</dfn></h4>
-If expression is false, print the message as an error level message.
+If expression is false, the side effect of running the logger function with the message as data, and the logLevel set to error.
 
 <h4><dfn method for="Console">clear()</dfn></h4>
 If possible for the environment, clear the console. Otherwise, do nothing.
@@ -92,7 +95,8 @@ The side effect of running the logger function with data and logLevel set to log
 
 Try to construct a table with the columns of the properties of tabularData and rows of tabularData and log it with a logLevel of log.
 Fall back to just logging the argument if it can't be parsed as tabular.
-This will need a good algorithm.
+
+TODO: This will need a good algorithm.
 
 <h4><dfn method for="Console">trace()</dfn></h4>
 
