@@ -33,34 +33,34 @@ TODO: Add notes to give examples of how a platform might implement the side effe
 <pre class="idl">
 [NoInterfaceObject]
 interface Console {
-	// Logging
-	void assert(boolean condition, optional any message);
-	void clear();
-	void count(optional DOMString label = "");
-	void debug(any... data);
-	void error(any... data);
-	void info(any... data);
-	void log(any... data);
-	void table(any tabularData, optional sequence&lt;DOMString> properties);
-	void trace(any... data);
-	void warn(any... data);
+  // Logging
+  void assert(boolean condition, optional any message);
+  void clear();
+  void count(optional DOMString label = "");
+  void debug(any... data);
+  void error(any... data);
+  void info(any... data);
+  void log(any... data);
+  void table(any tabularData, optional sequence&lt;DOMString> properties);
+  void trace(any... data);
+  void warn(any... data);
 
-	// Grouping
-	void group(any... data);
-	void groupCollapse(any... data);
-	void groupEnd();
+  // Grouping
+  void group(any... data);
+  void groupCollapse(any... data);
+  void groupEnd();
 
-	// Timing
-	void time(DOMString label);
-	void timeEnd(DOMString label);
+  // Timing
+  void time(DOMString label);
+  void timeEnd(DOMString label);
 };
 
 partial interface Window {
-	attribute Console console;
+  attribute Console console;
 };
 
 partial interface WorkerGlobalScope {
-	attribute Console console;
+  attribute Console console;
 };
 </pre>
 
