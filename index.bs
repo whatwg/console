@@ -87,9 +87,17 @@ The side effect of running the logger function with data and logLevel set to err
 
 The side effect of running the logger function with data and logLevel set to info.
 
-<h4><dfn method for="Console">log()</dfn></h4>
+<h4><dfn method for="Console">log([arg1], [arg2], ...)</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to log.
+Prints to the console as side effect of running the logger function if the logLevel is set to log. If the log function is called with no arguments, no output is written to the console. Each log entry from console.log gets an own line in the console. It is possible to pass format specifiers to the function in the first argument.
+
+<emu-alg>
+1. If no argument given, _log_ prints nothing to the console
+1. If at least one argument given, print it to the console on a new line
+2. If _arg1_ contains one or more format specifier, interpolate the string. Apply a type conversion to each argument following _arg1_ which matches the corresponding format specifier from left to right
+3. If there are more arguments than format specifiers, print them separated by a space
+3. If there are more format specifiers than given arguments, print the specifier
+</emu-alg>
 
 <h4><dfn method for="Console">table()</dfn></h4>
 
