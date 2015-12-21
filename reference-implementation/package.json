@@ -1,0 +1,21 @@
+{
+  "name": "console-spec-reference-implementations",
+  "version": "1.0.0",
+  "description": "Reference implementations",
+  "main": "format-specifier.js",
+  "scripts": {
+    "start": "babel-node Logger.js",
+    "test": "mocha -R spec --compilers js:babel-register"
+  },
+  "author": "Robert Kowalski <rok@kowalski.gd>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13"
+  },
+  "devDependencies": {
+    "babel-register": "^6.3.13",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2"
+  }
+}
