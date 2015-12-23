@@ -1,4 +1,4 @@
-exports = (module.exports = Logger)
+exports = (module.exports = Logger);
 
 exports.maybeApplyFormatSpecifier = maybeApplyFormatSpecifier;
 exports.getFormatter = getFormatter;

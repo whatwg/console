@@ -46,6 +46,13 @@ describe('maybeApplyFormatSpecifier', () => {
     assert.equal(undefined, res[1]);
   });
 
+  it('handles edge cases like %% and %!', () => {
+
+    const res = maf(['rocko artischocko%% dances %%%s and %! %s', 'tango', 'samba']);
+    assert.equal('rocko artischocko%% dances %%tango and %! samba', res[0]);
+    assert.equal(undefined, res[1]);
+  });
+
   describe('integer conversion', () => {
 
     it('applies a conversion to the desired format for integers, integer given', () => {
