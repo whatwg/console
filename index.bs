@@ -13,7 +13,29 @@ Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd
 !Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
 !Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
 !Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+Opaque Elements: emu-alg
 </pre>
+
+<style>
+  .note + .example, .note + .note { margin-top: 1em; }
+
+  emu-val { font-weight: bold; }
+  emu-alg > ol, emu-alg > ol ol ol ol { list-style-type: decimal; }
+  emu-alg > ol ol, emu-alg > ol ol ol ol ol { list-style-type: lower-alpha; }
+  emu-alg > ol ol ol, emu-alg > ol ol ol ol ol ol { list-style-type: lower-roman; }
+  emu-alg li { margin: 0; }
+
+  .heading[aoid] .annotation {
+    background-color: beige;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: help;
+    display: inline-block;
+    font-size: 70%;
+    font-weight: normal;
+    padding: 1px 2px;
+  }
+</style>
 
 <h2 id="status" class="no-num no-toc">Status</h2>
 This specification is in the process of establishing itself in the WHATWG.
@@ -23,6 +45,34 @@ Please join us in the <a href="https://github.com/terinjokes/console-spec/issues
 
 <h2 id="logger-function">Logger Function</h2>
 The logging function accepts datum and the logLevel, which is stored or displayed in a platform appropriate way.
+
+Each call of the Logger function prints a line which is ended by a newline.
+If the Logger function is called with no arguments, no output is written to the console.
+If the printing function gets multiple elements, it prints them separated by a space. It is possible to pass format specifiers to the function as the element of the arguments that should get printed.
+
+The Logger(logLevel, multipleArgs) function must run these steps:
+
+<emu-alg>
+  1. Let _firstElement_ be the first element of _multipleArgs_.
+  1. Let _rest_ be all elements following _firstElement_ in _multipleArgs_.
+  1. Let _formatter_ be a recursive function.
+  1. If no _firstElement_ given, do not print any output. Abort these steps.
+  1. If just _firstElement_ given, print _firstElement_ to the console. Abort these steps.
+  1. If _firstElement_ does not contain any format specifier, print _multipleArgs_ separated by one space to the console. Abort these steps.
+  1. Call _formatter_ with _multipleArgs_:
+    1. Let _target_ be the first element of _multipleArgs_.
+    1. Let _current_ be the second element of _multipleArgs_.
+    1. Find the first possible format specifier from the left to the right in _target_.
+      1. If it is `%s`, let _converted_ be the result of new String(_current_).
+      1. If it is `%d` or `%i`, let _converted_ be the result of Number.parseInt(_current_, 10).
+      1. If it is `%f`, let _converted_ be the result of  Number.parseFloat(_current_, 10).
+      1. Replace _current_ in _target_ with _converted_.
+      1. Create _result_ which contains _target_ together with the elements of _multipleArgs_, but with _current_ removed.
+    1. If _target_ does not have any format specifiers left, return _result_ and end the recursive function. Print the result. Abort the steps.
+    1. If _result_ is just one element, return _result_ and end the recursive function. Print the result. Abort the steps.
+    1. Call _formatter_ with _result_ until it returns.
+</emu-alg>
+
 
 TODO: Describe the interaction of format specifiers and object inspection with respect to what is stored or displayed
 
@@ -77,27 +127,19 @@ Counts the number of times count has been called with the provided label.
 
 <h4><dfn method for="Console">debug()</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to log.
+The side effect of running the logger function with data and logLevel set to log. Perform the side effects given by Logger("debug", data).
 
 <h4><dfn method for="Console">error()</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to error.
+The side effect of running the logger function with data and logLevel set to error. Perform the side effects given by Logger("error", data).
 
 <h4><dfn method for="Console">info()</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to info.
+The side effect of running the logger function with data and logLevel set to info. Perform the side effects given by Logger("info", data).
 
-<h4><dfn method for="Console">log([arg1], [arg2], ...)</dfn></h4>
+<h4><dfn method for="Console">log()</dfn></h4>
 
-Prints to the console as side effect of running the logger function if the logLevel is set to log. If the log function is called with no arguments, no output is written to the console. Each log entry from console.log gets an own line in the console. It is possible to pass format specifiers to the function in the first argument.
-
-<emu-alg>
-1. If no argument given, _log_ prints nothing to the console
-1. If at least one argument given, print it to the console on a new line
-2. If _arg1_ contains one or more format specifier, interpolate the string. Apply a type conversion to each argument following _arg1_ which matches the corresponding format specifier from left to right
-3. If there are more arguments than format specifiers, print them separated by a space
-3. If there are more format specifiers than given arguments, print the specifier
-</emu-alg>
+The side effect of running the logger function with data and logLevel set to info. Perform the side effects given by Logger("log", data).
 
 <h4><dfn method for="Console">table()</dfn></h4>
 
