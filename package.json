@@ -21,6 +21,7 @@
   "homepage": "https://github.com/terinjokes/console-spec#readme",
   "devDependencies": {
     "ecmarkup": "^1.3.0",
+    "emu-algify": "^1.0.0",
     "jsdom": "^5.0.1",
     "promise-debounce": "^1.0.0"
   }
