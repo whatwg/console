@@ -5,7 +5,7 @@ const Logger = require('../Logger.js');
 describe('Logger', () => {
 
   it('does not print with no data provided', () => {
-    global.print = function print () {
+    global.print = function print() {
       throw new Error('print called');
     };
 
@@ -13,7 +13,7 @@ describe('Logger', () => {
   });
 
   it('does print falsy values', () => {
-    global.print = function print (logLevel, a) {
+    global.print = function print(logLevel, a) {
       assert.equal(false, a[0]);
     };
 

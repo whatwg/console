@@ -4,13 +4,13 @@ exports.maybeApplyFormatSpecifier = maybeApplyFormatSpecifier;
 exports.getFormatter = getFormatter;
 exports.format = format;
 
-function notImplemented () { throw new Error('not implemented'); };
+function notImplemented() { throw new Error('not implemented'); };
 
 const converters = {
-  '%s': function (a) { return '' + a; }, // string
-  '%d': function (a) { return Number.parseInt(a); }, // integer
-  '%i': function (a) { return Number.parseInt(a); }, // integer
-  '%f': function (a) { return Number.parseFloat(a); }, // float
+  '%s': function(a) { return '' + a; }, // string
+  '%d': function(a) { return Number.parseInt(a); }, // integer
+  '%i': function(a) { return Number.parseInt(a); }, // integer
+  '%f': function(a) { return Number.parseFloat(a); }, // float
 
   // these require a UI
   '%o': notImplemented, // expandable DOM element
@@ -87,7 +87,7 @@ function format(args) {
 }
 
 function getFormatter(specifier) {
-  function passThrough (a) { return a; };
+  function passThrough(a) { return a; };
 
   if (!converters[specifier]) {
     return passThrough;
