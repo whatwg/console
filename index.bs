@@ -73,10 +73,33 @@ The Logger(logLevel, multipleArgs) function must run these steps:
     1. Call _formatter_ with _result_ until it returns.
 </emu-alg>
 
+<h3 id="nodejs-print">Side effects of the Logger Function</h3>
 
-TODO: Describe the interaction of format specifiers and object inspection with respect to what is stored or displayed
+<div class="example">
+  The simplest way to implement the side effects of the Logger Function on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to `stdout` or `stderr`.
 
-TODO: Add notes to give examples of how a platform might implement the side effects of this logging function.
+  Example implementation in Node.js:
+
+  <pre><code class="lang-javascript">
+    const util = require('util');
+    function print(logLevel, ...args) {
+
+      const message = util.format.apply(this, args);
+
+      if (logLevel === 'error') {
+        process.stderr.write(message + '\n');
+        return;
+      }
+
+      if (logLevel === 'log' || logLevel === 'info' || logLevel === 'warn') {
+        process.stdout.write(message + '\n');
+        return;
+      }
+    }
+  </code></pre>
+
+  If the arguments contains nested objects they should get stringified. All other types that are not a String should get converted in their readable version, i.e. *undefined* gets the String `undefined` and *false* gets `false`.
+</div>
 
 <h2 id="console-interface">Interface <code>Console</code></h2>
 

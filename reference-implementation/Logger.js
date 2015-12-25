@@ -23,9 +23,11 @@ const specifier = Object.keys(converters);
 const hasSpecifier = new RegExp('(' + specifier.join('|') + ')');
 
 global.print = print;
+const util = require('util');
 function print(logLevel, ...args) {
 
-  const message = args.join(' ');
+  const message = util.format.apply(this, args);
+
   if (logLevel === 'error') {
     process.stderr.write(message + '\n');
     return;

@@ -3,6 +3,11 @@ const assert = require('assert');
 const Logger = require('../Logger.js');
 
 describe('Logger', () => {
+  const oldPrint = global.print;
+
+  afterEach(() => {
+    global.print = oldPrint;
+  });
 
   it('does not print with no data provided', () => {
     global.print = function print() {
