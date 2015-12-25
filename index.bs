@@ -213,22 +213,22 @@ Then, the side effect of running the logger function with arguments label and du
   </thead>
   <tr>
   <tr>
-    <td>*%s*</td>
+    <td>%s</td>
     <td>Element which substitutes is converted to a String</<td>
     <td>new String(element)</td>
   </tr>
   <tr>
-    <td>*%d*</td>
+    <td>%d</td>
     <td>Element which substitutes is converted to an Integer</<td>
     <td>Number.parseInt(element, 10)</td>
   </tr>
   <tr>
-    <td>*%i*</td>
+    <td>%i</td>
     <td>Element which substitutes is converted to an Integer</<td>
     <td>Number.parseInt(element, 10)</td>
   </tr>
   <tr>
-    <td>*%f*</td>
+    <td>%f</td>
     <td>Element which substitutes is converted to a Float</<td>
     <td>Number.parseFloat(element, 10)</td>
   </tr>
@@ -245,17 +245,17 @@ Then, the side effect of running the logger function with arguments label and du
     </tr>
   </thead>
  <tr>
-    <td>*%o*</td>
+    <td>%o</td>
     <td>Displays as expandable DOM element</<td>
     <td>n/a</td>
   </tr>
   <tr>
-    <td>*%O*</td>
+    <td>%O</td>
     <td>Displays as expandable JS Object</<td>
     <td>n/a</td>
   </tr>
   <tr>
-    <td>*%c*</td>
+    <td>%c</td>
     <td>Applies provided CSS</<td>
     <td>n/a</td>
   </tr>
