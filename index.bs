@@ -98,7 +98,13 @@ The Logger(logLevel, multipleArgs) function must run these steps:
     }
   </code></pre>
 
-  If the arguments contains nested objects they should get stringified. All other types that are not a String should get converted in their readable version, i.e. *undefined* gets the String `undefined` and *false* gets `false`.
+  If the arguments contains nested objects they should get stringified. All other types that are not a String should get converted in their readable version, i.e. *undefined* gets the String `undefined` and *false* gets `false`:
+
+  <pre><code class="lang-javascript">
+    print('log', 'duck', [{foo: 'bar'}]);     // prints: `duck [ { foo: 'bar' } ]\n` on stdout
+    print('log', 'duck', false);              // prints: `duck false\n` on stdout
+    print('log', 'duck', undefined);          // prints: `duck undefined\n` on stdout
+  </code></pre>
 </div>
 
 <h2 id="console-interface">Interface <code>Console</code></h2>
