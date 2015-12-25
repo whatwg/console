@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "ecmarkupify": "node ./ecmarkupify.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/terinjokes/console-spec.git"
