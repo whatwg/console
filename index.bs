@@ -201,7 +201,65 @@ Then, the side effect of running the logger function with arguments label and du
 
 <h2 id="formatting">Formatting Specifiers</h2>
 
-Note: Consider keeping these format specifiers general enough to be re-used by other specifications.
+<h3 id="formatting-no-ui">Formatting Specifiers that don't require a UI</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Specifier</th>
+      <th>Function</th>
+      <th>Type Conversion</th>
+    </tr>
+  </thead>
+  <tr>
+  <tr>
+    <td>*%s*</td>
+    <td>Element which substitutes is converted to a String</<td>
+    <td>new String(element)</td>
+  </tr>
+  <tr>
+    <td>*%d*</td>
+    <td>Element which substitutes is converted to an Integer</<td>
+    <td>Number.parseInt(element, 10)</td>
+  </tr>
+  <tr>
+    <td>*%i*</td>
+    <td>Element which substitutes is converted to an Integer</<td>
+    <td>Number.parseInt(element, 10)</td>
+  </tr>
+  <tr>
+    <td>*%f*</td>
+    <td>Element which substitutes is converted to a Float</<td>
+    <td>Number.parseFloat(element, 10)</td>
+  </tr>
+</table>
+
+<h3 id="formatting-no-ui">Formatting Specifiers that don't require a UI</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Specifier</th>
+      <th>Function</th>
+      <th>Type Conversion</th>
+    </tr>
+  </thead>
+ <tr>
+    <td>*%o*</td>
+    <td>Displays as expandable DOM element</<td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>*%O*</td>
+    <td>Displays as expandable JS Object</<td>
+    <td>n/a</td>
+  </tr>
+  <tr>
+    <td>*%c*</td>
+    <td>Applies provided CSS</<td>
+    <td>n/a</td>
+  </tr>
+</table>
 
 <h2 id="inspection">JavaScript Object inspection</h2>
 

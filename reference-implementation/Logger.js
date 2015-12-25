@@ -8,9 +8,9 @@ function notImplemented() { throw new Error('not implemented'); };
 
 const converters = {
   '%s': function(a) { return '' + a; }, // string
-  '%d': function(a) { return Number.parseInt(a); }, // integer
-  '%i': function(a) { return Number.parseInt(a); }, // integer
-  '%f': function(a) { return Number.parseFloat(a); }, // float
+  '%d': function(a) { return Number.parseInt(a, 10); }, // integer
+  '%i': function(a) { return Number.parseInt(a, 10); }, // integer
+  '%f': function(a) { return Number.parseFloat(a, 10); }, // float
 
   // these require a UI
   '%o': notImplemented, // expandable DOM element
