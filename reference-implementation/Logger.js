@@ -26,7 +26,7 @@ global.print = print;
 const util = require('util');
 function print(logLevel, ...args) {
 
-  const message = util.format.apply(this, args);
+  const message = util.format(...args);
 
   if (logLevel === 'error') {
     process.stderr.write(message + '\n');
