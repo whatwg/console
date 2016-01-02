@@ -13,7 +13,9 @@ Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd
 !Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
 !Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
 !Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+
 Opaque Elements: emu-alg
+Link Defaults: html (dfn) structured clone
 </pre>
 
 <style>
@@ -55,36 +57,28 @@ The Logger(logLevel, multipleArgs) function must run these steps:
 <emu-alg>
   1. Let _firstElement_ be the first element of _multipleArgs_.
   1. Let _rest_ be all elements following _firstElement_ in _multipleArgs_.
-  1. Let _formatter_ be a recursive function.
+  1. Let _formatter_ be the <a>Formatter Function</a>
   1. If no _firstElement_ given, do not print any output. Abort these steps.
   1. If just _firstElement_ given, print _firstElement_ to the console. Abort these steps.
   1. If _firstElement_ does not contain any format specifier, print _multipleArgs_ separated by one space to the console. Abort these steps.
-  1. Call _formatter_ with _multipleArgs_:
-    1. Let _target_ be the first element of _multipleArgs_.
-    1. Let _current_ be the second element of _multipleArgs_.
-    1. Find the first possible format specifier from the left to the right in _target_.
-      1. If it is `%s`, let _converted_ be the result of new String(_current_).
-      1. If it is `%d` or `%i`, let _converted_ be the result of Number.parseInt(_current_, 10).
-      1. If it is `%f`, let _converted_ be the result of  Number.parseFloat(_current_, 10).
-      1. Replace _current_ in _target_ with _converted_.
-      1. Create _result_ which contains _target_ together with the elements of _multipleArgs_, but with _current_ removed.
-    1. If _target_ does not have any format specifiers left, return _result_ and end the recursive function. Print the result. Abort the steps.
-    1. If _result_ is just one element, return _result_ and end the recursive function. Print the result. Abort the steps.
-    1. Call _formatter_ with _result_ until it returns.
+  1. Call _formatter_(_multipleArgs_).
+  1. Print the result to the console.
+  1. Return *undefined*.
 </emu-alg>
 
 <h3 id="nodejs-print">Side effects of the Logger Function</h3>
 
+
 <div class="example">
   The simplest way to implement the side effects of the Logger Function on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to `stdout` or `stderr`.
 
-  Example implementation in Node.js:
+  Example implementation in Node.js using [[!ECMASCRIPT]]:
 
   <pre><code class="lang-javascript">
     const util = require('util');
     function print(logLevel, ...args) {
 
-      const message = util.format.apply(this, args);
+      const message = util.format(...args);
 
       if (logLevel === 'error') {
         process.stderr.write(message + '\n');
@@ -205,7 +199,30 @@ Store the current value of the internal timer stored as label as duration.
 Remove the timer from tha timer table.
 Then, the side effect of running the logger function with arguments label and duration.
 
-<h2 id="formatting">Formatting Specifiers</h2>
+
+<h2 id="formatter" aoid="Formatter" nothrow>Formatter Function</h2>
+
+The <dfn>Formatter Function</dfn> tries to format the first argument provided, using the other arguments given to the function. It will try to format the input until no <a href="#formatting-specifiers">Formatting Specifier</a> are left in the first argument, or no more arguments are left.
+
+
+<emu-alg>
+  1. Let _formatter_ be the Formatter Function.
+  1. Let _target_ be the first element of _multipleArgs_.
+  1. Let _current_ be the second element of _multipleArgs_.
+  1. Find the first possible format specifier from the left to the right in _target_.
+    1. If it is `%s`, let _converted_ be the result of ToString(_current_).
+    1. If it is `%d` or `%i`, let _converted_ be the result of %parseInt%(_current_, 10).
+    1. If it is `%f`, let _converted_ be the result of  %parseFloat%(_current_, 10).
+    1. Replace _current_ in _target_ with _converted_.
+    1. Create _result_ which contains _target_ together with the elements of _multipleArgs_, but with _current_ removed.
+  1. If _target_ does not have any format specifiers left, return _result_ and end the recursive function.
+  1. If _result_ is just one element, return _result_ and end the recursive function.
+  1. Call _formatter_ with _result_ until it returns.
+</emu-alg>
+
+
+
+<h2 id="formatting-specifiers"><dfn>Formatting Specifiers</dfn></h2>
 
 <h3 id="formatting-no-ui">Formatting Specifiers that don't require a complex UI</h3>
 
@@ -221,26 +238,26 @@ Then, the side effect of running the logger function with arguments label and du
   <tr>
     <td>%s</td>
     <td>Element which substitutes is converted to a String</<td>
-    <td>new String(element)</td>
+    <td>ToString(element)</td>
   </tr>
   <tr>
     <td>%d</td>
     <td>Element which substitutes is converted to an Integer</<td>
-    <td>Number.parseInt(element, 10)</td>
+    <td>%parseInt%(element, 10)</td>
   </tr>
   <tr>
     <td>%i</td>
     <td>Element which substitutes is converted to an Integer</<td>
-    <td>Number.parseInt(element, 10)</td>
+    <td>%parseInt%(element, 10)</td>
   </tr>
   <tr>
     <td>%f</td>
     <td>Element which substitutes is converted to a Float</<td>
-    <td>Number.parseFloat(element, 10)</td>
+    <td>%parseFloat%(element, 10)</td>
   </tr>
 </table>
 
-<h3 id="formatting-no-ui">Formatting Specifiers that require a complex UI</h3>
+<h3 id="formatting-complex-ui">Formatting Specifiers that require a complex UI</h3>
 
 <table>
   <thead>
