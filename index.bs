@@ -13,7 +13,9 @@ Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd
 !Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
 !Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
 !Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+
 Opaque Elements: emu-alg
+Link Defaults: html (dfn) structured clone
 </pre>
 
 <style>
@@ -65,6 +67,7 @@ The Logger(logLevel, multipleArgs) function must run these steps:
 </emu-alg>
 
 <h3 id="nodejs-print">Side effects of the Logger Function</h3>
+
 
 <div class="example">
   The simplest way to implement the side effects of the Logger Function on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to `stdout` or `stderr`.
