@@ -2,13 +2,10 @@
   "name": "console-spec",
   "private": true,
   "version": "1.0.0",
-  "description": "For several users most web browsers have shipped some form of JavaScript developer console. Unfortunately, without a standard specification, each browser has implemented the language bindings of this console differently.",
-  "repository": {
-    "type": "git",
-    "url": "terinjokes/console-spec"
-  },
+  "description": "Build setup for the Console Standard",
+  "repository": "whatwg/console",
   "author": "Terin Stock <terinjokes@gmail.com> & Robert Kowalski <rok@kowalski.gd>",
-  "license": "MIT",
+  "license": "CC0",
   "devDependencies": {
     "ecmarkup": "^1.3.0",
     "emu-algify": "^1.0.0",

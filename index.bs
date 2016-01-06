@@ -3,16 +3,16 @@ Title: Console Standard
 Group: WHATWG
 H1: Console
 Shortname: console
-Level: 1
-Status: DREAM
-ED: https://terinjokes.github.io/console-spec
+Repository: whatwg/console
+Status: LS
+Boilerplate: omit conformance, omit feedback-header
 Editor: Terin Stock, https://terinstock.com, terin@terinstock.com
+Editor: Robert Kowalski, http://robert-kowalski.de, rok@kowalski.gd
 Abstract: This specification standardizes APIs for console debugging facilities.
-Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd349c9387c6e8c/logo.svg
-!Version History: <a href="https://github.com/terinjokes/console-spec/commits">https://github.com/terinjokes/console-spec/commits</a>
-!Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
-!Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
-!Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+Logo: https://resources.whatwg.org/logo-console.svg
+!Participate: <a href="https://github.com/whatwg/console">GitHub whatwg/console</a> (<a href="https://github.com/whatwg/console/issues/new">new issue</a>, <a href="https://github.com/whatwg/console/issues">open issues</a>)
+!Participate: <a href="https://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+!Commits: <a href="https://github.com/whatwg/console/commits">https://github.com/whatwg/console/commits</a>
 
 Opaque Elements: emu-alg
 Link Defaults: html (dfn) structured clone
@@ -40,10 +40,10 @@ Link Defaults: html (dfn) structured clone
 </style>
 
 <h2 id="status" class="no-num no-toc">Status</h2>
-This specification is in the process of establishing itself in the WHATWG.
-As such, the term "Living Standard" indicates a goal, rather than reality.
 
-Please join us in the <a href="https://github.com/terinjokes/console-spec/issues?state=open">issue tracker</a> for more discussion.
+This specification is an early work in progress that welcomes feedback to refine toward more precise and compatible definitions.
+
+Please join us in the <a href="https://github.com/whatwg/console/issues">issue tracker</a> for more discussion.
 
 <h2 id="logger-function">Logger Function</h2>
 The logging function accepts datum and the logLevel, which is stored or displayed in a platform appropriate way.

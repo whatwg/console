@@ -1,16 +1,15 @@
-# Console Specification
+# Console Standard
 
-For several users most web browsers have shipped some form of JavaScript developer console.
-Unfortunately, without a standard specification, each browser has implemented the language bindings of this console differently, a list containing some of the differences is available in the [NOTES.md](NOTES.md).
+All web browsers, and most other JavaScript environments, have shipped some form of developer console. This standard attempts to finally define the semantics of the console APIs, in an attempt to create convergence.
 
-This specification aims to standardize and extend the current web browser behavior.
+A list containing some of the observed differences so far in different environments is available in [NOTES.md](NOTES.md).
 
-## WIP
+## Work in progress
 
-This specification is still in its very early stages.
-It is very much a work in progress.
+This specification is still in its very early stages. It is very much a work in progress.
 
-## The Specification
+## Building the spec
 
-The Console Specification is written in [`Bikeshed`](https://github.com/tabatkins/bikeshed) and is tracked in this repository as `index.bs`.
-The latest rendered version can be viewed at <https://terinjokes.github.io/console-spec>.
+The Console Standard is written in [Bikeshed](https://github.com/tabatkins/bikeshed), with an additional bit of help from [emu-algify](https://www.npmjs.com/package/emu-algify). The main source is in the file `index.bs`.
+
+To build the standard locally, you will need a recent version of [Node.js](https://nodejs.org/en/). Run `npm install` in the root directory to set things up. Then the Makefile should take care of the rest by calling out to the Bikeshed web service.
