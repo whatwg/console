@@ -5,12 +5,12 @@ H1: Console
 Shortname: console
 Level: 1
 Status: DREAM
-ED: https://terinjokes.github.io/console-spec
+ED: https://whatwg.github.io/console
 Editor: Terin Stock, https://terinstock.com, terin@terinstock.com
 Abstract: This specification standardizes APIs for console debugging facilities.
-Logo: https://cdn.rawgit.com/terinjokes/console-spec/dd485319b0d0c918d954e0daafd349c9387c6e8c/logo.svg
-!Version History: <a href="https://github.com/terinjokes/console-spec/commits">https://github.com/terinjokes/console-spec/commits</a>
-!Participate: <a href="https://github.com/terinjokes/console-spec/issues/new">File an issue</a> (<a href="https://github.com/terinjokes/console-spec/issues?state=open">open issues</a>)
+Logo: https://cdn.rawgit.com/whatwg/console/dd485319b0d0c918d954e0daafd349c9387c6e8c/logo.svg
+!Version History: <a href="https://github.com/whatwg/console/commits">https://github.com/whatwg/console/commits</a>
+!Participate: <a href="https://github.com/whatwg/console/issues/new">File an issue</a> (<a href="https://github.com/whatwg/console/issues?state=open">open issues</a>)
 !Participate: Send feedback to <a href="http://www.whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="http://www.whatwg.org/mailing-list#specs">archives</a>)
 !Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
 
@@ -43,7 +43,7 @@ Link Defaults: html (dfn) structured clone
 This specification is in the process of establishing itself in the WHATWG.
 As such, the term "Living Standard" indicates a goal, rather than reality.
 
-Please join us in the <a href="https://github.com/terinjokes/console-spec/issues?state=open">issue tracker</a> for more discussion.
+Please join us in the <a href="https://github.com/whatwg/console/issues?state=open">issue tracker</a> for more discussion.
 
 <h2 id="logger-function">Logger Function</h2>
 The logging function accepts datum and the logLevel, which is stored or displayed in a platform appropriate way.

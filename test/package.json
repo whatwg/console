@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/terinjokes/console-spec"
+    "url": "https://github.com/whatwg/console"
   },
   "keywords": [
     "console"
@@ -16,9 +16,9 @@
   "author": "Terin Stock <terinjokes@gmail.com> (https://terinstock.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/terinjokes/console-spec/issues"
+    "url": "https://github.com/whatwg/console/issues"
   },
-  "homepage": "https://github.com/terinjokes/console-spec",
+  "homepage": "https://github.com/whatwg/console",
   "dependencies": {
     "lodash": "^2.4.1",
     "mocha": "^1.21.4"
