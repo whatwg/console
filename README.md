@@ -1,6 +1,6 @@
 # Console Specification
 
-For several users most web browsers have shipped some form of JavaScript developer console.
+For several years most web browsers have shipped some form of JavaScript developer console.
 Unfortunately, without a standard specification, each browser has implemented the language bindings of this console differently, a list containing some of the differences is available in the [NOTES.md](NOTES.md).
 
 This specification aims to standardize and extend the current web browser behavior.
