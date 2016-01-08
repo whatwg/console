@@ -2,7 +2,12 @@ language: node_js
 node_js: stable
 sudo: false
 
-secure: "ZRbrSQMLh23tH3RavaViTEho+RkCDsqOz2LrE4hslMOG+DBBpnlWmT8Bl07APfNRi8u5g+I5mwgfdPiWwgAfa0j3Jsv6B9HOcoqWFQdDnZvyDerDmQaTkZYL05WEvbJ9gmzt5anCaLHx6L2x6wEMHmm6mfxAoD1nt1oqaQ3p+Nc="
+env:
+  global:
+    secure: "a5khJF7IdbDt2cT7xjlVpEglXeud5Ln+4AnfjOwR7hrcFnwY9s/fHDXRdNi/QdOUnl/2vFM86OXgyEVUOCnwvJAPHu5fw6nDfcj18CMDBUNBZvVXwEFCTJTjL8P+zTsGx5Sh8xmWo2s+eoPJiczcwtsk7XD9gMoTYrR5Us9KF/0="
+
+addons:
+  ssh_known_hosts: console.spec.whatwg.org
 
 script:
 - make deploy

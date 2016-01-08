@@ -2,8 +2,6 @@ spec = console
 targetfolder = $(spec).spec.whatwg.org
 server = $(spec).spec.whatwg.org
 
-branch = $(shell git rev-parse --abbrev-ref HEAD)
-
 # find all bikeshed files and create a target for them
 # ./index.bs gets console.spec.whatwg.org/index.html
 markupfiles := $(shell find . -name '*.bs' \
@@ -30,7 +28,7 @@ clean:
 	@rm -rf $(targetfolder)
 
 # deployment
-ifneq ($(branch),master)
+ifneq ($(TRAVIS_BRANCH),master)
 deploy:
 	@echo "Not on master branch; skipping deploy"
 else ifneq ($(TRAVIS_PULL_REQUEST),false)
@@ -47,6 +45,7 @@ endif
 # upload to server
 upload:
 	@openssl aes-256-cbc -K $(encrypted_b9b018a1d67d_key) -iv $(encrypted_b9b018a1d67d_iv) -in console_spec_id_rsa.enc -out console_spec_id_rsa -d
+	@chmod 600 console_spec_id_rsa
 	@scp -r -i console_spec_id_rsa $(targetfolder) $(DEPLOY_USER)@$(server):
 
 # don't confuse make given we have files called "clean" "upload"
