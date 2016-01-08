@@ -21,7 +21,7 @@ all: clean $(markupfiles)
 $(targetfolder)/%.html:
 	@[ -d $(@D) ] || mkdir -p $(@D) # create dir if it does not exist
 	@curl -s https://api.csswg.org/bikeshed/ -F file=@$*.bs \
-		| npm run emu-algify > $@
+		| node_modules/.bin/emu-algify > $@
 
 # cleaning up
 clean:
