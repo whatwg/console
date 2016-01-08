@@ -41,58 +41,71 @@ Link Defaults: html (dfn) structured clone
 
 <h2 id="status" class="no-num no-toc">Status</h2>
 
-This specification is an early work in progress that welcomes feedback to refine toward more precise and compatible definitions.
+This specification is an early work in progress that welcomes feedback to refine toward more precise and compatible definitions. It is also the editors' first specification, so please be kind and constructive.
 
 Please join us in the <a href="https://github.com/whatwg/console/issues">issue tracker</a> for more discussion.
 
-<h2 id="logger-function">Logger Function</h2>
-The logging function accepts datum and the logLevel, which is stored or displayed in a platform appropriate way.
+<h2 id="supporting-ops">Supporting abstract operations</h2>
 
-Each call of the Logger function prints a line which is ended by a newline.
-If the Logger function is called with no arguments, no output is written to the console.
-If the printing function gets multiple elements, it prints them separated by a space. It is possible to pass format specifiers to the function as the element of the arguments that should get printed.
+<h3 id="logger" aoid="Logger" nothrow>Logger(<var>logLevel</var>, <var>args</var>)</h3>
 
-The Logger(logLevel, multipleArgs) function must run these steps:
+The logger operation accepts a log level and a List of other arguments. Its main output is the implementation-defined side effect of printing the result to the console. This specification describes how it processes format specifiers while doing so.
 
 <emu-alg>
-  1. Let _firstElement_ be the first element of _multipleArgs_.
-  1. Let _rest_ be all elements following _firstElement_ in _multipleArgs_.
-  1. Let _formatter_ be the <a>Formatter Function</a>
-  1. If no _firstElement_ given, do not print any output. Abort these steps.
-  1. If just _firstElement_ given, print _firstElement_ to the console. Abort these steps.
-  1. If _firstElement_ does not contain any format specifier, print _multipleArgs_ separated by one space to the console. Abort these steps.
-  1. Call _formatter_(_multipleArgs_).
-  1. Print the result to the console.
+  1. Let _first_ be the first element of _args_. If _args_ is empty, abort these steps.
+  1. Let _rest_ be all elements following _first_ in _args_.
+  1. If _rest_ is empty, print _first_ to the console. Abort these steps.
+  1. If _first_ does not contain any format specifiers, perform Print(_logLevel_, _args_).
+  1. Otherwise, perform Print(_logLevel_, Formatter(_args_)).
   1. Return *undefined*.
 </emu-alg>
 
-<h3 id="nodejs-print">Side effects of the Logger Function</h3>
+<h3 id="formatter" aoid="Formatter" nothrow>Formatter(<var>args</var>)</h3>
 
+The formatter operation tries to format the first argument provided, using the other arguments. It will try to format the input until no <a>formatting specifiers</a> are left in the first argument, or no more arguments are left. It returns a List of objects suitable for printing.
+
+<emu-alg>
+  1. Let _target_ be the first element of _args_.
+  1. Let _current_ be the second element of _args_.
+  1. Find the first possible format specifier _specifier_, from the left to the right in _target_.
+    1. If _specifier_ is `%s`, let _converted_ be the result of ToString(_current_).
+    1. If _specifier_ is `%d` or `%i`, let _converted_ be the result of %parseInt%(_current_, 10).
+    1. If _specifier_ is `%f`, let _converted_ be the result of  %parseFloat%(_current_, 10).
+    1. Replace _specifier_ in _target_ with _converted_.
+    1. Let _result_ be a List containing _target_ together with the elements of _args_ starting from the third onward.
+  1. If _target_ does not have any format specifiers left, return _result_.
+  1. If _result_ contains just one element, return _result_.
+  1. Return Formatter(_result_).
+</emu-alg>
+
+<h3 id="printer" aoid="Printer" nothrow>Printer(<var>logLevel</var>, <var>args</var>)</h3>
+
+The printer operation is implementation-defined. It accepts a log level indicating severity, and a List of arguments to print (which are JavaScript objects, of any type). How the implementation prints <var>args</var> is up to the implementation, but implementations should separate the objects by a space or something similar, as that has become a developer expectation.
+
+By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List.
+
+<h4 id="nodejs-printer">Example printer in Node.js</h4>
 
 <div class="example">
-  The simplest way to implement the side effects of the Logger Function on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to `stdout` or `stderr`.
+  The simplest way to implement the printer operation on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to <code>stdout</code> or <code>stderr</code>.
 
   Example implementation in Node.js using [[!ECMASCRIPT]]:
 
   <pre><code class="lang-javascript">
     const util = require('util');
-    function print(logLevel, ...args) {
 
+    function print(logLevel, ...args) {
       const message = util.format(...args);
 
       if (logLevel === 'error') {
         process.stderr.write(message + '\n');
-        return;
-      }
-
-      if (logLevel === 'log' || logLevel === 'info' || logLevel === 'warn') {
+      } else if (logLevel === 'log' || logLevel === 'info' || logLevel === 'warn') {
         process.stdout.write(message + '\n');
-        return;
       }
     }
   </code></pre>
 
-  If the arguments contains nested objects they should get stringified. All other types that are not a String should get converted in their readable version, i.e. *undefined* gets the String `undefined` and *false* gets `false`:
+  Here a lot of the work is done by the <code>util.format</code> function. It stringifies nested objects, and converts non-string arguments into a readable string version, e.g. undefined becomes the string <code>"undefined"</code> and false becomes <code>"false"</code>:
 
   <pre><code class="lang-javascript">
     print('log', 'duck', [{foo: 'bar'}]);     // prints: `duck [ { foo: 'bar' } ]\n` on stdout
@@ -137,94 +150,75 @@ partial interface WorkerGlobalScope {
 };
 </pre>
 
-<h3 id="logging">Logging Methods</h3>
+<h3 id="logging">Logging methods</h3>
 
-<h4><dfn method for="Console">assert()</dfn></h4>
-If expression is false, the side effect of running the logger function with the message as data, and the logLevel set to error.
+<h4><dfn method for="Console">assert(<var>condition</var>, <var>message</var>)</dfn></h4>
+
+If <var>condition</var> is false, perform Logger("error", «<var>message</var>»).
 
 <h4><dfn method for="Console">clear()</dfn></h4>
+
 If possible for the environment, clear the console. Otherwise, do nothing.
 
-<h4><dfn method for="Console">count()</dfn></h4>
-Counts the number of times count has been called with the provided label.
+<h4><dfn method for="Console">count(<var>label</var>)</dfn></h4>
 
-<h4><dfn method for="Console">debug()</dfn></h4>
+Counts the number of times count has been called with the provided <var>label</var>.
 
-The side effect of running the logger function with data and logLevel set to log. Perform the side effects given by Logger("debug", data).
+<h4><dfn method for="Console">debug(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">error()</dfn></h4>
+Perform Logger("log", <var>data</var>).
 
-The side effect of running the logger function with data and logLevel set to error. Perform the side effects given by Logger("error", data).
+<h4><dfn method for="Console">error(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">info()</dfn></h4>
+Perform Logger("error", <var>data</var>).
 
-The side effect of running the logger function with data and logLevel set to info. Perform the side effects given by Logger("info", data).
+<h4><dfn method for="Console">info(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">log()</dfn></h4>
+Perform Logger("info", <var>data</var>).
 
-The side effect of running the logger function with data and logLevel set to info. Perform the side effects given by Logger("log", data).
+<h4><dfn method for="Console">log(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">table()</dfn></h4>
+Perform Logger("log", <var>data</var>).
+
+<h4><dfn method for="Console">table(<var>tabularData</var>, <var>properties</var>)</dfn></h4>
 
 Try to construct a table with the columns of the properties of tabularData and rows of tabularData and log it with a logLevel of log.
 Fall back to just logging the argument if it can't be parsed as tabular.
 
 TODO: This will need a good algorithm.
 
-<h4><dfn method for="Console">trace()</dfn></h4>
+<h4><dfn method for="Console">trace(...<var>data</var>)</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to error.
+Perform Logger("error", <var>data</var>).
 
-<h4><dfn method for="Console">warn()</dfn></h4>
+<h4><dfn method for="Console">warn(...<var>data</var>)</dfn></h4>
 
-The side effect of running the logger function with data and logLevel set to warn.
+Perform Logger("warn", <var>data</var>).
 
-<h3 id="grouping">Grouping Methods</h3>
+<h3 id="grouping">Grouping methods</h3>
 
-<h4><dfn method for="Console">group()</dfn></h4>
+<h4><dfn method for="Console">group(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">groupCollapse()</dfn></h4>
+<h4><dfn method for="Console">groupCollapse(...<var>data</var>)</dfn></h4>
 
 <h4><dfn method for="Console">groupEnd()</dfn></h4>
 
-<h3 id="timing">Timing Methods</h3>
+<h3 id="timing">Timing methods</h3>
 
-<h4><dfn method for="Console">time()</dfn></h4>
+<h4><dfn method for="Console">time(<var>label</var>)</dfn></h4>
 
-Start an internal timer stored in the timer table as label.
+Start an internal timer stored in the timer table with key <var>label</var>.
 
-<h4><dfn method for="Console">timeEnd()</dfn></h4>
+<h4><dfn method for="Console">timeEnd(<var>label</var>)</dfn></h4>
 
-Store the current value of the internal timer stored as label as duration.
-Remove the timer from tha timer table.
-Then, the side effect of running the logger function with arguments label and duration.
-
-
-<h2 id="formatter" aoid="Formatter" nothrow>Formatter Function</h2>
-
-The <dfn>Formatter Function</dfn> tries to format the first argument provided, using the other arguments given to the function. It will try to format the input until no <a href="#formatting-specifiers">Formatting Specifier</a> are left in the first argument, or no more arguments are left.
+Let <var>duration</var> be the current value of the internal timer with key <var>label</var> in the timer table.
+Remove the timer from the timer table.
+Then, perform Logger("info", «<var>label</var>, <var>duration</var>»).
 
 
-<emu-alg>
-  1. Let _formatter_ be the Formatter Function.
-  1. Let _target_ be the first element of _multipleArgs_.
-  1. Let _current_ be the second element of _multipleArgs_.
-  1. Find the first possible format specifier from the left to the right in _target_.
-    1. If it is `%s`, let _converted_ be the result of ToString(_current_).
-    1. If it is `%d` or `%i`, let _converted_ be the result of %parseInt%(_current_, 10).
-    1. If it is `%f`, let _converted_ be the result of  %parseFloat%(_current_, 10).
-    1. Replace _current_ in _target_ with _converted_.
-    1. Create _result_ which contains _target_ together with the elements of _multipleArgs_, but with _current_ removed.
-  1. If _target_ does not have any format specifiers left, return _result_ and end the recursive function.
-  1. If _result_ is just one element, return _result_ and end the recursive function.
-  1. Call _formatter_ with _result_ until it returns.
-</emu-alg>
+<h2 id="formatting-specifiers"><dfn>Formatting specifiers</dfn></h2>
 
-
-
-<h2 id="formatting-specifiers"><dfn>Formatting Specifiers</dfn></h2>
-
-<h3 id="formatting-no-ui">Formatting Specifiers that don't require a complex UI</h3>
+<h3 id="formatting-no-ui">Formatting specifiers that don't require a complex UI</h3>
 
 <table>
   <thead>
@@ -257,7 +251,7 @@ The <dfn>Formatter Function</dfn> tries to format the first argument provided, u
   </tr>
 </table>
 
-<h3 id="formatting-complex-ui">Formatting Specifiers that require a complex UI</h3>
+<h3 id="formatting-complex-ui">Formatting specifiers that require a complex UI</h3>
 
 <table>
   <thead>
@@ -284,7 +278,7 @@ The <dfn>Formatter Function</dfn> tries to format the first argument provided, u
   </tr>
 </table>
 
-<h2 id="inspection">JavaScript Object inspection</h2>
+<h2 id="inspection">JavaScript object inspection</h2>
 
 TODO: Define an interface that allows JavaScript objects to format themselves for inspection.
 
