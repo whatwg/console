@@ -5,6 +5,9 @@
   "description": "Build setup for the Console Standard",
   "repository": "whatwg/console",
   "author": "Terin Stock <terinjokes@gmail.com> & Robert Kowalski <rok@kowalski.gd>",
+  "scripts": {
+    "emu-algify": "emu-algify --throwing-indicators"
+  },
   "license": "CC0",
   "devDependencies": {
     "ecmarkup": "^1.3.0",
