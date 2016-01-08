@@ -5,4 +5,4 @@ sudo: false
 secure: "ZRbrSQMLh23tH3RavaViTEho+RkCDsqOz2LrE4hslMOG+DBBpnlWmT8Bl07APfNRi8u5g+I5mwgfdPiWwgAfa0j3Jsv6B9HOcoqWFQdDnZvyDerDmQaTkZYL05WEvbJ9gmzt5anCaLHx6L2x6wEMHmm6mfxAoD1nt1oqaQ3p+Nc="
 
 script:
-- bash ./deploy.sh
+- make deploy
