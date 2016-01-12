@@ -55,8 +55,8 @@ The logger operation accepts a log level and a List of other arguments. Its main
   1. Let _first_ be the first element of _args_. If _args_ is empty, abort these steps.
   1. Let _rest_ be all elements following _first_ in _args_.
   1. If _rest_ is empty, print _first_ to the console. Abort these steps.
-  1. If _first_ does not contain any format specifiers, perform Print(_logLevel_, _args_).
-  1. Otherwise, perform Print(_logLevel_, Formatter(_args_)).
+  1. If _first_ does not contain any format specifiers, perform Printer(_logLevel_, _args_).
+  1. Otherwise, perform Printer(_logLevel_, Formatter(_args_)).
   1. Return *undefined*.
 </emu-alg>
 

@@ -7,8 +7,6 @@
   "author": "Terin Stock <terinjokes@gmail.com> & Robert Kowalski <rok@kowalski.gd>",
   "license": "CC0",
   "devDependencies": {
-    "ecmarkup": "^1.3.0",
-    "emu-algify": "^1.0.0",
-    "jsdom": "^5.0.1"
+    "emu-algify": "^1.0.1"
   }
 }
