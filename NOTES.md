@@ -14,7 +14,7 @@ Chrome:
 
 console.log("%f", 23)
 23
-````
+```
 
 ```
 FF:
