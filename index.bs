@@ -162,7 +162,10 @@ If possible for the environment, clear the console. Otherwise, do nothing.
 
 <h4><dfn method for="Console">count(<var>label</var>)</dfn></h4>
 
-Counts the number of times count has been called with the provided <var>label</var>.
+<ol>
+  <li>Let <var>called</var> be the number of times <var>count</var> has been invoked (including this invocation) with the provided <var>label</var>.</li>
+  <li>Perform Logger("log", <var>called</var>).</li>
+</ol>
 
 <h4><dfn method for="Console">debug(...<var>data</var>)</dfn></h4>
 
