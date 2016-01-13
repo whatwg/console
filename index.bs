@@ -164,7 +164,7 @@ If possible for the environment, clear the console. Otherwise, do nothing.
 
 <ol>
   <li>Let <var>called</var> be the number of times <var>count</var> has been invoked (including this invocation) with the provided <var>label</var>.</li>
-  <li>Let <var>concat</var> be the concatenation of <var>label</var>, a colon (ASCII hex: 3A), a space (ASCII hex: 20), and <var>called</var>.
+  <li>Let <var>concat</var> be the concatenation of <var>label</var>, U+003A COLON (:), U+0020 (SPACE), and ToString(<var>called</var>).
   <li>Perform Logger("log", <var>concat</var>).</li>
 </ol>
 
