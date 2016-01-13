@@ -162,11 +162,11 @@ If possible for the environment, clear the console. Otherwise, do nothing.
 
 <h4><dfn method for="Console">count(<var>label</var>)</dfn></h4>
 
-<ol>
-  <li>Let <var>called</var> be the number of times <var>count</var> has been invoked (including this invocation) with the provided <var>label</var>.</li>
-  <li>Let <var>concat</var> be the concatenation of <var>label</var>, U+003A COLON (:), U+0020 (SPACE), and ToString(<var>called</var>).
-  <li>Perform Logger("log", <var>concat</var>).</li>
-</ol>
+<emu-alg>
+  1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with the provided _label_.
+  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 (SPACE), and ToString(_called_).
+  1. Perform Logger("log", _concat_).
+</emu-al>
 
 <h4><dfn method for="Console">debug(...<var>data</var>)</dfn></h4>
 
