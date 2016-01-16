@@ -287,3 +287,18 @@ Then, perform Logger("info", «<var>label</var>, <var>duration</var>»).
 TODO: Define an interface that allows JavaScript objects to format themselves for inspection.
 
 <h2 id="acks" class="no-num">Acknowledgments</h2>
+
+The editors would like to thank
+Corey Farwell,
+Jeff Carpenter,
+Justin Woo,
+and Paul Irish
+for their contributions to this specification. You are awesome!
+
+This standard is written by <a href="https://terinstock.com">Terin Stock</a> (<a
+href="mailto:terin@terinstock.com">terin@terinstock.com</a>) and <a href="http://kowalski.gd">Robert Kowalski</a> (<a
+href="mailto:rok@kowalski.gd">rok@kowalski.gd</a>) with major help from <a href="https://domenic.me/">Domenic
+Denicola</a> (<a href="https://google.com">Google</a>, <a href="mailto:d@domenic.me">d@domenic.me</a>).
+
+Per <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, to the extent possible under law, the editors
+have waived all copyright and related or neighboring rights to this work.
