@@ -292,10 +292,10 @@ The editors would like to thank
 Corey Farwell,
 Jeff Carpenter,
 Justin Woo,
-Paul Irish
+and Paul Irish
 for their contributions to this specification. You are awesome!
 
-This standard is written by <a href="http://terinstock.com">Terin Stock</a> (<a
+This standard is written by <a href="https://terinstock.com">Terin Stock</a> (<a
 href="mailto:terin@terinstock.com">terin@terinstock.com</a>) and <a href="http://kowalski.gd">Robert Kowalski</a> (<a
 href="mailto:rok@kowalski.gd">rok@kowalski.gd</a>) with major help from <a href="https://domenic.me/">Domenic
 Denicola</a> (<a href="https://google.com">Google</a>, <a href="mailto:d@domenic.me">d@domenic.me</a>).
