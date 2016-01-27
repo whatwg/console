@@ -90,22 +90,3 @@ Chrome:
 console.log("%s %snewword", "duck")
 duck %snewword
 ```
-
-## Async printing execution
-
-It looks like FF is calling the Logger async, at least the console
-methods return `undefined` **before** printing:
-
-```
-console.count("foo")
-undefined
-foo: 1
-````
-
-Chrome:
-
-```
-console.count("foo")
-foo: 1
-undefined
-```
