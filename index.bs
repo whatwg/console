@@ -7,7 +7,7 @@ Repository: whatwg/console
 Status: LS
 Boilerplate: omit conformance, omit feedback-header
 Editor: Terin Stock, https://terinstock.com, terin@terinstock.com
-Editor: Robert Kowalski, http://robert-kowalski.de, rok@kowalski.gd
+Editor: Robert Kowalski, http://kowalski.gd, rok@kowalski.gd
 Abstract: This specification standardizes APIs for console debugging facilities.
 Logo: https://resources.whatwg.org/logo-console.svg
 !Participate: <a href="https://github.com/whatwg/console">GitHub whatwg/console</a> (<a href="https://github.com/whatwg/console/issues/new">new issue</a>, <a href="https://github.com/whatwg/console/issues">open issues</a>)
