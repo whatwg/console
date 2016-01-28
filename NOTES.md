@@ -78,3 +78,32 @@ Chrome:
 console.log("%s %snewword", "duck")
 duck %snewword
 ```
+
+## console.assert
+
+```
+FF / Edge:
+
+console.assert(false, "robert keeps %s on his balcony", "plaices")
+robert keeps plaices on his balcony
+
+Chrome:
+
+console.assert(false, "robert keeps %s on his balcony", "plaices")
+Assertion failed: robert keeps %s on his balcony plaices
+```
+
+
+## console.assert
+
+```
+FF / Edge:
+
+console.assert(false, "robert keeps %s on his balcony", {foo: "bar"})
+robert keeps [object Object] on his balcony
+
+Chrome:
+
+console.assert(false, "robert keeps %s on his balcony", {foo: "bar"})
+Assertion failed: robert keeps %s on his balcony Object {foo: "bar"}
+```
