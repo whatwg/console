@@ -169,7 +169,7 @@ By the time the printer operation is called, all format specifiers will have bee
 [NoInterfaceObject]
 interface Console {
   // Logging
-  void assert(boolean condition, optional any message);
+  void assert(boolean condition, optional any... data);
   void clear();
   void count(optional DOMString label = "");
   void debug(any... data);
@@ -201,9 +201,9 @@ partial interface WorkerGlobalScope {
 
 <h3 id="logging">Logging methods</h3>
 
-<h4><dfn method for="Console">assert(<var>condition</var>, <var>message</var>)</dfn></h4>
+<h4><dfn method for="Console">assert(<var>condition</var>, ...<var>data</var>)</dfn></h4>
 
-If <var>condition</var> is false, perform Logger("error", «<var>message</var>»).
+If <var>condition</var> is false, perform Logger("error", <var>data</var>).
 
 <h4><dfn method for="Console">clear()</dfn></h4>
 
