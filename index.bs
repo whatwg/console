@@ -258,6 +258,8 @@ Then, perform Logger("info", «<var>label</var>, <var>duration</var>»).
 
 <h3 id="formatting-complex-ui">Formatting specifiers that require a complex UI</h3>
 
+<em>This section is non-normative.</em>
+
 <table>
   <thead>
     <tr>
