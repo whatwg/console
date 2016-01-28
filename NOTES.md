@@ -29,18 +29,6 @@ bjoern and robert are born on the 1.234st dec
 ````
 
 ```
-FF (quite puzzling, why not NaN?):
-
-console.log("%f", "fo")
-nan
-
-Chrome:
-
-console.log("%f", "fo")
-NaN
-```
-
-```
 FF:
 
 console.log("%f", null)
