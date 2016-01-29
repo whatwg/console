@@ -290,6 +290,7 @@ TODO: Define an interface that allows JavaScript objects to format themselves fo
 <h2 id="acks" class="no-num">Acknowledgments</h2>
 
 The editors would like to thank
+Brian Grinstead,
 Corey Farwell,
 Jeff Carpenter,
 Justin Woo,
