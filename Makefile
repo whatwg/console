@@ -11,7 +11,7 @@ markupfiles := $(shell find . -name '*.bs' \
 								| sed 's|./|$(targetfolder)/|g')
 
 # and build after a clean
-all: clean $(markupfiles)
+all: clean $(markupfiles) $(targetfolder)/images
 
 # rule matches our target files from markupfiles:
 # $(targetfolder)/%.html matches all html file in the targetfolder
@@ -24,6 +24,10 @@ $(targetfolder)/%.html:
 	@[ -d $(@D) ] || mkdir -p $(@D) # create dir if it does not exist
 	@curl -f -s https://api.csswg.org/bikeshed/ -F file=@$*.bs \
 		| node_modules/.bin/emu-algify > $@
+
+# copy images
+$(targetfolder)/images:
+	@cp -R images $(targetfolder)/
 
 # cleaning up
 clean:

@@ -61,6 +61,12 @@ The logger operation accepts a log level and a List of other arguments. Its main
   1. Return *undefined*.
 </emu-alg>
 
+<div class="note">
+  It's important that the printing occurs before returning from the algorithm. Many developer consoles print the result of the last operation entered into them. In such consoles, when a developer enters <code>console.log("hello!")</code>, this should first print "hello!", then the undefined return value from the console.log call.
+
+  <img src="images/print-before-returning.png" alt='screenshot showing a developer console in which console.log("hello!") is entered, immediately after which "hello!" is printed, followed by the undefined return value'>
+</div>
+
 <h3 id="formatter" aoid="Formatter" nothrow>Formatter(<var>args</var>)</h3>
 
 The formatter operation tries to format the first argument provided, using the other arguments. It will try to format the input until no formatting specifiers are left in the first argument, or no more arguments are left. It returns a List of objects suitable for printing.
