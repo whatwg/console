@@ -169,7 +169,7 @@ By the time the printer operation is called, all format specifiers will have bee
 [NoInterfaceObject]
 interface Console {
   // Logging
-  void assert(boolean condition, optional any... data);
+  void assert(boolean condition, any... data);
   void clear();
   void count(optional DOMString label = "");
   void debug(any... data);
@@ -235,8 +235,7 @@ Perform Logger("log", <var>data</var>).
 
 <h4><dfn method for="Console">table(<var>tabularData</var>, <var>properties</var>)</dfn></h4>
 
-Try to construct a table with the columns of the properties of tabularData and rows of tabularData and log it with a logLevel of log.
-Fall back to just logging the argument if it can't be parsed as tabular.
+Try to construct a table with the columns of the properties of <var>tabularData</var> (or use <var>properties</var>) and rows of <var>tabularData</var> and log it with a logLevel of log. Fall back to just logging the argument if it can't be parsed as tabular.
 
 <p class="XXX">TODO: This will need a good algorithm.</p>
 
