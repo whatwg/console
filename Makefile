@@ -1,3 +1,5 @@
+SHELL=/bin/bash -o pipefail
+
 spec = console
 targetfolder = $(spec).spec.whatwg.org
 server = $(spec).spec.whatwg.org
@@ -20,7 +22,7 @@ all: clean $(markupfiles)
 # @$ is basically what is matched in the % of the %.html
 $(targetfolder)/%.html:
 	@[ -d $(@D) ] || mkdir -p $(@D) # create dir if it does not exist
-	@curl -s https://api.csswg.org/bikeshed/ -F file=@$*.bs \
+	@curl -f -s https://api.csswg.org/bikeshed/ -F file=@$*.bs \
 		| node_modules/.bin/emu-algify > $@
 
 # cleaning up
