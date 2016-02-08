@@ -139,6 +139,10 @@ The printer operation is implementation-defined. It accepts a log level indicati
 
 By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List.
 
+If the console is not open when the printer operation is called,
+implementations should buffer messages to show them in the future up to an
+implementation-chosen limit (typically on the order of at least 100).
+
 <h4 id="nodejs-printer">Example printer in Node.js</h4>
 
 <div class="example">
@@ -172,7 +176,7 @@ By the time the printer operation is called, all format specifiers will have bee
 <h2 id="console-interface">Interface <code>Console</code></h2>
 
 <pre class="idl">
-[NoInterfaceObject]
+[NoInterfaceObject, Exposed=(Window,Worker)]
 interface Console {
   // Logging
   void assert(boolean condition, any... data);
@@ -204,6 +208,12 @@ partial interface WorkerGlobalScope {
   attribute Console console;
 };
 </pre>
+
+<p class="note">
+It is important that <code>console</code> is always visible
+and usable to scripts, even if the developer console has not been opened or
+does not exist.
+</p>
 
 <h3 id="logging">Logging methods</h3>
 
