@@ -210,8 +210,9 @@ partial interface WorkerGlobalScope {
 </pre>
 
 <p class="note">
-It is important that `console` is always visible and usable to scripts,
-even if the developer console has not been opened or does not exist.
+It is important that <code>console</code> is always visible
+and usable to scripts, even if the developer console has not been opened or
+does not exist.
 </p>
 
 <h3 id="logging">Logging methods</h3>
