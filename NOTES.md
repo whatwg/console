@@ -110,18 +110,22 @@ Assertion failed: robert keeps %s on his balcony Object {foo: "bar"}
 
 ## console.table - printing of strings
 
-```
 FF:
 
+```js
 console.table("the plaice living on the balcony")
-undefined
-console.table():
+```
+
+![Image of Firefox printing console.table():](images/notes/console-table-string-ff.png)
+
 
 Chrome:
+
+```js
 console.table("the plaice living on the balcony")
-the plaice living on the balcony
-undefined
 ```
+
+![Image of Chrome printing the string](images/notes/console-table-string-chrome.png)
 
 
 ## console.table - Sets
