@@ -201,11 +201,11 @@ interface Console {
 };
 
 partial interface Window {
-  attribute Console console;
+  [Replaceable] readonly attribute Console console;
 };
 
 partial interface WorkerGlobalScope {
-  attribute Console console;
+  [Replaceable] readonly attribute Console console;
 };
 </pre>
 
