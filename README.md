@@ -4,6 +4,9 @@ All web browsers, and most other JavaScript environments, have shipped some form
 
 A list containing some of the observed differences so far in different environments is available in [NOTES.md](NOTES.md).
 
+## Code of Conduct
+We are committed to providing a friendly, safe and welcoming environment for all. Please read and respect the [WHATWG Code of Conduct](https://wiki.whatwg.org/wiki/Code_of_Conduct).
+
 ## Work in progress
 
 This specification is still in its very early stages. It is very much a work in progress.
