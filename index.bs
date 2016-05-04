@@ -179,7 +179,7 @@ implementation-chosen limit (typically on the order of at least 100).
 [NoInterfaceObject, Exposed=(Window,Worker)]
 interface Console {
   // Logging
-  void assert(boolean condition, any... data);
+  void assert(optional boolean condition = false, any... data);
   void clear();
   void count(optional DOMString label = "");
   void debug(any... data);
