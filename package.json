@@ -7,6 +7,6 @@
   "author": "Terin Stock <terinjokes@gmail.com> & Robert Kowalski <rok@kowalski.gd>",
   "license": "CC0",
   "devDependencies": {
-    "emu-algify": "^1.0.1"
+    "emu-algify": "^2.0.0"
   }
 }
