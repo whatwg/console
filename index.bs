@@ -291,11 +291,13 @@ TODO: Define an interface that allows JavaScript objects to format themselves fo
 <h2 id="acks" class="no-num">Acknowledgments</h2>
 
 The editors would like to thank
+Brent S.A. Cowgill
 Brian Grinstead,
 Corey Farwell,
 Jeff Carpenter,
 Justin Woo,
-and Paul Irish
+Paul Irish
+and Raphaël
 for their contributions to this specification. You are awesome!
 
 This standard is written by <a href="https://terinstock.com">Terin Stock</a> (<a
