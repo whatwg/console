@@ -192,7 +192,7 @@ interface Console {
 
   // Grouping
   void group(any... data);
-  void groupCollapse(any... data);
+  void groupCollapsed(any... data);
   void groupEnd();
 
   // Timing
@@ -267,7 +267,7 @@ Perform Logger("warn", <var>data</var>).
 
 <h4><dfn method for="Console">group(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">groupCollapse(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="Console">groupCollapsed(...<var>data</var>)</dfn></h4>
 
 <h4><dfn method for="Console">groupEnd()</dfn></h4>
 
