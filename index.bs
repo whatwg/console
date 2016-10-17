@@ -173,11 +173,11 @@ implementation-chosen limit (typically on the order of at least 100).
   </code></pre>
 </div>
 
-<h2 id="console-interface">Interface <code>Console</code></h2>
+<h2 id="console-namespace" oldids="console-interface">Namespace <code>console</code></h2>
 
 <pre class="idl">
-[NoInterfaceObject, Exposed=(Window,Worker)]
-interface Console {
+[Exposed=(Window,Worker)]
+namespace console { // but see namespace object requirements below
   // Logging
   void assert(optional boolean condition = false, any... data);
   void clear();
@@ -199,21 +199,21 @@ interface Console {
   void time(optional DOMString label = "default");
   void timeEnd(optional DOMString label = "default");
 };
-
-partial interface Window {
-  [Replaceable] readonly attribute Console console;
-};
-
-partial interface WorkerGlobalScope {
-  [Replaceable] readonly attribute Console console;
-};
 </pre>
 
 <p class="note">
-It is important that <code>console</code> is always visible
+For historical reasons, {{console}} is lowercased.
+</p>
+
+<p class="note">
+It is important that {{console}} is always visible
 and usable to scripts, even if the developer console has not been opened or
 does not exist.
 </p>
+
+For historical web-compatibility reasons, the <a>namespace object</a> for {{console}} must have as
+its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototype%), instead of
+%ObjectPrototype%.
 
 <h3 id="logging">Logging methods</h3>
 
@@ -291,13 +291,16 @@ TODO: Define an interface that allows JavaScript objects to format themselves fo
 <h2 id="acks" class="no-num">Acknowledgments</h2>
 
 The editors would like to thank
-Brent S.A. Cowgill
+Boris Zbarsky,
+Brent S.A. Cowgill,
 Brian Grinstead,
 Corey Farwell,
 Jeff Carpenter,
+Joseph Pecoraro,
 Justin Woo,
-Paul Irish
-and Raphaël
+Paul Irish,
+Raphaël, and
+Victor Costan
 for their contributions to this specification. You are awesome!
 
 This standard is written by <a href="https://terinstock.com">Terin Stock</a> (<a
