@@ -176,7 +176,7 @@ implementation-chosen limit (typically on the order of at least 100).
 <h2 id="console-namespace" oldids="console-interface">Namespace <code>console</code></h2>
 
 <pre class="idl">
-[Exposed=(Window,Worker)]
+[Exposed=(Window,Worker,Worklet)]
 namespace console { // but see namespace object requirements below
   // Logging
   void assert(optional boolean condition = false, any... data);
@@ -295,6 +295,7 @@ Boris Zbarsky,
 Brent S.A. Cowgill,
 Brian Grinstead,
 Corey Farwell,
+Ian Kilpatrick,
 Jeff Carpenter,
 Joseph Pecoraro,
 Justin Woo,
