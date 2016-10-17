@@ -217,15 +217,15 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h3 id="logging">Logging methods</h3>
 
-<h4><dfn method for="Console">assert(<var>condition</var>, ...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">assert(<var>condition</var>, ...<var>data</var>)</dfn></h4>
 
 If <var>condition</var> is false, perform Logger("error", <var>data</var>).
 
-<h4><dfn method for="Console">clear()</dfn></h4>
+<h4><dfn method for="console">clear()</dfn></h4>
 
 If possible for the environment, clear the console. Otherwise, do nothing.
 
-<h4><dfn method for="Console">count(<var>label</var>)</dfn></h4>
+<h4><dfn method for="console">count(<var>label</var>)</dfn></h4>
 
 <emu-alg>
   1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with the provided _label_.
@@ -233,51 +233,51 @@ If possible for the environment, clear the console. Otherwise, do nothing.
   1. Perform Logger("log", _concat_).
 </emu-al>
 
-<h4><dfn method for="Console">debug(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">debug(...<var>data</var>)</dfn></h4>
 
 Perform Logger("log", <var>data</var>).
 
-<h4><dfn method for="Console">error(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">error(...<var>data</var>)</dfn></h4>
 
 Perform Logger("error", <var>data</var>).
 
-<h4><dfn method for="Console">info(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">info(...<var>data</var>)</dfn></h4>
 
 Perform Logger("info", <var>data</var>).
 
-<h4><dfn method for="Console">log(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">log(...<var>data</var>)</dfn></h4>
 
 Perform Logger("log", <var>data</var>).
 
-<h4><dfn method for="Console">table(<var>tabularData</var>, <var>properties</var>)</dfn></h4>
+<h4><dfn method for="console">table(<var>tabularData</var>, <var>properties</var>)</dfn></h4>
 
 Try to construct a table with the columns of the properties of <var>tabularData</var> (or use <var>properties</var>) and rows of <var>tabularData</var> and log it with a logLevel of log. Fall back to just logging the argument if it can't be parsed as tabular.
 
 <p class="XXX">TODO: This will need a good algorithm.</p>
 
-<h4><dfn method for="Console">trace(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">trace(...<var>data</var>)</dfn></h4>
 
 Perform Logger("error", <var>data</var>).
 
-<h4><dfn method for="Console">warn(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">warn(...<var>data</var>)</dfn></h4>
 
 Perform Logger("warn", <var>data</var>).
 
 <h3 id="grouping">Grouping methods</h3>
 
-<h4><dfn method for="Console">group(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">group(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">groupCollapsed(...<var>data</var>)</dfn></h4>
+<h4><dfn method for="console">groupCollapsed(...<var>data</var>)</dfn></h4>
 
-<h4><dfn method for="Console">groupEnd()</dfn></h4>
+<h4><dfn method for="console">groupEnd()</dfn></h4>
 
 <h3 id="timing">Timing methods</h3>
 
-<h4><dfn method for="Console">time(<var>label</var>)</dfn></h4>
+<h4><dfn method for="console">time(<var>label</var>)</dfn></h4>
 
 Start an internal timer stored in the timer table with key <var>label</var>.
 
-<h4><dfn method for="Console">timeEnd(<var>label</var>)</dfn></h4>
+<h4><dfn method for="console">timeEnd(<var>label</var>)</dfn></h4>
 
 Let <var>duration</var> be the current value of the internal timer with key <var>label</var> in the timer table.
 Remove the timer from the timer table.
