@@ -231,7 +231,7 @@ If possible for the environment, clear the console. Otherwise, do nothing.
   1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with the provided _label_.
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 (SPACE), and ToString(_called_).
   1. Perform Logger("log", _concat_).
-</emu-al>
+</emu-alg>
 
 <h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...<var>data</var>)</h4>
 
@@ -257,8 +257,13 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 
 <h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...<var>data</var>)</h4>
 
-Performs Logger("log", <var>data</var>) and prints a snapshot of the call-stack from where the method was called.
-<p class="note">The identifier of a function printed in a stack trace is implementation-dependant. It is also not guaranteed to be the same identifier that would be seen in <var>new Error().stack</var></p>
+<emu-alg>
+  1. Let _trace_ be some implementation-specific, potentially-interactive representation of the callstack from where this method was called.
+  1. Optionally let _formattedData_ be the result of Formatter(<var>data</var>), and incorporate _formattedData_ as a label for _trace_.
+  1. Perform Printer("log", _trace_).
+</emu-alg>
+
+<p class="note">The identifier of a function printed in a stack trace is implementation-dependant. It is also not guaranteed to be the same identifier that would be seen in <code>new Error().stack</code></p>
 
 <h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...<var>data</var>)</h4>
 
