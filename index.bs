@@ -260,7 +260,7 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 <emu-alg>
   1. Let _trace_ be some implementation-specific, potentially-interactive representation of the callstack from where this method was called.
   1. Optionally let _formattedData_ be the result of Formatter(<var>data</var>), and incorporate _formattedData_ as a label for _trace_.
-  1. Perform Printer("log", _trace_).
+  1. Perform Printer("log", «_trace_»).
 </emu-alg>
 
 <p class="note">The identifier of a function printed in a stack trace is implementation-dependant. It is also not guaranteed to be the same identifier that would be seen in <code>new Error().stack</code></p>
