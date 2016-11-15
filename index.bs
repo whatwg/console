@@ -257,7 +257,8 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 
 <h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...<var>data</var>)</h4>
 
-Perform Logger("error", <var>data</var>).
+Performs Logger("log", <var>data</var>) and prints a snapshot of the call-stack from where the method was called.
+<p class="note">The identifier of a function printed in a stack trace is implementation-dependant. It is also not guaranteed to be the same identifier that would be seen in <var>new Error().stack</var></p>
 
 <h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...<var>data</var>)</h4>
 
