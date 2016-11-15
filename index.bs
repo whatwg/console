@@ -135,7 +135,7 @@ The following is an informative summary of the format specifiers processed by th
 
 <h3 id="printer" aoid="Printer" nothrow>Printer(<var>logLevel</var>, <var>args</var>)</h3>
 
-The printer operation is implementation-defined. It accepts a log level indicating severity, and a List of arguments to print (which are either JavaScript objects, of any type, or are implementation-specific representations of printable things, as produced by the <code>%o</code> and <code>%O</code> specifiers). How the implementation prints <var>args</var> is up to the implementation, but implementations should separate the objects by a space or something similar, as that has become a developer expectation.
+The printer operation is implementation-defined. It accepts a log level indicating severity, and a List of arguments to print (which are either JavaScript objects, of any type, or are implementation-specific representations of printable things such as a stack trace, or output produced by the <code>%o</code> and <code>%O</code> specifiers). How the implementation prints <var>args</var> is up to the implementation, but implementations should separate the objects by a space or something similar, as that has become a developer expectation.
 
 By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List.
 
