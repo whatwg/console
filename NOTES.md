@@ -186,3 +186,188 @@ console.table([[1, 2, 3, 4], [5, 6, 7, 8]], 2, 3)
 ```
 
 ![Image of Chrome not displaying the table with additional arguments](images/notes/console-table-add-args-chrome.png)
+
+## console.count - counters and label repetition
+
+Edge:
+
+```
+console.count('foo')
+undefined
+foo:           2
+console.count('foo')
+undefined
+
+Chrome:
+
+console.count('foo')
+foo: 1
+undefined
+console.count('foo')
+foo: 2
+undefined
+
+
+FF:
+
+console.count('foo')
+foo: 1
+undefined
+console.count('foo')
+foo: 2
+undefined
+```
+
+*Edge: the counter is raised where the first label `foo` is printed*
+<br/>
+*FF/Chrome: the label is printed multiple times with the current counter*
+
+
+## console.count - Arrays
+
+Edge:
+
+```
+console.count({})
+undefined
+[object Object]: 1
+
+console.count([])
+undefined
+:           1
+
+Chrome:
+
+console.count({})
+[object Object]: 1
+undefined
+
+console.count([])
+: 1
+undefined
+
+FF:
+
+console.count({})
+[object Object]: 1
+undefined
+
+console.count([])
+<no label>: 1
+undefined
+```
+
+*`<no label>` appears in FF*
+
+## console.count - no arguments
+
+```
+Edge:
+console.count()
+undefined
+: 1
+
+Chrome:
+
+console.count()
+: 1
+undefined
+
+FF:
+
+console.count()
+<no label>: 1
+undefined
+```
+
+*`<no label>` appears in FF*
+
+
+## - no arguments / empty strings
+
+
+```
+Edge:
+
+console.count()
+: 1
+undefined
+
+console.count("")
+: 1
+undefined
+
+
+Chrome:
+
+console.count()
+: 1
+undefined
+
+console.count("")
+: 2
+undefined
+
+
+FF:
+
+console.count()
+<no label>: 1
+undefined
+console.count("")
+<no label>: 2
+undefined
+```
+
+*Chrome/FF count no-arguments and empty-string as the same counter, FF adds `<no label>`.*
+<br>
+*Edge counts empty-string and no-arguments separetely*
+
+## console.count - null
+
+Edge:
+
+```
+console.count(null)
+undefined
+: 2
+
+Chrome:
+
+console.count(null)
+null: 2
+undefined
+
+FF:
+
+console.count(null)
+null: 1
+undefined
+```
+
+*Edge has no label*
+
+## console.count - undefined
+
+```
+Edge:
+
+console.count(undefined)
+: 1
+undefined
+
+
+Chrome:
+
+console.count(undefined)
+undefined: 1
+undefined
+
+FF:
+
+console.count(undefined)
+undefined: 1
+undefined
+```
+
+*Edge has no label*
