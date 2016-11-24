@@ -40,6 +40,8 @@ Link Defaults: html (dfn) structured clone
   }
 </style>
 
+<script src=https://resources.whatwg.org/file-issue.js async></script>
+
 <h2 id="status" class="no-num no-toc">Status</h2>
 
 This specification is an early work in progress that welcomes feedback to refine toward more precise and compatible definitions. It is also the editors' first specification, so please be kind and constructive.
