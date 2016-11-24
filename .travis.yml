@@ -11,3 +11,8 @@ addons:
 
 script:
 - make deploy
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
