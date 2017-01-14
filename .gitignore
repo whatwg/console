@@ -1,5 +1,6 @@
 node_modules/
 npm-debug.log
+index.html
 
 console_spec_id_rsa
 console.spec.whatwg.org/
