@@ -4,13 +4,13 @@ sudo: false
 
 env:
   global:
-    secure: "a5khJF7IdbDt2cT7xjlVpEglXeud5Ln+4AnfjOwR7hrcFnwY9s/fHDXRdNi/QdOUnl/2vFM86OXgyEVUOCnwvJAPHu5fw6nDfcj18CMDBUNBZvVXwEFCTJTjL8P+zTsGx5Sh8xmWo2s+eoPJiczcwtsk7XD9gMoTYrR5Us9KF/0="
+    ENCRYPTION_LABEL: "b9b018a1d67d"
 
 addons:
   ssh_known_hosts: console.spec.whatwg.org
 
 script:
-- make deploy
+- bash ./deploy.sh
 
 notifications:
   email:
