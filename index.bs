@@ -223,7 +223,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h3 id="logging">Logging methods</h3>
 
-<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var ignore=''>condition</var>, ...<var>data</var>)</h4>
+<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var>condition</var>, ...<var>data</var>)</h4>
 
 <emu-alg>
   1. If _condition_ is true, abort these steps.
@@ -231,7 +231,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
   1. If _data_ is empty, append _message_ to _data_.
   1. Otherwise, implementations should perform these substeps:
     1. Let _first_ be the first element of _data_.
-    1. If _first_ is not a string, prepend _data_ with _message_. Abort these substeps.
+    1. If _first_ is not a string, prepend _message_ to data_. Abort these substeps.
     1. Let _concat_ be the concatenation of _message_, U+003A COLON (:), U+0020 (SPACE), and _first_.
     1. Replace the first element of _data_ with _concat_.
   1. Perform Logger("error", _data_).
