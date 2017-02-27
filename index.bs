@@ -223,7 +223,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h3 id="logging">Logging methods</h3>
 
-<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var>condition</var>, ...<var>data</var>)</h4>
+<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var ignore=''>condition</var>, ...<var>data</var>)</h4>
 
 <emu-alg>
   1. If _condition_ is true, abort these steps.
