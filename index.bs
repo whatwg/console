@@ -235,7 +235,7 @@ If possible for the environment, clear the console. Otherwise, do nothing.
 
 <emu-alg>
   1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with the provided _label_.
-  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 (SPACE), and ToString(_called_).
+  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and ToString(_called_).
   1. Perform Logger("log", _concat_).
 </emu-alg>
 
