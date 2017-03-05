@@ -187,7 +187,7 @@ namespace console { // but see namespace object requirements below
   // Logging
   void assert(optional boolean condition = false, any... data);
   void clear();
-  void count(optional DOMString label = "");
+  void count(optional DOMString label = "default");
   void debug(any... data);
   void error(any... data);
   void info(any... data);
