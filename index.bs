@@ -223,9 +223,19 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h3 id="logging">Logging methods</h3>
 
-<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var>condition</var>, ...<var>data</var>)</h4>
+<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var ignore=''>condition</var>, ...<var>data</var>)</h4>
 
-If <var>condition</var> is false, perform Logger("error", <var>data</var>).
+<emu-alg>
+  1. If _condition_ is true, abort these steps.
+  1. Let _message_ be a string without any formatting specifiers indicating generically an assertion failure (such as "Assertion failed").
+  1. If _data_ is empty, append _message_ to _data_.
+  1. Otherwise, implementations should perform these substeps:
+    1. Let _first_ be the first element of _data_.
+    1. If Type(_first_) is not String, prepend _message_ to _data_. Abort these substeps.
+    1. Let _concat_ be the concatenation of _message_, U+003A COLON (:), U+0020 SPACE, and _first_.
+    1. Set _data[0]_ to _concat_.
+  1. Perform Logger("error", _data_).
+</emu-alg>
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
 
