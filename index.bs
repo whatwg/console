@@ -287,7 +287,7 @@ Perform Logger("warn", <var>data</var>).
 
 <h3 id="grouping">Grouping methods</h3>
 
-A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced by calls to Printer, with one further level of indentation than its parent. A group will host output produced by calls to Printer until it is ended with <a>groupEnd()</a>, and only one group will host output produced by calls to Printer at a time.
+A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced by calls to Printer, with one further level of indentation than its parent. A group may host output produced by calls to Printer until it is ended with <a>groupEnd()</a>, and only one group will host output produced by calls to Printer at a time.
 
 <h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...<var>data</var>)</h4>
 
