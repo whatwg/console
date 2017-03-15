@@ -143,7 +143,7 @@ The following is an informative summary of the format specifiers processed by th
 
 The printer operation is implementation-defined. It accepts a log level indicating severity, and a List of arguments to print (which are either JavaScript objects, of any type, or are implementation-specific representations of printable things such as a stack trace, or output produced by the <code>%o</code> and <code>%O</code> specifiers). How the implementation prints <var>args</var> is up to the implementation, but implementations should separate the objects by a space or something similar, as that has become a developer expectation.
 
-By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List.
+By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List. When a <a>group</a> gets printed, ouput produced by future calls to Printer should be directed only to the newly printed group.
 
 If the console is not open when the printer operation is called,
 implementations should buffer messages to show them in the future up to an
@@ -239,7 +239,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
 
-If possible for the environment, clear the console. Otherwise, do nothing.
+End all open groups, and if possible for the environment, clear the console. Otherwise, do nothing.
 
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
@@ -287,11 +287,29 @@ Perform Logger("warn", <var>data</var>).
 
 <h3 id="grouping">Grouping methods</h3>
 
+A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced by calls to Printer, with one further level of indentation than its parent. A group will host output produced by calls to Printer until it is ended with <a>groupEnd()</a>, and only one group will host output produced by calls to Printer at a time.
+
 <h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...<var>data</var>)</h4>
+
+<emu-alg>
+  1. Let _group_ be a new <a>group</a>.
+  1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
+  1. Optionally if the environment supports interactive groups, _group_ should be expanded by default.
+  1. Perform Printer("log", «_group_»).
+</emu-alg>
 
 <h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...<var>data</var>)</h4>
 
+<emu-alg>
+  1. Let _group_ be a new <a>group</a>.
+  1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
+  1. Optionally if the environment supports interactive groups, _group_ should be collapsed by default.
+  1. Perform Printer("log", «_group_»).
+</emu-alg>
+
 <h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
+
+When a <a>group</a> is ended, the output of any subsequent calls to Printer should be guided to the group's most immediate parent, which may also be a group. An ended group will never host the output of future calls to Printer again.
 
 <h3 id="timing">Timing methods</h3>
 
