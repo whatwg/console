@@ -239,7 +239,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
 
-End all open groups, and if possible for the environment, clear the console. Otherwise, do nothing.
+End all open <a>groups</a>, and if possible for the environment, clear the console. Otherwise, do nothing.
 
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
