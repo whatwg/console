@@ -294,7 +294,7 @@ A <dfn>group</dfn> is an implementation-specific, potentially-interactive view f
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
   1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
-  1. Optionally if the environment supports interactive groups, _group_ should be expanded by default.
+  1. Optionally, if the environment supports interactive groups, _group_ should be expanded by default.
   1. Perform Printer("log", «_group_»).
 </emu-alg>
 
@@ -303,7 +303,7 @@ A <dfn>group</dfn> is an implementation-specific, potentially-interactive view f
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
   1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
-  1. Optionally if the environment supports interactive groups, _group_ should be collapsed by default.
+  1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by default.
   1. Perform Printer("log", «_group_»).
 </emu-alg>
 
