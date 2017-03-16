@@ -239,7 +239,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
 
-End all open <a>groups</a>, and if possible for the environment, clear the console. Otherwise, do nothing.
+Empty the appropriate <a>group stack</a>, and if possible for the environment, clear the console. Otherwise, do nothing.
 
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
@@ -297,7 +297,7 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
   1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be expanded by default.
   1. Perform Printer("log", «_group_»).
-  1. Push _group_ onto the appropriate <a>group stack</a>
+  1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
 <h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...<var>data</var>)</h4>
@@ -307,12 +307,12 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
   1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by default.
   1. Perform Printer("log", «_group_»).
-  1. Push _group_ onto the appropriate <a>group stack</a>
+  1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
 <h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
 
-Pop the last <a>group</a> from the <a>group stack</a>.
+<a spec="infra">Pop</a> the last <a>group</a> from the <a>group stack</a>.
 
 <h3 id="timing">Timing methods</h3>
 
