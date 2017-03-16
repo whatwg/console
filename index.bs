@@ -294,7 +294,8 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
 
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
-  1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
+  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
+  1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be expanded by default.
   1. Perform Printer("log", «_group_»).
   1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
@@ -304,7 +305,8 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
 
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
-  1. Let _groupLabel_ be the result of Formatter(data), and incorporate _groupLabel_ as a label for _group_.
+  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
+  1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by default.
   1. Perform Printer("log", «_group_»).
   1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
