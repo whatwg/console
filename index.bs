@@ -195,6 +195,8 @@ namespace console { // but see namespace object requirements below
   void table(any tabularData, optional sequence&lt;DOMString> properties);
   void trace(any... data);
   void warn(any... data);
+  void dir(any data);
+  void dirxml(any... data);
 
   // Grouping
   void group(any... data);
@@ -284,6 +286,18 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 <h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...<var>data</var>)</h4>
 
 Perform Logger("warn", <var>data</var>).
+
+<h4 id="dir" oldids="dir-data,dom-console-dir" method for="console">dir(<var>data</var>)</h4>
+
+Let <var>object</var> be an potentially-interactive representation of <var>data</var> treated as a JavaScript object. Perform Printer("log", <var>«object»</var>).
+
+<h4 id="dirxml" oldids="dirxml-data,dom-console-dirxml" method for="console">dirxml(...<var>data</var>)</h4>
+
+<emu-alg>
+  1. Let _finalList_ be a new <a>list</a>, initially empty.
+  1. For each _item_ of _data_, let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be an implementation-specific representation of _item_ judged to be maximally useful and informative. Append _converted_ to _finalList_.
+  1. Perform Printer("log", _finalList_).
+</emu-alg>
 
 <h3 id="grouping">Grouping methods</h3>
 
