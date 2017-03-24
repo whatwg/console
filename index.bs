@@ -195,7 +195,7 @@ namespace console { // but see namespace object requirements below
   void table(any tabularData, optional sequence&lt;DOMString> properties);
   void trace(any... data);
   void warn(any... data);
-  void dir(any data);
+  void dir(any item);
   void dirxml(any... data);
 
   // Grouping
@@ -287,11 +287,11 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 
 Perform Logger("warn", <var>data</var>).
 
-<h4 id="dir" oldids="dir-data,dom-console-dir" method for="console">dir(<var>data</var>)</h4>
+<h4 id="dir" method for="console">dir(<var>item</var>)</h4>
 
-Let <var>object</var> be an potentially-interactive representation of <var>data</var> treated as a JavaScript object. Perform Printer("log", <var>«object»</var>).
+Let <var>object</var> be an potentially-interactive representation of <var>item</var> treated as a JavaScript object. Perform Printer("log", <var>«object»</var>).
 
-<h4 id="dirxml" oldids="dirxml-data,dom-console-dirxml" method for="console">dirxml(...<var>data</var>)</h4>
+<h4 id="dirxml" method for="console">dirxml(...<var>data</var>)</h4>
 
 <emu-alg>
   1. Let _finalList_ be a new <a>list</a>, initially empty.
