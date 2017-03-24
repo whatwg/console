@@ -298,7 +298,9 @@ Perform Logger("warn", <var>data</var>).
 
 <emu-alg>
   1. Let _finalList_ be a new <a>list</a>, initially empty.
-  1. For each _item_ of _data_, let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be an implementation-specific representation of _item_ judged to be maximally useful and informative. Append _converted_ to _finalList_.
+  1. For each _item_ of _data_:
+    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be an implementation-specific representation of _item_ judged to be maximally useful and informative.
+    1. Append _converted_ to _finalList_.
   1. Perform Printer("log", _finalList_).
 </emu-alg>
 
