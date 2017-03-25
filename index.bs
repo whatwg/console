@@ -195,6 +195,8 @@ namespace console { // but see namespace object requirements below
   void table(any tabularData, optional sequence&lt;DOMString> properties);
   void trace(any... data);
   void warn(any... data);
+  void dir(any item);
+  void dirxml(any... data);
 
   // Grouping
   void group(any... data);
@@ -285,6 +287,23 @@ Try to construct a table with the columns of the properties of <var>tabularData<
 
 Perform Logger("warn", <var>data</var>).
 
+<h4 id="dir" method for="console">dir(<var>item</var>)</h4>
+
+<emu-alg>
+  1. Let <var>object</var> be an potentially-interactive representation of <var>item</var> treated as a JavaScript object.
+  1. Perform Printer("log", «_object_»).
+</emu-alg>
+
+<h4 id="dirxml" method for="console">dirxml(...<var>data</var>)</h4>
+
+<emu-alg>
+  1. Let _finalList_ be a new <a>list</a>, initially empty.
+  1. For each _item_ of _data_:
+    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be an implementation-specific representation of _item_ judged to be maximally useful and informative.
+    1. Append _converted_ to _finalList_.
+  1. Perform Printer("log", _finalList_).
+</emu-alg>
+
 <h3 id="grouping">Grouping methods</h3>
 
 A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced by calls to Printer, with one further level of indentation than its parent. Each {{console}} namespace object has an associated <dfn>group stack</dfn>, which is a <a>stack</a>, initially empty. Only
@@ -298,7 +317,7 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
   1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be expanded by default.
   1. Perform Printer("log", «_group_»).
-  1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
+  1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
 <h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...<var>data</var>)</h4>
@@ -309,12 +328,12 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
   1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by default.
   1. Perform Printer("log", «_group_»).
-  1. <a spec="infra">Push</a> _group_ onto the appropriate <a>group stack</a>.
+  1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
 <h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
 
-<a spec="infra">Pop</a> the last <a>group</a> from the <a>group stack</a>.
+<a>Pop</a> the last <a>group</a> from the <a>group stack</a>.
 
 <h3 id="timing">Timing methods</h3>
 
