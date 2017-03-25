@@ -291,7 +291,7 @@ Perform Logger("warn", <var>data</var>).
 
 <emu-alg>
   1. Let <var>object</var> be an potentially-interactive representation of <var>item</var> treated as a JavaScript object.
-  1. Perform Printer("log", <var>«object»</var>).
+  1. Perform Printer("log", «_object_»).
 </emu-alg>
 
 <h4 id="dirxml" method for="console">dirxml(...<var>data</var>)</h4>
