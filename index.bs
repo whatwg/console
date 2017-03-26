@@ -84,8 +84,8 @@ The formatter operation tries to format the first argument provided, using the o
     1. If _specifier_ is `%s`, let _converted_ be the result of ToString(_current_).
     1. If _specifier_ is `%d` or `%i`, let _converted_ be the result of %parseInt%(_current_, 10).
     1. If _specifier_ is `%f`, let _converted_ be the result of  %parseFloat%(_current_, 10).
-    1. If _specifier_ is `%o`, optionally let _converted_ be an implementation-specific representation of _current_ that is judged to be maximally useful and informative.
-    1. If _specifier_ is `%O`, optionally let _converted_ be be an implementation-specific representation of _current_ as an expanded or expandable object, treating _current_ as a generic JavaScript object.
+    1. If _specifier_ is `%o`, optionally let _converted_ be _current_ with <a>optimally useful formatting</a> applied.
+    1. If _specifier_ is `%O`, optionally let _converted_ be _current_ with <a>generic JavaScript object formatting</a> applied.
     1. <p class="XXX">TODO: process %c</p>
     1. If any of the previous steps set _converted_, replace _specifier_ in _target_ with _converted_.
     1. Let _result_ be a List containing _target_ together with the elements of _args_ starting from the third onward.
@@ -124,12 +124,12 @@ The following is an informative summary of the format specifiers processed by th
   </tr>
   <tr>
     <td><code>%o</code></td>
-    <td>Element is displayed in an implementation-specific way judged as most useful; potentially interactive</<td>
+    <td>Element is displayed with <a>optimally useful formatting</a></<td>
     <td>n/a</td>
   </tr>
   <tr>
     <td><code>%O</code></td>
-    <td>Element is displayed as an expanded JavaScript object; potentially interactive</<td>
+    <td>Element is displayed with <a>generic JavaScript object formatting</a></<td>
     <td>n/a</td>
   </tr>
   <tr>
@@ -148,6 +148,12 @@ By the time the printer operation is called, all format specifiers will have bee
 If the console is not open when the printer operation is called,
 implementations should buffer messages to show them in the future up to an
 implementation-chosen limit (typically on the order of at least 100).
+
+<h4 id="object-formats">Common Object Formats</h4>
+
+Typically objects will be printed in a format that is suitable for their context. This section describes common ways in which objects are formatted to be most useful in their context.
+
+An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable representation of a generic JavaScript object. An object with <dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive object judged to be maximally useful and informative.
 
 <h4 id="nodejs-printer">Example printer in Node.js</h4>
 
@@ -290,7 +296,7 @@ Perform Logger("warn", <var>data</var>).
 <h4 id="dir" method for="console">dir(<var>item</var>)</h4>
 
 <emu-alg>
-  1. Let <var>object</var> be an potentially-interactive representation of <var>item</var> treated as a JavaScript object.
+  1. Let _object_ be _item_ with <a>generic JavaScript object formatting</a> applied.
   1. Perform Printer("log", «_object_»).
 </emu-alg>
 
@@ -299,7 +305,7 @@ Perform Logger("warn", <var>data</var>).
 <emu-alg>
   1. Let _finalList_ be a new <a>list</a>, initially empty.
   1. For each _item_ of _data_:
-    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be an implementation-specific representation of _item_ judged to be maximally useful and informative.
+    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be _item_ with <a>optimally useful formatting</a> applied.
     1. Append _converted_ to _finalList_.
   1. Perform Printer("log", _finalList_).
 </emu-alg>
