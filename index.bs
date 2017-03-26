@@ -151,7 +151,7 @@ implementation-chosen limit (typically on the order of at least 100).
 
 <h4 id="object-formats">Common Object Formats</h4>
 
-Typically objects will be printed in a format that is suitable for their context. This section describes common ways in which objects are formatted to be most useful in their context.
+Typically objects will be printed in a format that is suitable for their context. This section describes common ways in which objects are formatted to be most useful in their context. It should be noted that the formatting described in this section is applied to implementation-specific object representations that will eventually be passed into Printer, where the actual side effect of formatting will be seen.
 
 An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable representation of a generic JavaScript object. An object with <dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive representation of an object judged to be maximally useful and informative.
 
