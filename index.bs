@@ -17,7 +17,11 @@ Logo: https://resources.whatwg.org/logo-console.svg
 !Commits: <a href="https://twitter.com/consolelog">@consolelog</a>
 
 Opaque Elements: emu-alg
-Link Defaults: html (dfn) structured clone
+</pre>
+
+<pre class="link-defaults">
+spec:infra; type:dfn; text:list
+spec:infra; type:dfn; text:string
 </pre>
 
 <style>
@@ -360,11 +364,11 @@ Perform Logger("warn", <var>data</var>).
 
 <h3 id="grouping">Grouping methods</h3>
 
-A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced
-by calls to Printer, with one further level of indentation than its parent. Each {{console}}
-namespace object has an associated <dfn>group stack</dfn>, which is a <a>stack</a>, initially
-empty. Only
-the last <a>group</a> in a <a>group stack</a> will host output produced by calls to Printer.
+A <dfn id="concept-group">group</dfn> is an implementation-specific, potentially-interactive view
+for output produced by calls to Printer, with one further level of indentation than its parent. Each
+{{console}} namespace object has an associated <dfn>group stack</dfn>, which is a <a>stack</a>,
+initially empty. Only the last <a>group</a> in a <a>group stack</a> will host output produced by
+calls to Printer.
 
 <h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...<var>data</var>)</h4>
 
@@ -398,17 +402,26 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
 
 <h3 id="timing">Timing methods</h3>
 
+Each {{console}} namespace object has an associated <dfn>timer table</dfn>, which is a <a>map</a> of
+<a>strings</a> to times, initially empty.
+
 <h4 id="time" oldids="time-label,dom-console-time" method for="console">time(<var>label</var>)</h4>
 
-Start an internal timer stored in the timer table with key <var>label</var>.
+<a for="map">Set</a> the value of the entry with key <var>label</var> in the associated
+<a>timer table</a> to the current time.
 
 <h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(<var>label</var>)</h4>
 
-Let <var>duration</var> be the current value of the internal timer with key <var>label</var> in the
-timer table.
-Remove the timer from the timer table.
-Then, perform Logger("info", «<var>label</var>, <var>duration</var>»).
-
+<emu-alg>
+  1. Let _startTime_ be the result of <a for="map">getting</a> the value of the entry with key
+     _label_ in the associated <a>timer table</a>.
+  1. Let _duration_ be a string representing the difference between the current time and
+     _startTime_, in an implementation-defined format.
+     <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
+     are all reasonable ways of displaying a 4650.69 ms duration.</p>
+  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and _duration_.
+  1. Perform Logger("info", «_concat_»).
+</emu-alg>
 
 <h2 id="inspection">JavaScript object inspection</h2>
 
