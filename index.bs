@@ -47,15 +47,20 @@ Link Defaults: html (dfn) structured clone
 
 <h2 id="status" class="no-num no-toc">Status</h2>
 
-This specification is an early work in progress that welcomes feedback to refine toward more precise and compatible definitions. It is also the editors' first specification, so please be kind and constructive.
+This specification is an early work in progress that welcomes feedback to refine toward more
+precise and compatible definitions. It is also the editors' first specification, so please be kind
+and constructive.
 
-Please join us in the <a href="https://github.com/whatwg/console/issues">issue tracker</a> for more discussion.
+Please join us in the <a href="https://github.com/whatwg/console/issues">issue tracker</a> for more
+discussion.
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
 <h3 id="logger" aoid="Logger" nothrow>Logger(<var>logLevel</var>, <var>args</var>)</h3>
 
-The logger operation accepts a log level and a List of other arguments. Its main output is the implementation-defined side effect of printing the result to the console. This specification describes how it processes format specifiers while doing so.
+The logger operation accepts a log level and a List of other arguments. Its main output is the
+implementation-defined side effect of printing the result to the console. This specification
+describes how it processes format specifiers while doing so.
 
 <emu-alg>
   1. If _args_ is empty, abort these steps.
@@ -68,14 +73,19 @@ The logger operation accepts a log level and a List of other arguments. Its main
 </emu-alg>
 
 <div class="note">
-  It's important that the printing occurs before returning from the algorithm. Many developer consoles print the result of the last operation entered into them. In such consoles, when a developer enters <code>console.log("hello!")</code>, this should first print "hello!", then the undefined return value from the console.log call.
+  It's important that the printing occurs before returning from the algorithm. Many developer
+  consoles print the result of the last operation entered into them. In such consoles, when a
+  developer enters <code>console.log("hello!")</code>, this should first print "hello!", then the
+  undefined return value from the console.log call.
 
   <img src="images/print-before-returning.png" />
 </div>
 
 <h3 id="formatter" aoid="Formatter" nothrow>Formatter(<var>args</var>)</h3>
 
-The formatter operation tries to format the first argument provided, using the other arguments. It will try to format the input until no formatting specifiers are left in the first argument, or no more arguments are left. It returns a List of objects suitable for printing.
+The formatter operation tries to format the first argument provided, using the other arguments. It
+will try to format the input until no formatting specifiers are left in the first argument, or no
+more arguments are left. It returns a List of objects suitable for printing.
 
 <emu-alg>
   1. Let _target_ be the first element of _args_.
@@ -84,11 +94,15 @@ The formatter operation tries to format the first argument provided, using the o
     1. If _specifier_ is `%s`, let _converted_ be the result of ToString(_current_).
     1. If _specifier_ is `%d` or `%i`, let _converted_ be the result of %parseInt%(_current_, 10).
     1. If _specifier_ is `%f`, let _converted_ be the result of  %parseFloat%(_current_, 10).
-    1. If _specifier_ is `%o`, optionally let _converted_ be _current_ with <a>optimally useful formatting</a> applied.
-    1. If _specifier_ is `%O`, optionally let _converted_ be _current_ with <a>generic JavaScript object formatting</a> applied.
+    1. If _specifier_ is `%o`, optionally let _converted_ be _current_ with
+    <a>optimally useful formatting</a> applied.
+    1. If _specifier_ is `%O`, optionally let _converted_ be _current_ with
+    <a>generic JavaScript object formatting</a> applied.
     1. <p class="XXX">TODO: process %c</p>
-    1. If any of the previous steps set _converted_, replace _specifier_ in _target_ with _converted_.
-    1. Let _result_ be a List containing _target_ together with the elements of _args_ starting from the third onward.
+    1. If any of the previous steps set _converted_, replace _specifier_ in _target_ with
+    _converted_.
+    1. Let _result_ be a List containing _target_ together with the elements of _args_ starting
+    from the third onward.
   1. If _target_ does not have any format specifiers left, return _result_.
   1. If _result_ contains just one element, return _result_.
   1. Return Formatter(_result_).
@@ -141,9 +155,20 @@ The following is an informative summary of the format specifiers processed by th
 
 <h3 id="printer" aoid="Printer" nothrow>Printer(<var>logLevel</var>, <var>args</var>)</h3>
 
-The printer operation is implementation-defined. It accepts a log level indicating severity, and a List of arguments to print (which are either JavaScript objects, of any type, or are implementation-specific representations of printable things such as a stack trace, a <a>group</a>, or objects with either <a>generic JavaScript object formatting</a> or <a>optimally useful formatting</a> applied). How the implementation prints <var>args</var> is up to the implementation, but implementations should separate the objects by a space or something similar, as that has become a developer expectation.
+The printer operation is implementation-defined. It accepts a log level indicating severity, and a
+List of arguments to print (which are either JavaScript objects, of any type, or are
+implementation-specific representations of printable things such as a stack trace, a <a>group</a>,
+or objects with either <a>generic JavaScript object formatting</a> or
+<a>optimally useful formatting</a> applied). How the implementation prints <var>args</var> is up to
+the implementation, but implementations should separate the objects by a space or something
+similar, as that has become a developer expectation.
 
-By the time the printer operation is called, all format specifiers will have been taken into account, and any arguments that are meant to be consumed by format specifiers will not be present in <var>args</var>. The implementation's job is simply to print the List. The output produced by calls to Printer should appear only within the last <a>group</a> on the appropriate <a>group stack</a> if the <a>group stack</a> is not empty, or in the elsewhere in the console otherwise.
+By the time the printer operation is called, all format specifiers will have been taken into
+account, and any arguments that are meant to be consumed by format specifiers will not be present
+in <var>args</var>. The implementation's job is simply to print the List. The output produced by
+calls to Printer should appear only within the last <a>group</a> on the appropriate
+<a>group stack</a> if the <a>group stack</a> is not empty, or in the elsewhere in the console
+otherwise.
 
 If the console is not open when the printer operation is called,
 implementations should buffer messages to show them in the future up to an
@@ -151,14 +176,23 @@ implementation-chosen limit (typically on the order of at least 100).
 
 <h4 id="object-formats">Common Object Formats</h4>
 
-Typically objects will be printed in a format that is suitable for their context. This section describes common ways in which objects are formatted to be most useful in their context. It should be noted that the formatting described in this section is applied to implementation-specific object representations that will eventually be passed into Printer, where the actual side effect of formatting will be seen.
+Typically objects will be printed in a format that is suitable for their context. This section
+describes common ways in which objects are formatted to be most useful in their context. It should
+be noted that the formatting described in this section is applied to implementation-specific object
+representations that will eventually be passed into Printer, where the actual side effect of
+formatting will be seen.
 
-An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable representation of a generic JavaScript object. An object with <dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive representation of an object judged to be maximally useful and informative.
+An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable
+representation of a generic JavaScript object. An object with
+<dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive
+representation of anobject judged to be maximally useful and informative.
 
 <h4 id="nodejs-printer">Example printer in Node.js</h4>
 
 <div class="example" id="nodejs-printer-example">
-  The simplest way to implement the printer operation on the Node.js platform is to join the previously formatted arguments separated by a space and write the output to <code>stdout</code> or <code>stderr</code>.
+  The simplest way to implement the printer operation on the Node.js platform is to join the
+  previously formatted arguments separated by a space and write the output to <code>stdout</code>
+  or <code>stderr</code>.
 
   Example implementation in Node.js using [[!ECMASCRIPT]]:
 
@@ -176,7 +210,9 @@ An object with <dfn>generic JavaScript object formatting</dfn> is a potentially 
     }
   </code></pre>
 
-  Here a lot of the work is done by the <code>util.format</code> function. It stringifies nested objects, and converts non-string arguments into a readable string version, e.g. undefined becomes the string <code>"undefined"</code> and false becomes <code>"false"</code>:
+  Here a lot of the work is done by the <code>util.format</code> function. It stringifies nested
+  objects, and converts non-string arguments into a readable string version, e.g. undefined becomes
+  the string <code>"undefined"</code> and false becomes <code>"false"</code>:
 
   <pre><code class="lang-javascript">
     print('log', 'duck', [{foo: 'bar'}]);     // prints: `duck [ { foo: 'bar' } ]\n` on stdout
@@ -216,13 +252,13 @@ namespace console { // but see namespace object requirements below
 </pre>
 
 <p class="note">
-For historical reasons, {{console}} is lowercased.
+  For historical reasons, {{console}} is lowercased.
 </p>
 
 <p class="note">
-It is important that {{console}} is always visible
-and usable to scripts, even if the developer console has not been opened or
-does not exist.
+  It is important that {{console}} is always visible and usable to scripts, even if the developer
+  console has not been opened or
+  does not exist.
 </p>
 
 For historical web-compatibility reasons, the <a>namespace object</a> for {{console}} must have as
@@ -235,7 +271,8 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <emu-alg>
   1. If _condition_ is true, abort these steps.
-  1. Let _message_ be a string without any formatting specifiers indicating generically an assertion failure (such as "Assertion failed").
+  1. Let _message_ be a string without any formatting specifiers indicating generically an
+  assertion failure (such as "Assertion failed").
   1. If _data_ is empty, append _message_ to _data_.
   1. Otherwise, implementations should perform these substeps:
     1. Let _first_ be the first element of _data_.
@@ -247,13 +284,16 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
 
-Empty the appropriate <a>group stack</a>, and if possible for the environment, clear the console. Otherwise, do nothing.
+Empty the appropriate <a>group stack</a>, and if possible for the environment, clear the console.
+Otherwise, do nothing.
 
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
 <emu-alg>
-  1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with the provided _label_.
-  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and ToString(_called_).
+  1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with
+  the provided _label_.
+  1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and
+  ToString(_called_).
   1. Perform Logger("log", _concat_).
 </emu-alg>
 
@@ -275,19 +315,26 @@ Perform Logger("log", <var>data</var>).
 
 <h4 id="table" oldids="table-tabulardata-properties,dom-console-table" method for="console">table(<var>tabularData</var>, <var>properties</var>)</h4>
 
-Try to construct a table with the columns of the properties of <var>tabularData</var> (or use <var>properties</var>) and rows of <var>tabularData</var> and log it with a logLevel of log. Fall back to just logging the argument if it can't be parsed as tabular.
+Try to construct a table with the columns of the properties of <var>tabularData</var> (or use
+<var>properties</var>) and rows of <var>tabularData</var> and log it with a logLevel of log. Fall
+back to just logging the argument if it can't be parsed as tabular.
 
 <p class="XXX">TODO: This will need a good algorithm.</p>
 
 <h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...<var>data</var>)</h4>
 
 <emu-alg>
-  1. Let _trace_ be some implementation-specific, potentially-interactive representation of the callstack from where this method was called.
-  1. Optionally let _formattedData_ be the result of Formatter(<var>data</var>), and incorporate _formattedData_ as a label for _trace_.
+  1. Let _trace_ be some implementation-specific, potentially-interactive representation of the
+  callstack from where this method was called.
+  1. Optionally let _formattedData_ be the result of Formatter(<var>data</var>), and incorporate
+  _formattedData_ as a label for _trace_.
   1. Perform Printer("log", «_trace_»).
 </emu-alg>
 
-<p class="note">The identifier of a function printed in a stack trace is implementation-dependant. It is also not guaranteed to be the same identifier that would be seen in <code>new Error().stack</code></p>
+<p class="note">
+  The identifier of a function printed in a stack trace is implementation-dependant. It is also not
+  guaranteed to be the same identifier that would be seen in <code>new Error().stack</code>
+</p>
 
 <h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...<var>data</var>)</h4>
 
@@ -305,23 +352,29 @@ Perform Logger("warn", <var>data</var>).
 <emu-alg>
   1. Let _finalList_ be a new <a>list</a>, initially empty.
   1. For each _item_ of _data_:
-    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let _converted_ be _item_ with <a>optimally useful formatting</a> applied.
+    1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let
+    _converted_ be _item_ with <a>optimally useful formatting</a> applied.
     1. Append _converted_ to _finalList_.
   1. Perform Logger("log", _finalList_).
 </emu-alg>
 
 <h3 id="grouping">Grouping methods</h3>
 
-A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced by calls to Printer, with one further level of indentation than its parent. Each {{console}} namespace object has an associated <dfn>group stack</dfn>, which is a <a>stack</a>, initially empty. Only
+A <dfn>group</dfn> is an implementation-specific, potentially-interactive view for output produced
+by calls to Printer, with one further level of indentation than its parent. Each {{console}}
+namespace object has an associated <dfn>group stack</dfn>, which is a <a>stack</a>, initially
+empty. Only
 the last <a>group</a> in a <a>group stack</a> will host output produced by calls to Printer.
 
 <h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...<var>data</var>)</h4>
 
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
-  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
+  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let
+  _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
   1. Incorporate _groupLabel_ as a label for _group_.
-  1. Optionally, if the environment supports interactive groups, _group_ should be expanded by default.
+  1. Optionally, if the environment supports interactive groups, _group_ should be expanded by
+  default.
   1. Perform Printer("log", «_group_»).
   1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
@@ -330,9 +383,11 @@ the last <a>group</a> in a <a>group stack</a> will host output produced by calls
 
 <emu-alg>
   1. Let _group_ be a new <a>group</a>.
-  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
+  1. If _data_ is not empty, let _groupLabel_ be the result of Formatter(data). Otherwise, let
+  _groupLabel_ be an implementation-chosen label representing a <a>group</a>.
   1. Incorporate _groupLabel_ as a label for _group_.
-  1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by default.
+  1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by
+  default.
   1. Perform Printer("log", «_group_»).
   1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
@@ -349,7 +404,8 @@ Start an internal timer stored in the timer table with key <var>label</var>.
 
 <h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(<var>label</var>)</h4>
 
-Let <var>duration</var> be the current value of the internal timer with key <var>label</var> in the timer table.
+Let <var>duration</var> be the current value of the internal timer with key <var>label</var> in the
+timer table.
 Remove the timer from the timer table.
 Then, perform Logger("info", «<var>label</var>, <var>duration</var>»).
 
@@ -375,11 +431,16 @@ Raphaël, and
 Victor Costan
 for their contributions to this specification. You are awesome!
 
-This standard is written by <a href="https://terinstock.com">Terin Stock</a> (<a
-href="mailto:terin@terinstock.com">terin@terinstock.com</a>), <a href="http://kowalski.gd">Robert Kowalski</a> (<a
-href="mailto:rok@kowalski.gd">rok@kowalski.gd</a>), and <a href="https://domfarolino.com">Dominic Farolino</a> (<a
-href="mailto:domfarolino@gmail.com">domfarolino@gmail.com</a>) with major help from <a href="https://domenic.me/">Domenic
-Denicola</a> (<a href="https://google.com">Google</a>, <a href="mailto:d@domenic.me">d@domenic.me</a>).
+This standard is written by
+<a href="https://terinstock.com">Terin Stock</a>
+(<a href="mailto:terin@terinstock.com">terin@terinstock.com</a>),
+<a href="http://kowalski.gd">Robert Kowalski</a>
+(<a href="mailto:rok@kowalski.gd">rok@kowalski.gd</a>), and
+<a href="https://domfarolino.com">Dominic Farolino</a>
+(<a href="mailto:domfarolino@gmail.com">domfarolino@gmail.com</a>)
+with major help from <a href="https://domenic.me/">Domenic Denicola</a>
+(<a href="https://google.com">Google</a>,
+<a href="mailto:d@domenic.me">d@domenic.me</a>).
 
-Per <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, to the extent possible under law, the editors
-have waived all copyright and related or neighboring rights to this work.
+Per <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, to the extent possible
+under law, the editors have waived all copyright and related or neighboring rights to this work.
