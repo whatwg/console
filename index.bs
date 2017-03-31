@@ -159,13 +159,11 @@ The printer operation is implementation-defined. It accepts a log level indicati
 of arguments to print, and an optional object of implementation-specific formatting options.
 Elements appearing in <var>args</var> will be one of the following:
 
-<emu-alg>
-  1. JavaScript objects of any type.
-  1. Implementation-specific representations of printable things such as a stack trace or
-  <a>group</a>.
-  1. Objects with either <a>generic JavaScript object formatting</a> or
-  <a>optimally useful formatting</a> applied.
-</emu-alg>
+ - JavaScript objects of any type.
+ - Implementation-specific representations of printable things such as a stack trace or
+    <a>group</a>.
+ - Objects with either <a>generic JavaScript object formatting</a> or
+    <a>optimally useful formatting</a> applied.
 
 Optionally, if the <var>options</var> object is not undefined, implementations can use
 <var>options</var> to apply implementation-specific formatting to the elements in <var>args</var>.
