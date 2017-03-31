@@ -165,8 +165,9 @@ Elements appearing in <var>args</var> will be one of the following:
  - Objects with either <a>generic JavaScript object formatting</a> or
     <a>optimally useful formatting</a> applied.
 
-Optionally, if the <var>options</var> object is not undefined, implementations can use
+If the <var>options</var> object is passed, and is not undefined or null, implementations may use
 <var>options</var> to apply implementation-specific formatting to the elements in <var>args</var>.
+
 How the implementation prints <var>args</var> is up to the implementation, but implementations
 should separate the objects by a space or something similar, as that has become a developer
 expectation.
