@@ -15,6 +15,7 @@ Logo: https://resources.whatwg.org/logo-console.svg
 !Commits: <a href="https://github.com/whatwg/console/commits">GitHub whatwg/console/commits</a>
 !Commits: [SNAPSHOT-LINK]
 !Commits: <a href="https://twitter.com/consolelog">@consolelog</a>
+!Tests: <a href=https://github.com/w3c/web-platform-tests/tree/master/console>web-platform-tests console/</a> (<a href=https://github.com/w3c/web-platform-tests/labels/console>ongoing work</a>)
 
 Opaque Elements: emu-alg
 </pre>
