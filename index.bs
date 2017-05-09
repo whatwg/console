@@ -126,39 +126,38 @@ The following is an informative summary of the format specifiers processed by th
     </tr>
   </thead>
   <tr>
-  <tr>
     <td><code>%s</code></td>
-    <td>Element which substitutes is converted to a string</<td>
+    <td>Element which substitutes is converted to a string</td>
     <td>ToString(<var>element</var>)</td>
   </tr>
   <tr>
     <td><code>%d</code> or <code>%i</code></td>
-    <td>Element which substitutes is converted to an integer</<td>
+    <td>Element which substitutes is converted to an integer</td>
     <td>%parseInt%(<var>element</var>, 10)</td>
   </tr>
   <tr>
     <td><code>%f</code></td>
-    <td>Element which substitutes is converted to a float</<td>
+    <td>Element which substitutes is converted to a float</td>
     <td>%parseFloat%(<var>element</var>, 10)</td>
   </tr>
   <tr>
     <td><code>%o</code></td>
-    <td>Element is displayed with <a>optimally useful formatting</a></<td>
+    <td>Element is displayed with <a>optimally useful formatting</a></td>
     <td>n/a</td>
   </tr>
   <tr>
     <td><code>%O</code></td>
-    <td>Element is displayed with <a>generic JavaScript object formatting</a></<td>
+    <td>Element is displayed with <a>generic JavaScript object formatting</a></td>
     <td>n/a</td>
   </tr>
   <tr>
     <td><code>%c</code></td>
-    <td>Applies provided CSS</<td>
+    <td>Applies provided CSS</td>
     <td>n/a</td>
   </tr>
 </table>
 
-<h3 id="printer" aoid="Printer" nothrow>Printer(<var>logLevel</var>, <var>args</var> [<var>, options</var>])</h3>
+<h3 id="printer" aoid="Printer" nothrow>Printer(<var>logLevel</var>, <var>args</var> [<var ignore=''>, options</var>])</h3>
 
 The printer operation is implementation-defined. It accepts a log level indicating severity, a List
 of arguments to print, and an optional object of implementation-specific formatting options.
@@ -187,6 +186,108 @@ If the console is not open when the printer operation is called,
 implementations should buffer messages to show them in the future up to an
 implementation-chosen limit (typically on the order of at least 100).
 
+<h4 id="loglevel-severity">Indicating <var>logLevel</var> Severity</h4>
+
+This section groups together {{console}} methods whose <var>logLevel</var>s produce output
+indicating similar levels of severity.
+
+<div class="example" id="loglevel-example">
+  Since <code>log</code> and <code>debug</code> produce similarly formatted outputs, they are
+  grouped together by their log level severity in the following table.
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>{{console}} method</th>
+      <th>Log Level Severity</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tr>
+    <td><code>log, trace, dir, dirxml, group, groupCollapsed, debug</code></td>
+    <td>log</td>
+    <td>
+      Console message with implementation-specific formatting designed to indicate a generic log
+    </td>
+  </tr>
+  <tr>
+    <td><code>count, info, timeEnd</code></td>
+    <td>info</td>
+    <td>
+      Console message with implementation-specific formatting designed to make the message stand
+      out as informative
+    </td>
+  </tr>
+  <tr>
+    <td><code>warn</code></td>
+    <td>warn</td>
+    <td>
+      Console message with implementation-specific formatting designed to warn the user of
+      something indicated by the message
+    </td>
+  </tr>
+  <tr>
+    <td><code>error, assert</code></td>
+    <td>error</td>
+    <td>
+      Console message with implementation-specific formatting designed to indicate an error to the
+      user
+    </td>
+  </tr>
+</table>
+
+While the above table groups together {{console}} methods by <var>logLevel</var> severity, the
+Printer is still implementation-defined, and is therefore allowed to provide formatting variations
+on a per-method basis while remaining compliant. Some common examples of this UX improvisation are
+as follows:
+
+<ul>
+  <li>
+    <code>timeEnd</code> custom formatting.
+    <div class="example" id="timeEnd-formatting">
+      Formatting applied to output produced by calls to <code>timeEnd</code> may be unique to this
+      method.
+
+      <img src="images/timeEnd-formatting.png" />
+    </div>
+  </li>
+  <li>
+    <code>count</code> does not always print new output.
+    <p class="XXX">TODO: A picture of this in the Edge console would be nice.</p>
+  </li>
+</ul>
+
+<h4 id="printer-ux-innovation">Printer UX Innovation</h4>
+
+Since Printer is implementation-defined, it is common to see UX innovations in its implementations.
+The following is a non-exhaustive list of UX enhancements that may appear in existing
+implementations:
+
+<ul>
+  <li>
+    De-duplication of identical output to prevent spam.
+    <div class="example" id="dedupe-example">
+      An implementation may choose to batch multiple, identical messages together to avoid spamming
+      the console. It may also be helpful to provide the number of messages that have been batched
+      together in a single entry.
+
+      <img src="images/dedupe.png" />
+    </div>
+  </li>
+  <li>
+    Extra UX off to the side allowing the user to filter messages by log level severity.
+    <div class="example" id="severity-filter-example">
+      <img src="images/severity-filter.png" />
+    </div>
+  </li>
+  <li>
+    Extra UX off to the side indicating the current state of the <a>timer table</a>,
+    <a>group stack</a>, or some other internally maintained data.
+  </li>
+  <li>Flashing portions of the console to alert the user of something important.</li>
+</ul>
+
 <h4 id="object-formats">Common Object Formats</h4>
 
 Typically objects will be printed in a format that is suitable for their context. This section
@@ -198,7 +299,7 @@ formatting will be seen.
 An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable
 representation of a generic JavaScript object. An object with
 <dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive
-representation of anobject judged to be maximally useful and informative.
+representation of an object judged to be maximally useful and informative.
 
 <h4 id="nodejs-printer">Example printer in Node.js</h4>
 
@@ -292,7 +393,7 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
     1. If Type(_first_) is not String, prepend _message_ to _data_. Abort these substeps.
     1. Let _concat_ be the concatenation of _message_, U+003A COLON (:), U+0020 SPACE, and _first_.
     1. Set _data[0]_ to _concat_.
-  1. Perform Logger("error", _data_).
+  1. Perform Logger("assert", _data_).
 </emu-alg>
 
 <h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
@@ -307,12 +408,12 @@ Otherwise, do nothing.
   the provided _label_.
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and
   ToString(_called_).
-  1. Perform Logger("log", _concat_).
+  1. Perform Logger("count", _concat_).
 </emu-alg>
 
 <h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...<var>data</var>)</h4>
 
-Perform Logger("log", <var>data</var>).
+Perform Logger("debug", <var>data</var>).
 
 <h4 id="error" oldids="error-data,dom-console-error" method for="console">error(...<var>data</var>)</h4>
 
@@ -341,7 +442,7 @@ back to just logging the argument if it can't be parsed as tabular.
   callstack from where this method was called.
   1. Optionally let _formattedData_ be the result of Formatter(<var>data</var>), and incorporate
   _formattedData_ as a label for _trace_.
-  1. Perform Printer("log", «_trace_»).
+  1. Perform Printer("trace", «_trace_»).
 </emu-alg>
 
 <p class="note">
@@ -353,11 +454,11 @@ back to just logging the argument if it can't be parsed as tabular.
 
 Perform Logger("warn", <var>data</var>).
 
-<h4 id="dir" method for="console">dir(<var>item</var>, <var>options</var>)</h4>
+<h4 id="dir" method for="console">dir(<var ignore=''>item</var>, <var>options</var>)</h4>
 
 <emu-alg>
   1. Let _object_ be _item_ with <a>generic JavaScript object formatting</a> applied.
-  1. Perform Printer("log", «_object_», _options_).
+  1. Perform Printer("dir", «_object_», _options_).
 </emu-alg>
 
 <h4 id="dirxml" method for="console">dirxml(...<var>data</var>)</h4>
@@ -368,7 +469,7 @@ Perform Logger("warn", <var>data</var>).
     1. Let _converted_ be a DOM tree representation of _item_ if possible, otherwise let
     _converted_ be _item_ with <a>optimally useful formatting</a> applied.
     1. Append _converted_ to _finalList_.
-  1. Perform Logger("log", _finalList_).
+  1. Perform Logger("dirxml", _finalList_).
 </emu-alg>
 
 <h3 id="grouping">Grouping methods</h3>
@@ -388,7 +489,7 @@ calls to Printer.
   1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be expanded by
   default.
-  1. Perform Printer("log", «_group_»).
+  1. Perform Printer("group", «_group_»).
   1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
@@ -401,7 +502,7 @@ calls to Printer.
   1. Incorporate _groupLabel_ as a label for _group_.
   1. Optionally, if the environment supports interactive groups, _group_ should be collapsed by
   default.
-  1. Perform Printer("log", «_group_»).
+  1. Perform Printer("groupCollapsed", «_group_»).
   1. <a>Push</a> _group_ onto the appropriate <a>group stack</a>.
 </emu-alg>
 
@@ -429,7 +530,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
      <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
      are all reasonable ways of displaying a 4650.69 ms duration.</p>
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and _duration_.
-  1. Perform Logger("info", «_concat_»).
+  1. Perform Logger("timeEnd", «_concat_»).
 </emu-alg>
 
 <h2 id="inspection">JavaScript object inspection</h2>
