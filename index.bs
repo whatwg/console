@@ -188,57 +188,56 @@ implementation-chosen limit (typically on the order of at least 100).
 
 <h4 id="loglevel-severity">Indicating <var>logLevel</var> severity</h4>
 
-This section groups together {{console}} methods whose <var>logLevel</var>s produce output
-indicating similar levels of severity.
+Each {{console}} method uses a unique value for the logLevel parameter when calling Printer,
+allowing implementations to customize each printed message depending on the method from which
+it originated. However, it is common practice to group together certain methods and treat their
+output similarly, in four broad categories. This table summarizes these common groupings:
 
 <table>
   <thead>
     <tr>
+      <th>Grouping</th>
       <th>{{console}} method</th>
-      <th>Log Level Severity</th>
       <th>Description</th>
     </tr>
   </thead>
   <tr>
+    <td>log</td>
     <td>
       <code>
         {{console/log()}}, {{console/trace()}}, {{console/dir()}}, {{console/dirxml()}},
         {{console/group()}}, {{console/groupCollapsed()}}, {{console/debug()}}
       </code>
     </td>
-    <td>log</td>
     <td>
       A generic log
     </td>
   </tr>
   <tr>
-    <td><code>{{console/count()}}, {{console/info()}}, {{console/timeEnd()}}</code></td>
     <td>info</td>
+    <td><code>{{console/count()}}, {{console/info()}}, {{console/timeEnd()}}</code></td>
     <td>
       An informative log
     </td>
   </tr>
   <tr>
-    <td><code>{{console/warn()}}</code></td>
     <td>warn</td>
+    <td><code>{{console/warn()}}</code></td>
     <td>
       A log warning the user of something indicated by the message
     </td>
   </tr>
   <tr>
-    <td><code>{{console/error()}}, {{console/assert()}}</code></td>
     <td>error</td>
+    <td><code>{{console/error()}}, {{console/assert()}}</code></td>
     <td>
       A log indicating an error to the user
     </td>
   </tr>
 </table>
 
-While the above table groups together {{console}} methods by <var>logLevel</var> severity, the
-Printer is still implementation-defined, and is therefore allowed to provide formatting variations
-on a per-method basis while remaining compliant. Below are some examples of user experience
-improvisation.
-
+These groupings are meant to document common practices, and do not constrain implementations from
+providing special behavior for each method, as in the following examples:
 
 <div class="example" id="timeEnd-formatting">
   Formatting applied to output produced by calls to {{console/timeEnd()}} may be unique to this
