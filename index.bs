@@ -236,24 +236,21 @@ indicating similar levels of severity.
 
 While the above table groups together {{console}} methods by <var>logLevel</var> severity, the
 Printer is still implementation-defined, and is therefore allowed to provide formatting variations
-on a per-method basis while remaining compliant. Some common examples of this UX improvisation are
-as follows:
+on a per-method basis while remaining compliant. Below are some examples of user experience
+improvisation.
 
-<ul>
-  <li>
-    <code>{{console/timeEnd()}}</code> custom formatting.
-    <div class="example" id="timeEnd-formatting">
-      Formatting applied to output produced by calls to <code>timeEnd</code> may be unique to this
-      method.
 
-      <img alt="A demonstration of timeEnd and info formatting differences" src="images/timeEnd-formatting.png">
-    </div>
-  </li>
-  <li>
-    <code>{{console/count()}}</code> does not always print new output.
-    <p class="XXX">TODO: A picture of this in the Edge console would be nice.</p>
-  </li>
-</ul>
+<div class="example" id="timeEnd-formatting">
+  Formatting applied to output produced by calls to {{console/timeEnd()}} may be unique to this
+  method.
+
+  <img alt="A demonstration of timeEnd and info formatting differences" src="images/timeEnd-formatting.png">
+</div>
+
+<div class="example" id="count-output">
+  Calls to {{console/count()}} may not always print new output.
+  <p class="XXX">TODO: A picture of this in the Edge console would be nice.</p>
+</div>
 
 <h4 id="printer-ux-innovation">Printer User Experience innovation</h4>
 
