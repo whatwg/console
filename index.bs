@@ -276,7 +276,7 @@ implementations:
   </li>
   <li>
     Extra UI off to the side indicating the current state of the <a>timer table</a>,
-    <a>group stack</a>, or some other internally maintained data.
+    <a>group stack</a>, or other internally maintained data.
   </li>
   <li>Flashing portions of the console to alert the user of something important.</li>
 </ul>
