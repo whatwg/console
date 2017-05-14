@@ -240,8 +240,8 @@ These groupings are meant to document common practices, and do not constrain imp
 providing special behavior for each method, as in the following examples:
 
 <div class="example" id="timeEnd-formatting">
-  Formatting applied to output produced by calls to {{console/timeEnd()}} may be unique to this
-  method.
+  Here you can see one implementation chose to make output produced by calls to
+  {{console/timeEnd()}} blue, while leaving {{console/info()}} a more neutral color.
 
   <img alt="A demonstration of timeEnd and info formatting differences" src="images/timeEnd-formatting.png">
 </div>
