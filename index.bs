@@ -188,16 +188,16 @@ implementation-chosen limit (typically on the order of at least 100).
 
 <h4 id="loglevel-severity">Indicating <var>logLevel</var> severity</h4>
 
-Each {{console}} method uses a unique value for the logLevel parameter when calling Printer,
-allowing implementations to customize each printed message depending on the method from which
-it originated. However, it is common practice to group together certain methods and treat their
-output similarly, in four broad categories. This table summarizes these common groupings:
+Each {{console}} method uses a unique value for the <var>logLevel</var> parameter when calling
+Printer, allowing implementations to customize each printed message depending on the method from
+which it originated. However, it is common practice to group together certain methods and treat
+their output similarly, in four broad categories. This table summarizes these common groupings:
 
 <table>
   <thead>
     <tr>
       <th>Grouping</th>
-      <th>{{console}} method</th>
+      <th>{{console}} methods</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -247,15 +247,15 @@ providing special behavior for each method, as in the following examples:
 </div>
 
 <div class="example" id="count-output">
-  Calls to {{console/count()}} may not always print new output.
-  <p class="XXX">TODO: A picture of this in the Edge console would be nice.</p>
+  Calls to {{console/count()}} might not always print new output, but instead could update previously-output counts.
+
+  <img alt="A demonstration of count behavior" src="images/edge-Count.png">
 </div>
 
-<h4 id="printer-ux-innovation">Printer User Experience innovation</h4>
+<h4 id="printer-ux-innovation">Printer user experience innovation</h4>
 
 Since Printer is implementation-defined, it is common to see UX innovations in its implementations.
-The following is a non-exhaustive list of UX enhancements that may appear in existing
-implementations:
+The following is a non-exhaustive list of potential UX enhancements:
 
 <ul>
   <li>
