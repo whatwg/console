@@ -23,3 +23,6 @@ If you want to do a complete "local deploy" including commit and/or branch snaps
 ```
 ./deploy.sh --local
 ```
+## Tests
+
+Tests can be found in the `console/` directory of [web-platform-tests](https://github.com/w3c/web-platform-tests).
