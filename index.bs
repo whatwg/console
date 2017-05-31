@@ -514,7 +514,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
      reporting a warning to the console indicating that a timer with label _label_ has already been
      started.
   1. Otherwise, <a for="map">set</a> the value of the entry with key _label_ in the associated
-     <a>timer table</a> to the current time in an implementation-defined format.
+     <a>timer table</a> to the current time.
 </emu-alg>
 
 <h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(<var>label</var>)</h4>
