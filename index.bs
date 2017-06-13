@@ -399,10 +399,9 @@ Otherwise, do nothing.
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
 <emu-alg>
-  1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with
-  the provided _label_.
-    1. If the associated <a>count map</a> contains an entry with key _label_, <a for="map">set</a> the _value_ of map[_label_] to be map[_label_] + 1.
-    1. Else, <a for="map">set</a> the _value_ of the entry with key _label_ in the associated <a>count map</a> to be 1.
+  1. Let _map_ be the associated count map.
+  1. If _map_[_label_] <a for="map">exists</a> in <a>map</a>, <a for="map">set</a> _map_[_label_] to _map_[_label_] + 1.
+  1. Otherwise, <a for="map">set</a> _map_[_label_] to 1.
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and
   ToString(_called_).
   1. Perform Logger("count", _concat_).
