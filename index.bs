@@ -400,7 +400,7 @@ Otherwise, do nothing.
 
 <emu-alg>
   1. Let _map_ be the associated <a>count map</a>.
-  1. If _map_[_label_] <a for="map">exists</a> in <a>map</a>, <a for="map">set</a> _map_[_label_] to _map_[_label_] + 1.
+  1. If _map_[_label_] <a for="map">exists</a>, <a for="map">set</a> _map_[_label_] to _map_[_label_] + 1.
   1. Otherwise, <a for="map">set</a> _map_[_label_] to 1.
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and
   ToString(_called_).
