@@ -373,6 +373,9 @@ its \[[Prototype]] an empty object, created as if by ObjectCreate(%ObjectPrototy
 
 <h3 id="logging">Logging methods</h3>
 
+Each {{console}} namespace object has an associated <dfn>count map</dfn>, which is a <a>map</a> of
+<a>strings</a> to labels, initially empty.
+
 <h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(<var ignore=''>condition</var>, ...<var>data</var>)</h4>
 
 <emu-alg>
@@ -396,11 +399,12 @@ Otherwise, do nothing.
 <h4 id="count" oldids="count-label,dom-console-count" method for="console">count(<var>label</var>)</h4>
 
 <emu-alg>
-  1. Let _called_ be the number of times _count_ has been invoked (including this invocation) with
-  the provided _label_.
+  1. Let _map_ be the associated <a>count map</a>.
+  1. If _map_[_label_] <a for="map">exists</a>, <a for="map">set</a> _map_[_label_] to _map_[_label_] + 1.
+  1. Otherwise, <a for="map">set</a> _map_[_label_] to 1.
   1. Let _concat_ be the concatenation of _label_, U+003A COLON (:), U+0020 SPACE, and
   ToString(_called_).
-  1. Perform Logger("count", _concat_).
+  1. Perform Logger("count", «_concat_»).
 </emu-alg>
 
 <h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...<var>data</var>)</h4>
