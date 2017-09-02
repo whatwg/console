@@ -1,6 +1,5 @@
-language: node_js
-node_js: stable
-sudo: false
+dist: trusty
+language: generic
 
 env:
   global:

@@ -51,9 +51,7 @@ curl https://api.csswg.org/bikeshed/ -f -F file=@$INPUT_FILE -F md-status=LS-COM
      -F md-warning="Commit $SHA $COMMIT_URL_BASE$SHA replaced by $LS_URL" \
      -F md-title="$TITLE (Commit Snapshot $SHA)" \
      -F md-Text-Macro="SNAPSHOT-LINK $BACK_TO_LS_LINK" \
-     > $COMMIT_DIR/index.intermediate.html;
-node_modules/.bin/emu-algify < $COMMIT_DIR/index.intermediate.html > $COMMIT_DIR/index.html
-rm $COMMIT_DIR/index.intermediate.html
+     > $COMMIT_DIR/index.html;
 mkdir $COMMIT_DIR/images
 cp images/*.* $COMMIT_DIR/images/
 echo "Commit snapshot output to $WEB_ROOT/$COMMITS_DIR/$SHA"
@@ -67,19 +65,15 @@ if [ $BRANCH != "master" ] ; then
          -F md-warning="Branch $BRANCH $BRANCH_URL_BASE$BRANCH replaced by $LS_URL" \
          -F md-title="$TITLE (Branch Snapshot $BRANCH)" \
          -F md-Text-Macro="SNAPSHOT-LINK $SNAPSHOT_LINK" \
-         > $BRANCH_DIR/index.intermediate.html;
-    node_modules/.bin/emu-algify < $BRANCH_DIR/index.intermediate.html > $BRANCH_DIR/index.html
+         > $BRANCH_DIR/index.html;
     mkdir $BRANCH_DIR/images
-    rm $BRANCH_DIR/index.intermediate.html
     cp images/*.* $BRANCH_DIR/images/
     echo "Branch snapshot output to $WEB_ROOT/$BRANCHES_DIR/$BRANCH"
 else
     # Living standard, if master
     curl https://api.csswg.org/bikeshed/ -f -F file=@$INPUT_FILE \
          -F md-Text-Macro="SNAPSHOT-LINK $SNAPSHOT_LINK" \
-         > $WEB_ROOT/index.intermediate.html;
-    node_modules/.bin/emu-algify < $WEB_ROOT/index.intermediate.html > $WEB_ROOT/index.html
-    rm $WEB_ROOT/index.intermediate.html
+         > $WEB_ROOT/index.html;
     mkdir $WEB_ROOT/images
     cp images/*.* $WEB_ROOT/images/
     echo "Living standard output to $WEB_ROOT"
