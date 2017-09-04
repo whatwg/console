@@ -5,10 +5,9 @@ env:
   global:
     - ENCRYPTION_LABEL="b9b018a1d67d"
     - DEPLOY_USER="ddenicola"
-    - POST_BUILD_STEP='mkdir "$DIR/images"; cp images/*.* "$DIR/images"'
 
 script:
-  - curl --remote-name --fail https://resources.whatwg.org/build/deploy.sh && bash ./deploy.sh
+  - make deploy
 
 notifications:
   email:

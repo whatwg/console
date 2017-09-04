@@ -3,6 +3,7 @@ npm-debug.log
 index.html
 
 console_spec_id_rsa
+deploy.sh
 deploy_key
 console.spec.whatwg.org/
 .DS_Store

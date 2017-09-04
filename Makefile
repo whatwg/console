@@ -8,3 +8,7 @@ remote: index.bs
 
 # Don't confuse make given we have files called "local" or "remote" in our root dir
 .PHONY: local remote
+
+deploy: index.bs
+	curl --remote-name --fail https://resources.whatwg.org/build/deploy.sh
+	POST_BUILD_STEP='rsync --relative images/*.* "$$DIR/"' bash ./deploy.sh
