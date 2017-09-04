@@ -20,8 +20,9 @@ To build the standard locally, you can either use a locally installed copy of [B
 If you want to do a complete "local deploy" including commit and/or branch snapshots, run
 
 ```
-./deploy.sh --local
+make deploy
 ```
+
 ## Tests
 
 Tests can be found in the `console/` directory of [web-platform-tests](https://github.com/w3c/web-platform-tests).

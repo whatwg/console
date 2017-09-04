@@ -3,13 +3,11 @@ language: generic
 
 env:
   global:
-    ENCRYPTION_LABEL: "b9b018a1d67d"
-
-addons:
-  ssh_known_hosts: console.spec.whatwg.org
+    - ENCRYPTION_LABEL="b9b018a1d67d"
+    - DEPLOY_USER="ddenicola"
 
 script:
-- bash ./deploy.sh
+  - make deploy
 
 notifications:
   email:
