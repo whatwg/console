@@ -11,4 +11,4 @@ remote: index.bs
 
 deploy: index.bs
 	curl --remote-name --fail https://resources.whatwg.org/build/deploy.sh
-	POST_BUILD_STEP='rsync --relative images/*.* "$$DIR/"' bash ./deploy.sh
+	EXTRA_FILES="images/*.*" bash ./deploy.sh
