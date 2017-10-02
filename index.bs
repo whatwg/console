@@ -15,6 +15,7 @@ Logo: https://resources.whatwg.org/logo-console.svg
 !Commits: [SNAPSHOT-LINK]
 !Commits: <a href="https://twitter.com/consolelog">@consolelog</a>
 !Tests: <a href=https://github.com/w3c/web-platform-tests/tree/master/console>web-platform-tests console/</a> (<a href=https://github.com/w3c/web-platform-tests/labels/console>ongoing work</a>)
+!Translation (non-normative): <span title=Japanese><a href=https://triple-underscore.github.io/console-ja.html lang=ja hreflang=ja rel=alternate>日本語</a></span>
 Indent: 2
 Markup Shorthands: markdown yes
 </pre>
