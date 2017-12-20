@@ -1,13 +1,15 @@
-dist: trusty
 language: generic
 
 env:
   global:
     - ENCRYPTION_LABEL="b9b018a1d67d"
-    - DEPLOY_USER="ddenicola"
 
 script:
   - make deploy
+
+branches:
+  only:
+    - master
 
 notifications:
   email:
