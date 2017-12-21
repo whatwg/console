@@ -35,6 +35,8 @@ urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
     text: %parseInt%; url: sec-parseint-string-radix
   type: interface
     text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
+  type: constructor
+    text: String; url: sec-string-constructor
 </pre>
 
 <style>
@@ -283,7 +285,7 @@ more arguments are left. It returns a [=list=] of objects suitable for printing.
 1. Let |current| be the second element of |args|.
 1. Find the first possible format specifier |specifier|, from the left to the right in |target|.
   1. If |specifier| is `%s`, let |converted| be the result of
-     <a abstract-op>ToString</a>(|current|).
+     <a constructor>String</a>(|current|).
   1. If |specifier| is `%d` or `%i`, let |converted| be the result of
      <a abstract-op>%parseInt%</a>(|current|, 10).
   1. If |specifier| is `%f`, let |converted| be the result of
