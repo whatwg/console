@@ -1,21 +1,10 @@
 <pre class="metadata">
-Title: Console Standard
+Group: WHATWG
 H1: Console
 Shortname: console
-Status: LS
-Group: WHATWG
-No Editor: true
-Repository: whatwg/console
-Boilerplate: omit conformance, omit feedback-header
+Text Macro: TWITTER consolelog
 Abstract: This specification defines APIs for console debugging facilities.
-Logo: https://resources.whatwg.org/logo-console.svg
-!Participate: <a href="https://github.com/whatwg/console">GitHub whatwg/console</a> (<a href="https://github.com/whatwg/console/issues/new">new issue</a>, <a href="https://github.com/whatwg/console/issues">open issues</a>)
-!Participate: <a href="https://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
-!Commits: <a href="https://github.com/whatwg/console/commits">GitHub whatwg/console/commits</a>
-!Commits: [SNAPSHOT-LINK]
-!Commits: <a href="https://twitter.com/consolelog">@consolelog</a>
-!Tests: <a href=https://github.com/w3c/web-platform-tests/tree/master/console>web-platform-tests console/</a> (<a href=https://github.com/w3c/web-platform-tests/labels/console>ongoing work</a>)
-!Translation (non-normative): <span title=Japanese><a href=https://triple-underscore.github.io/console-ja.html lang=ja hreflang=ja rel=alternate>日本語</a></span>
+Translation: ja https://triple-underscore.github.io/console-ja.html
 Indent: 2
 Markup Shorthands: markdown yes
 </pre>
@@ -36,14 +25,6 @@ urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
   type: interface
     text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
 </pre>
-
-<style>
-  .note + .example, .note + .note { margin-top: 1em; }
-</style>
-
-<script src=https://resources.whatwg.org/file-issue.js async></script>
-<script src=https://resources.whatwg.org/commit-snapshot-shortcut-key.js async></script>
-<script src=https://resources.whatwg.org/dfn.js defer></script>
 
 <h2 id="status" class="no-num no-toc">Status</h2>
 
@@ -539,6 +520,3 @@ This standard is written by
 with major help from <a href="https://domenic.me/">Domenic Denicola</a>
 (<a href="https://google.com">Google</a>,
 <a href="mailto:d@domenic.me">d@domenic.me</a>).
-
-Per <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, to the extent possible
-under law, the editors have waived all copyright and related or neighboring rights to this work.
