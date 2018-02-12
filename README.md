@@ -26,7 +26,11 @@ Tests can be found in the `console/` directory of [web-platform-tests](https://g
 
 ## Contribution guidelines
 
-For guidelines on how to build and edit the spec, see [CONTRIBUTING.md](https://github.com/whatwg/console/blob/master/CONTRIBUTING.md).
+For guidelines on how to build and edit the spec, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Merge policy
+
+If you can commit to this repository, see the [WHATWG Maintainer Guidelines](https://github.com/whatwg/meta/blob/master/MAINTAINERS.md).
 
 ## Code of Conduct
 
