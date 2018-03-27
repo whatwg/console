@@ -4,4 +4,4 @@ Helps to write the spec for the Logger function
 
 Implemented:
 
- - behaviour of format specifiers: '%s', '%d', '%i', '%f'
+ - behaviour of format specifiers: `'%s'`, `'%d'`, `'%i'`, `'%f'`
