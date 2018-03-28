@@ -122,7 +122,7 @@ Chrome:
 
 ```js
 console.assert(false, "robert keeps %s on his balcony", {foo: "bar"})
-Assertion failed: robert keeps %s on his balcony Object {foo: "bar"}
+Assertion failed: robert keeps %s on his balcony {foo: "bar"}
 ```
 
 ## console.table - printing of strings
@@ -254,7 +254,7 @@ console.count({})
 undefined
 
 console.count([])
-: 1
+[object Array]: 1
 undefined
 ```
 
@@ -286,7 +286,7 @@ Chrome:
 
 ```js
 console.count()
-: 1
+default: 1
 undefined
 ```
 
@@ -318,11 +318,11 @@ Chrome:
 
 ```js
 console.count()
-: 1
+default: 1
 undefined
 
 console.count("")
-: 2
+1
 undefined
 ```
 
@@ -415,11 +415,12 @@ Chrome:
 ```js
 console.time()
 console.time(undefined)
+Timer 'default' already exists
 
 console.timeEnd()
 default: <time in ms here>
 console.timeEnd()
-undefined: <time in ms here>
+Timer 'default' does not exist
 ```
 
 Bug: https://bugs.chromium.org/p/chromium/issues/detail?id=696798
@@ -440,6 +441,7 @@ Chrome:
 console.time({ toString() { return 'conversion' } }) // timer started with label `[object Object]`
 
 console.timeEnd('conversion')
+Timer 'conversion' does not exist
 console.timeEnd({})
 [object Object]: <time in ms here>
 
