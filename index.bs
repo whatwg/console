@@ -123,7 +123,7 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
 1. Otherwise:
   1. Let |message| be a string without any formatting specifiers indicating generically that the
     given label does not have an associated count.
-  1. Perform <a abstract-op>Logger</a>("warn", « |message| »);
+  1. Perform <a abstract-op>Logger</a>("countReset", « |message| »);
 
 <h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...|data|)</h4>
 
