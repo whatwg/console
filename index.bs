@@ -48,6 +48,7 @@ namespace console { // but see namespace object requirements below
   void assert(optional boolean condition = false, any... data);
   void clear();
   void count(optional DOMString label = "default");
+  void countReset(optional DOMString label = "default");
   void debug(any... data);
   void error(any... data);
   void info(any... data);
@@ -86,7 +87,7 @@ its \[[Prototype]] an empty object, created as if by
 <h3 id="logging">Logging methods</h3>
 
 Each {{console}} namespace object has an associated <dfn>count map</dfn>, which is a <a>map</a> of
-<a>strings</a> to labels, initially empty.
+<a>strings</a> to numbers, initially empty.
 
 <h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(|condition|, ...|data|)</h4>
 
@@ -115,6 +116,14 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and
    <a abstract-op>ToString</a>(|map|[|label|]).
 1. Perform <a abstract-op>Logger</a>("count", « |concat| »).
+
+<h4 id="countReset" method for="console">countReset(|label|)</h4>
+1. Let |map| be the associated <a>count map</a>.
+1. If |map|[|label|] [=map/exists=], [=map/set=] |map|[|label|] to 0.
+1. Otherwise:
+  1. Let |message| be a string without any formatting specifiers indicating generically that the
+    given label does not have an associated count.
+  1. Perform <a abstract-op>Logger</a>("warn", « |message| »);
 
 <h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...|data|)</h4>
 
@@ -310,12 +319,12 @@ The following is an informative summary of the format specifiers processed by th
   <tr>
     <td>`%d` or `%i`</td>
     <td>Element which substitutes is converted to an integer</td>
-    <td><a abstract-op>%parseInt%</a>(|element|, 10)</td>
+    <td><a>%parseInt%</a>(|element|, 10)</td>
   </tr>
   <tr>
     <td>`%f`</td>
     <td>Element which substitutes is converted to a float</td>
-    <td><a abstract-op>%parseFloat%</a>(|element|, 10)</td>
+    <td><a>%parseFloat%</a>(|element|, 10)</td>
   </tr>
   <tr>
     <td>`%o`</td>
@@ -395,7 +404,9 @@ their output similarly, in four broad categories. This table summarizes these co
   </tr>
   <tr>
     <td>warn</td>
-    <td>{{console/warn()}}</td>
+    <td>
+      {{console/warn()}}, {{console/countReset()}}
+    </td>
     <td>
       A log warning the user of something indicated by the message
     </td>
