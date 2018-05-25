@@ -314,7 +314,7 @@ The following is an informative summary of the format specifiers processed by th
   <tr>
     <td>`%s`</td>
     <td>Element which substitutes is converted to a string</td>
-    <td><a constructor>%String%</a>(|element|)</td>
+    <td><a idl>%String%</a>(|element|)</td>
   </tr>
   <tr>
     <td>`%d` or `%i`</td>
