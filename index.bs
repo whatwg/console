@@ -69,6 +69,7 @@ namespace console { // but see namespace object requirements below
   // Timing
   void time(optional DOMString label = "default");
   void timeEnd(optional DOMString label = "default");
+  void timeLog(optional DOMString label = "default", any... data);
 };
 </pre>
 
@@ -78,8 +79,7 @@ namespace console { // but see namespace object requirements below
 
 <p class="note">
   It is important that {{console}} is always visible and usable to scripts, even if the developer
-  console has not been opened or
-  does not exist.
+  console has not been opened or does not exist.
 </p>
 
 For historical web-compatibility reasons, the <a>namespace object</a> for {{console}} must have as
@@ -236,14 +236,48 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 
 <h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(|label|)</h4>
 
-1. Let |startTime| be the result of [=map/getting=] the value of the entry with key |label| in the
-   associated <a>timer table</a>.
+1. Let |timerTable| be the associated <a>timer table</a>.
+1. Let |startTime| be |timerTable|[|label|].
+1. [=map/set|Remove=] |timerTable|[|label|].
 1. Let |duration| be a string representing the difference between the current time and
    |startTime|, in an implementation-defined format.
    <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
    are all reasonable ways of displaying a 4650.69 ms duration.</p>
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
-1. Perform <a abstract-op>Logger</a>("timeEnd", « |concat| »).
+1. Perform <a abstract-op>Printer</a>("timeEnd", « |concat| »).
+
+<h4 id="timelog" method for="console">timeLog(|label|, ...|data|)</h4>
+
+1. Let |timerTable| be the associated <a>timer table</a>.
+1. Let |startTime| be |timerTable|[|label|].
+1. Let |duration| be a string representing the difference between the current time and
+   |startTime|, in an implementation-defined format.
+1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
+1. [=list/prepend|Prepend=] |concat| to |data|.
+1. Perform <a abstract-op>Printer</a>("timeLog", data).
+
+<div class="example" id="timelog-example">
+  The |data| parameter in calls to {{console/timeLog()}} is included in the call to
+  <a abstract-op>Logger</a> to make it easier for users to supply intermediate timer logs with
+  some extra data throughout the life of a timer. For example:
+
+  <pre><code class="lang-javascript">
+    console.time("MyTimer");
+    console.timeLog("MyTimer", "Starting application up...");
+    // Perhaps some code runs to boostrap a complex app
+    // ...
+    console.timeLog("MyTimer", "UI is setup, making API calls now");
+    // Perhaps some fetch()'s here filling the app with data
+    // ...
+    console.timeLog("MyTimer", "All done!");
+    console.timeEnd("MyTimer");
+  </code></pre>
+</div>
+
+<p class="note">See <a href="https://github.com/whatwg/console/issues/134">whatwg/console#134</a>
+for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
+console when a give |label| does not exist in the associated <a>timer table</a>.
+</p>
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
@@ -394,7 +428,7 @@ their output similarly, in four broad categories. This table summarizes these co
     <td>log</td>
     <td>
       {{console/log()}}, {{console/trace()}}, {{console/dir()}}, {{console/dirxml()}},
-      {{console/group()}}, {{console/groupCollapsed()}}, {{console/debug()}}
+      {{console/group()}}, {{console/groupCollapsed()}}, {{console/debug()}} {{console/timeLog()}}
     </td>
     <td>
       A generic log
