@@ -276,7 +276,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 
 <p class="note">See <a href="https://github.com/whatwg/console/issues/134">whatwg/console#134</a>
 for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
-console when a give |label| does not exist in the associated <a>timer table</a>.
+console when a given |label| does not exist in the associated <a>timer table</a>.
 </p>
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
