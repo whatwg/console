@@ -282,7 +282,7 @@ more arguments are left. It returns a [=list=] of objects suitable for printing.
 1. Let |current| be the second element of |args|.
 1. Find the first possible format specifier |specifier|, from the left to the right in |target|.
   1. If |specifier| is `%s`, let |converted| be the result of
-     [$Call$]({{%String%}}, **undefined**, « |current| »).
+     [$Call$](<a idl>%String%</a>, **undefined**, « |current| »).
   1. If |specifier| is `%d` or `%i`:
     1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`
     1. Otherwise, let |converted| be the result of
@@ -319,7 +319,7 @@ The following is an informative summary of the format specifiers processed by th
   <tr>
     <td>`%s`</td>
     <td>Element which substitutes is converted to a string</td>
-    <td><a abstract-op>ToString</a>(|element|)</td>
+    <td><a idl>%String%</a>(|element|)</td>
   </tr>
   <tr>
     <td>`%d` or `%i`</td>
@@ -528,6 +528,7 @@ Ian Kilpatrick,
 Jeff Carpenter,
 Joseph Pecoraro,
 Justin Woo,
+Luc Martin,
 Noah Bass,
 Paul Irish,
 Raphaël, and
