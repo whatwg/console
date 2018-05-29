@@ -8,3 +8,4 @@ deploy_key
 console.spec.whatwg.org/
 .DS_Store
 .idea
+review.sh

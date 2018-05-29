@@ -10,7 +10,7 @@ This specification is still in its very early stages. It is very much a work in 
 
 ## Tests
 
-Tests can be found in the `console/` directory of [web-platform-tests](https://github.com/w3c/web-platform-tests).
+Tests can be found in the `console/` directory of [web-platform-tests/wpt](https://github.com/web-platform-tests/wpt).
 
 ## Contribution guidelines
 
@@ -22,4 +22,4 @@ If you can commit to this repository, see the [WHATWG Maintainer Guidelines](htt
 
 ## Code of conduct
 
-We are committed to providing a friendly, safe and welcoming environment for all. Please read and respect the [WHATWG Code of Conduct](https://whatwg.org/code-of-conduct).
+We are committed to providing a friendly, safe, and welcoming environment for all. Please read and respect the [WHATWG Code of Conduct](https://whatwg.org/code-of-conduct).
