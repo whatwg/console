@@ -11,8 +11,9 @@ local: index.bs
 
 deploy: index.bs
 	curl --remote-name --fail https://resources.whatwg.org/build/deploy.sh
-	EXTRA_FILES="images/*.*" bash ./deploy.sh
+	EXTRA_FILES="images/*.*" \
+	bash ./deploy.sh
 
 review: index.bs
 	curl --remote-name --fail https://resources.whatwg.org/build/review.sh
-	EXTRA_FILES="images/*.*" bash ./review.sh
+	bash ./review.sh
