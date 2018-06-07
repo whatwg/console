@@ -68,8 +68,8 @@ namespace console { // but see namespace object requirements below
 
   // Timing
   void time(optional DOMString label = "default");
-  void timeEnd(optional DOMString label = "default");
   void timeLog(optional DOMString label = "default", any... data);
+  void timeEnd(optional DOMString label = "default");
 };
 </pre>
 
@@ -234,18 +234,6 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. Otherwise, [=map/set=] the value of the entry with key |label| in the associated
    <a>timer table</a> to the current time.
 
-<h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(|label|)</h4>
-
-1. Let |timerTable| be the associated <a>timer table</a>.
-1. Let |startTime| be |timerTable|[|label|].
-1. [=map/set|Remove=] |timerTable|[|label|].
-1. Let |duration| be a string representing the difference between the current time and
-   |startTime|, in an implementation-defined format.
-   <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
-   are all reasonable ways of displaying a 4650.69 ms duration.</p>
-1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
-1. Perform <a abstract-op>Printer</a>("timeEnd", « |concat| »).
-
 <h4 id="timelog" method for="console">timeLog(|label|, ...|data|)</h4>
 
 1. Let |timerTable| be the associated <a>timer table</a>.
@@ -273,6 +261,18 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
     console.timeEnd("MyTimer");
   </code></pre>
 </div>
+
+<h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(|label|)</h4>
+
+1. Let |timerTable| be the associated <a>timer table</a>.
+1. Let |startTime| be |timerTable|[|label|].
+1. [=map/Remove=] |timerTable|[|label|].
+1. Let |duration| be a string representing the difference between the current time and
+   |startTime|, in an implementation-defined format.
+   <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
+   are all reasonable ways of displaying a 4650.69 ms duration.</p>
+1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
+1. Perform <a abstract-op>Printer</a>("timeEnd", « |concat| »).
 
 <p class="note">See <a href="https://github.com/whatwg/console/issues/134">whatwg/console#134</a>
 for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
@@ -428,7 +428,7 @@ their output similarly, in four broad categories. This table summarizes these co
     <td>log</td>
     <td>
       {{console/log()}}, {{console/trace()}}, {{console/dir()}}, {{console/dirxml()}},
-      {{console/group()}}, {{console/groupCollapsed()}}, {{console/debug()}} {{console/timeLog()}}
+      {{console/group()}}, {{console/groupCollapsed()}}, {{console/debug()}}, {{console/timeLog()}}
     </td>
     <td>
       A generic log
