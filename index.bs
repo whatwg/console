@@ -240,6 +240,8 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. Let |startTime| be |timerTable|[|label|].
 1. Let |duration| be a string representing the difference between the current time and
    |startTime|, in an implementation-defined format.
+   <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
+   are all reasonable ways of displaying a 4650.69 ms duration.</p>
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
 1. [=list/prepend|Prepend=] |concat| to |data|.
 1. Perform <a abstract-op>Printer</a>("timeLog", data).
@@ -251,13 +253,12 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 
   <pre><code class="lang-javascript">
     console.time("MyTimer");
-    console.timeLog("MyTimer", "Starting application up...");
+    console.timeLog("MyTimer", "Starting application up…");
     // Perhaps some code runs to boostrap a complex app
     // ...
     console.timeLog("MyTimer", "UI is setup, making API calls now");
     // Perhaps some fetch()'s here filling the app with data
     // ...
-    console.timeLog("MyTimer", "All done!");
     console.timeEnd("MyTimer");
   </code></pre>
 </div>
@@ -269,8 +270,6 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. [=map/Remove=] |timerTable|[|label|].
 1. Let |duration| be a string representing the difference between the current time and
    |startTime|, in an implementation-defined format.
-   <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
-   are all reasonable ways of displaying a 4650.69 ms duration.</p>
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
 1. Perform <a abstract-op>Printer</a>("timeEnd", « |concat| »).
 
