@@ -176,7 +176,7 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
    <a abstract-op>ToString</a>(|map|[|label|]).
 1. Perform <a abstract-op>Logger</a>("count", « |concat| »).
 
-<h4 id="countReset" method for="console">countReset(|label|)</h4>
+<h4 id="countreset" method for="console">countReset(|label|)</h4>
 
 1. Let |map| be the associated <a>count map</a>.
 1. If |map|[|label|] [=map/exists=], [=map/set=] |map|[|label|] to 0.
