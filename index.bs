@@ -254,7 +254,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
   <pre><code class="lang-javascript">
     console.time("MyTimer");
     console.timeLog("MyTimer", "Starting application up…");
-    // Perhaps some code runs to boostrap a complex app
+    // Perhaps some code runs to bootstrap a complex app
     // ...
     console.timeLog("MyTimer", "UI is setup, making API calls now");
     // Perhaps some fetch()'s here filling the app with data
