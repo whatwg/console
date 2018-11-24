@@ -550,6 +550,13 @@ representation of an object judged to be maximally useful and informative.
   </code></pre>
 </div>
 
+<h3 id="reporting-warnings">Reporting warnings to the console</h3>
+
+This specification defines the concept of <dfn export lt="report a warning">reporting a
+warning</dfn>, which can be used by other specifications when it is desireable to display a warning
+in the developer console. To <a>report a warning</a> given a generic implementation-defined warning,
+implementations must perform <a abstract-op>Printer</a>("reportWarning", « |warning| », |options|).
+
 <h2 id="acks" class="no-num">Acknowledgments</h2>
 
 The editors would like to thank
