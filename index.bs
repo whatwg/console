@@ -552,11 +552,11 @@ representation of an object judged to be maximally useful and informative.
 
 <h3 id="reporting-warnings">Reporting warnings to the console</h3>
 
-This specification defines the concept of <dfn export lt="report a warning to the
-console">reporting a warning to the console</dfn>, which can be used by other specifications when
-it is desirable to display a warning in the developer console. To <a>report a warning to the
-console</a> given a generic implementation-defined warning |warning|, implementations must perform
-<a abstract-op>Printer</a>("reportWarning", « |warning| »).
+To <dfn export>report a warning to the console</dfn> given a generic description of a warning
+|description|, implementations must perform:
+
+1. Let |warning| be an implementation-defined string derived from |description|.
+1. Perform <a abstract-op>Printer</a>("reportWarning", « |warning| »).
 
 <h2 id="acks" class="no-num">Acknowledgments</h2>
 
