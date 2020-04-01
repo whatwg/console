@@ -1,11 +1,9 @@
-/node_modules/
-/npm-debug.log
-/index.html
-
-/console_spec_id_rsa
+/console.spec.whatwg.org/
 /deploy.sh
 /deploy_key
-/console.spec.whatwg.org/
-/.DS_Store
-/.idea
+/deploy_key.pub
+/index.html
 /review.sh
+/.idea
+/node_modules/
+/npm-debug.log
