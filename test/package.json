@@ -10,7 +10,7 @@
   "author": "Terin Stock <terinjokes@gmail.com> (https://terinstock.com/)",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^2.4.1",
+    "lodash": "^4.17.15",
     "mocha": "^1.21.4"
   }
 }
