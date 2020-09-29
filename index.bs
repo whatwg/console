@@ -10,11 +10,6 @@ Indent: 2
 Markup Shorthands: markdown yes
 </pre>
 
-<pre class="link-defaults">
-spec:infra; type:dfn; text:list
-spec:infra; type:dfn; text:string
-</pre>
-
 <pre class="anchors">
 urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
   type: abstract-op
@@ -156,7 +151,7 @@ back to just logging the argument if it can't be parsed as tabular.
 
 <h4 id="dirxml" method for="console">dirxml(...|data|)</h4>
 
-1. Let |finalList| be a new <a>list</a>, initially empty.
+1. Let |finalList| be a new <a for=/>list</a>, initially empty.
 1. [=list/For each=] |item| of |data|:
   1. Let |converted| be a DOM tree representation of |item| if possible; otherwise let
     |converted| be |item| with <a>optimally useful formatting</a> applied.
@@ -204,7 +199,7 @@ output produced by calls to <a abstract-op>Printer</a>.
 1. Optionally, if the environment supports interactive groups, |group| should be expanded by
    default.
 1. Perform <a abstract-op>Printer</a>("group", « |group| »).
-1. <a>Push</a> |group| onto the appropriate <a>group stack</a>.
+1. Push |group| onto the appropriate <a>group stack</a>.
 
 <h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...|data|)</h4>
 
@@ -216,7 +211,7 @@ output produced by calls to <a abstract-op>Printer</a>.
 1. Optionally, if the environment supports interactive groups, |group| should be collapsed by
    default.
 1. Perform <a abstract-op>Printer</a>("groupCollapsed", « |group| »).
-1. <a>Push</a> |group| onto the appropriate <a>group stack</a>.
+1. Push |group| onto the appropriate <a>group stack</a>.
 
 <h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
 
@@ -283,7 +278,7 @@ console when a given |label| does not exist in the associated <a>timer table</a>
 
 <h3 id="logger" abstract-op lt="Logger">Logger(|logLevel|, |args|)</h3>
 
-The logger operation accepts a log level and a [=list=] of other arguments. Its main output is the
+The logger operation accepts a log level and a [=/list=] of other arguments. Its main output is the
 implementation-defined side effect of printing the result to the console. This specification
 describes how it processes format specifiers while doing so.
 
@@ -310,7 +305,7 @@ describes how it processes format specifiers while doing so.
 
 The formatter operation tries to format the first argument provided, using the other arguments. It
 will try to format the input until no formatting specifiers are left in the first argument, or no
-more arguments are left. It returns a [=list=] of objects suitable for printing.
+more arguments are left. It returns a [=/list=] of objects suitable for printing.
 
 1. Let |target| be the first element of |args|.
 1. Let |current| be the second element of |args|.
@@ -332,7 +327,7 @@ more arguments are left. It returns a [=list=] of objects suitable for printing.
   1. <p class="XXX">TODO: process %c</p>
   1. If any of the previous steps set |converted|, replace |specifier| in |target| with
      |converted|.
-  1. Let |result| be a [=list=] containing |target| together with the elements of |args| starting
+  1. Let |result| be a [=/list=] containing |target| together with the elements of |args| starting
      from the third onward.
 1. If |target| does not have any format specifiers left, return |result|.
 1. If |result|'s [=list/size=] is 1, return |result|.
