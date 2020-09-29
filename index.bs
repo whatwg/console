@@ -151,7 +151,7 @@ back to just logging the argument if it can't be parsed as tabular.
 
 <h4 id="dirxml" method for="console">dirxml(...|data|)</h4>
 
-1. Let |finalList| be a new <a for=/>list</a>, initially empty.
+1. Let |finalList| be a new [=/list=], initially empty.
 1. [=list/For each=] |item| of |data|:
   1. Let |converted| be a DOM tree representation of |item| if possible; otherwise let
     |converted| be |item| with <a>optimally useful formatting</a> applied.
