@@ -199,7 +199,7 @@ output produced by calls to <a abstract-op>Printer</a>.
 1. Optionally, if the environment supports interactive groups, |group| should be expanded by
    default.
 1. Perform <a abstract-op>Printer</a>("group", « |group| »).
-1. Push |group| onto the appropriate <a>group stack</a>.
+1. [=stack/Push=] |group| onto the appropriate <a>group stack</a>.
 
 <h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...|data|)</h4>
 
@@ -211,7 +211,7 @@ output produced by calls to <a abstract-op>Printer</a>.
 1. Optionally, if the environment supports interactive groups, |group| should be collapsed by
    default.
 1. Perform <a abstract-op>Printer</a>("groupCollapsed", « |group| »).
-1. Push |group| onto the appropriate <a>group stack</a>.
+1. [=stack/Push=] |group| onto the appropriate <a>group stack</a>.
 
 <h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
 
