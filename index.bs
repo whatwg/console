@@ -3,6 +3,7 @@ Group: WHATWG
 H1: Console
 Shortname: console
 Text Macro: TWITTER consolelog
+Text Macro: LATESTRD 2019-12
 Abstract: This specification defines APIs for console debugging facilities.
 Translation: ja https://triple-underscore.github.io/console-ja.html
 Indent: 2
