@@ -1,6 +1,6 @@
 # Console Standard contributor guidelines
 
-See the [WHATWG contributor guidelines](https://github.com/whatwg/meta/blob/master/CONTRIBUTING.md).
+See the [WHATWG contributor guidelines](https://github.com/whatwg/meta/blob/main/CONTRIBUTING.md).
 
 ## Building the spec
 

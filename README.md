@@ -18,7 +18,7 @@ For guidelines on how to build and edit the spec, see [CONTRIBUTING.md](CONTRIBU
 
 ## Merge policy
 
-If you can commit to this repository, see the [WHATWG Maintainer Guidelines](https://github.com/whatwg/meta/blob/master/MAINTAINERS.md).
+If you can commit to this repository, see the [WHATWG Maintainer Guidelines](https://github.com/whatwg/meta/blob/main/MAINTAINERS.md).
 
 ## Code of conduct
 
