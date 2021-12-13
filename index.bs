@@ -287,8 +287,6 @@ describes how it processes format specifiers while doing so.
 1. Let |rest| be all elements following |first| in |args|.
 1. If |rest| is [=list/is empty|empty=], perform
    <a abstract-op>Printer</a>(|logLevel|, « |first| ») and return.
-1. If |first| does not contain any format specifiers, perform
-   <a abstract-op>Printer</a>(|logLevel|, |args|).
 1. Otherwise, perform <a abstract-op>Printer</a>(|logLevel|, <a abstract-op>Formatter</a>(|args|)).
 1. Return *undefined*.
 
@@ -308,9 +306,12 @@ The formatter operation tries to format the first argument provided, using the o
 will try to format the input until no formatting specifiers are left in the first argument, or no
 more arguments are left. It returns a [=/list=] of objects suitable for printing.
 
+1. If |args|'s [=list/size=] is 1, return |args|.
 1. Let |target| be the first element of |args|.
 1. Let |current| be the second element of |args|.
 1. Find the first possible format specifier |specifier|, from the left to the right in |target|.
+1. If no format specifier was found, return |args|.
+1. Otherwise:
   1. If |specifier| is `%s`, let |converted| be the result of
      [$Call$](<a idl>%String%</a>, **undefined**, « |current| »).
   1. If |specifier| is `%d` or `%i`:
@@ -328,9 +329,8 @@ more arguments are left. It returns a [=/list=] of objects suitable for printing
   1. <p class="XXX">TODO: process %c</p>
   1. If any of the previous steps set |converted|, replace |specifier| in |target| with
      |converted|.
-  1. Let |result| be a [=/list=] containing |target| together with the elements of |args| starting
-     from the third onward.
-1. If |target| does not have any format specifiers left, return |result|.
+1. Let |result| be a [=/list=] containing |target| together with the elements of |args| starting
+   from the third onward.
 1. If |result|'s [=list/size=] is 1, return |result|.
 1. Return <a abstract-op>Formatter</a>(|result|).
 
