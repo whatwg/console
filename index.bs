@@ -298,7 +298,8 @@ describes how it processes format specifiers while doing so.
   developer enters `console.log("hello!")`, this will first print "hello!", then the
   undefined return value from the console.log call.
 
-  <img alt="Indicating that printing is done before return" src="images/print-before-returning.png">
+  <img alt="Indicating that printing is done before return" width="270" height="98"
+  src="images/print-before-returning.png">
 </div>
 
 <h3 id="formatter" abstract-op lt="Formatter">Formatter(|args|)</h3>
@@ -461,14 +462,15 @@ providing special behavior for each function, as in the following examples:
   Here you can see one implementation chose to make output produced by calls to
   {{console/timeEnd()}} blue, while leaving {{console/info()}} a more neutral color.
 
-  <img alt="A demonstration of timeEnd and info formatting differences" src="images/timeEnd-formatting.png">
+  <img alt="A demonstration of timeEnd and info formatting differences" width="408" height="276"
+  src="images/timeEnd-formatting.png">
 </div>
 
 <div class="example" id="count-output">
   Calls to {{console/count()}} might not always print new output, but instead could update
   previously-output counts.
 
-  <img alt="A demonstration of count behavior" src="images/edge-Count.png">
+  <img alt="A demonstration of count behavior" width="233" height="135" src="images/edge-Count.png">
 </div>
 
 <h4 id="printer-ux-innovation">Printer user experience innovation</h4>
@@ -483,13 +485,15 @@ its implementations. The following is a non-exhaustive list of potential UX enha
       In this example, the implementation not only batches multiple identical messages, but also
       provides the number of messages that have been batched together.
 
-      <img alt="A demonstration of console message de-duplication" src="images/dedupe.png">
+      <img alt="A demonstration of console message de-duplication" width="282" height="86"
+      src="images/dedupe.png">
     </div>
   </li>
   <li>
     <p>Extra UI off to the side allowing the user to filter messages by log level severity.</p>
     <div class="example" id="severity-filter-example">
-      <img alt="" src="images/severity-filter.png">
+      <img alt="Indicating UI that allows filtering by log severity" width="494" height="58"
+      src="images/severity-filter.png">
     </div>
   </li>
   <li>
