@@ -1,5 +1,6 @@
 <pre class="metadata">
 Group: WHATWG
+Date: 2022-06-20
 H1: Console
 Shortname: console
 Text Macro: TWITTER consolelog
