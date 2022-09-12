@@ -331,7 +331,6 @@ more arguments are left. It returns a [=/list=] of objects suitable for printing
      |converted|.
 1. Let |result| be a [=/list=] containing |target| together with the elements of |args| starting
    from the third onward.
-1. If |result|'s [=list/size=] is 1, return |result|.
 1. Return <a abstract-op>Formatter</a>(|result|).
 
 <h4 id="formatting-specifiers">Summary of formatting specifiers</h4>
