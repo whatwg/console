@@ -1,5 +1,7 @@
 <pre class="metadata">
 Group: WHATWG
+Status: RD
+Date: 2022-12-19
 H1: Console
 Shortname: console
 Text Macro: TWITTER consolelog
@@ -373,11 +375,6 @@ The following is an informative summary of the format specifiers processed by th
   <tr>
     <td>`%c`</td>
     <td>Applies provided CSS</td>
-    <td>n/a</td>
-  </tr>
-  <tr>
-    <td>`%%`</td>
-    <td>Escapes the `%` specifier</td>
     <td>n/a</td>
   </tr>
 </table>
