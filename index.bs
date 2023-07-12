@@ -17,6 +17,8 @@ urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
     text: Type; url: sec-ecmascript-data-types-and-values
     text: ToString; url: sec-tostring
     text: Call; url: sec-call
+    for: BigInt
+      text: toString; url: sec-numeric-types-bigint-tostring
   type: interface
     text: %ObjectPrototype%; url: sec-properties-of-the-object-prototype-object
   type: constructor
@@ -315,11 +317,13 @@ more arguments are left. It returns a [=/list=] of objects suitable for printing
   1. If |specifier| is `%s`, let |converted| be the result of
      [$Call$](<a idl>%String%</a>, **undefined**, « |current| »).
   1. If |specifier| is `%d` or `%i`:
-    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`
+    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`.
+    1. Otherwise, if [$Type$](|current|) is BigInt, let |converted| be
+       [$BigInt/toString|BigInt::toString$](|current|, 10).
     1. Otherwise, let |converted| be the result of
       [$Call$]([=%parseInt%=], **undefined**, « |current|, 10 »).
   1. If |specifier| is `%f`:
-    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`
+    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`.
     1. Otherwise, let |converted| be the result of
       [$Call$]([=%parseFloat%=], **undefined**, « |current| »).
   1. If |specifier| is `%o`, optionally let |converted| be |current| with
