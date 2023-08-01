@@ -2,50 +2,6 @@
 
 documenting the current status of affairs
 
-## float formatter
-
-FF:
-
-```js
-console.log("%f", 23)
-23.000000
-```
-
-Chrome:
-
-```js
-console.log("%f", 23)
-23
-```
-
-FF:
-
-```
-console.log('bjoern and robert are born on the %fst dec', 1.234)
-bjoern and robert are born on the 1.234000st dec
-```
-
-Chrome:
-
-```
-console.log('bjoern and robert are born on the %fst dec', 1.234)
-bjoern and robert are born on the 1.234st dec
-````
-
-FF:
-
-```js
-console.log("%f", null)
-0.000000
-```
-
-Chrome:
-
-```js
-console.log("%f", null)
-NaN
-```
-
 ## integer formatter
 
 FF:
