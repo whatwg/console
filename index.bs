@@ -278,8 +278,6 @@ console when a given |label| does not exist in the associated <a>timer table</a>
 <h4 id="timestamp" oldids="timestamp-label,dom-console-timestamp" method for="console">timeStamp(|label|)</h4>
 
 1. If the developer is recording a performance trace, add a single marker to the performance trace with the |label|.
-1. Otherwise, do nothing.
-1. Return *undefined*.
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
