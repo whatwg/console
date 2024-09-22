@@ -136,7 +136,7 @@ back to just logging the argument if it can't be parsed as tabular.
 1. Perform <a abstract-op>Printer</a>("trace", « |trace| »).
 
 <p class="note">
-  The identifier of a function printed in a stack trace is implementation-dependant. It is also not
+  The identifier of a function printed in a stack trace is implementation-dependent. It is also not
   guaranteed to be the same identifier that would be seen in `new Error().stack`.
 </p>
 
