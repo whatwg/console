@@ -129,15 +129,15 @@ back to just logging the argument if it can't be parsed as tabular.
 
 <h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...|data|)</h4>
 
-1. Let |trace| be some implementation-specific, potentially-interactive representation of the
+1. Let |trace| be some <a>implementation-defined</a>, potentially-interactive representation of the
    callstack from where this function was called.
 1. Optionally, let |formattedData| be the result of <a abstract-op>Formatter</a>(|data|), and
    incorporate |formattedData| as a label for |trace|.
 1. Perform <a abstract-op>Printer</a>("trace", « |trace| »).
 
 <p class="note">
-  The identifier of a function printed in a stack trace is implementation-dependant. It is also not
-  guaranteed to be the same identifier that would be seen in `new Error().stack`.
+  The identifier of a function printed in a stack trace is <a>implementation-defined</a>. It is also
+  not guaranteed to be the same identifier that would be seen in `new Error().stack`.
 </p>
 
 <h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...|data|)</h4>
@@ -183,11 +183,11 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
 
 <h3 id="grouping">Grouping functions</h3>
 
-A <dfn id="concept-group">group</dfn> is an implementation-specific, potentially-interactive view
-for output produced by calls to <a abstract-op>Printer</a>, with one further level of indentation
-than its parent. Each {{console}} namespace object has an associated <dfn>group stack</dfn>, which
-is a <a>stack</a>, initially empty. Only the last <a>group</a> in a <a>group stack</a> will host
-output produced by calls to <a abstract-op>Printer</a>.
+A <dfn id="concept-group">group</dfn> is an <a>implementation-defined</a>, potentially-interactive
+view for output produced by calls to <a abstract-op>Printer</a>, with one further level of
+indentation than its parent. Each {{console}} namespace object has an associated <dfn>group
+stack</dfn>, which is a <a>stack</a>, initially empty. Only the last <a>group</a> in a <a>group
+stack</a> will host output produced by calls to <a abstract-op>Printer</a>.
 
 <h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...|data|)</h4>
 
@@ -235,7 +235,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. Let |timerTable| be the associated <a>timer table</a>.
 1. Let |startTime| be |timerTable|[|label|].
 1. Let |duration| be a string representing the difference between the current time and
-   |startTime|, in an implementation-defined format.
+   |startTime|, in an <a>implementation-defined</a> format.
    <p class="example" id="duration-string-example">"4650", "4650.69 ms", "5 seconds", and "00:05"
    are all reasonable ways of displaying a 4650.69 ms duration.</p>
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
@@ -265,7 +265,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. Let |startTime| be |timerTable|[|label|].
 1. [=map/Remove=] |timerTable|[|label|].
 1. Let |duration| be a string representing the difference between the current time and
-   |startTime|, in an implementation-defined format.
+   |startTime|, in an <a>implementation-defined</a> format.
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
 1. Perform <a abstract-op>Printer</a>("timeEnd", « |concat| »).
 
@@ -279,7 +279,7 @@ console when a given |label| does not exist in the associated <a>timer table</a>
 <h3 id="logger" abstract-op lt="Logger">Logger(|logLevel|, |args|)</h3>
 
 The logger operation accepts a log level and a [=/list=] of other arguments. Its main output is the
-implementation-defined side effect of printing the result to the console. This specification
+<a>implementation-defined</a> side effect of printing the result to the console. This specification
 describes how it processes format specifiers while doing so.
 
 1. If |args| is [=list/is empty|empty=], return.
@@ -379,8 +379,8 @@ The following is an informative summary of the format specifiers processed by th
 
 <h3 id="printer" abstract-op lt="Printer">Printer(|logLevel|, |args|[, |options|])</h3>
 
-The printer operation is implementation-defined. It accepts a log level indicating severity, a List
-of arguments to print, and an optional object of implementation-specific formatting options.
+The printer operation is <a>implementation-defined</a>. It accepts a log level indicating severity,
+a List of arguments to print, and an optional object of implementation-specific formatting options.
 Elements appearing in |args| will be one of the following:
 
 - JavaScript objects of any type.
@@ -389,7 +389,7 @@ Elements appearing in |args| will be one of the following:
   <a>optimally useful formatting</a> applied.
 
 If the |options| object is passed, and is not undefined or null, implementations may use |options|
-to apply implementation-specific formatting to the elements in |args|.
+to apply <a>implementation-defined</a> formatting to the elements in |args|.
 
 How the implementation prints |args| is up to the implementation, but implementations should
 separate the objects by a space or something similar, as that has become a developer expectation.
@@ -401,8 +401,8 @@ Printer should appear only within the last <a>group</a> on the appropriate <a>gr
 <a>group stack</a> is not empty, or elsewhere in the console otherwise.
 
 If the console is not open when the printer operation is called, implementations should buffer
-messages to show them in the future up to an implementation-chosen limit (typically on the order of
-at least 100).
+messages to show them in the future up to an <a>implementation-defined</a> limit (typically on the
+order of at least 100).
 
 <h4 id="loglevel-severity">Indicating |logLevel| severity</h4>
 
@@ -474,8 +474,9 @@ providing special behavior for each function, as in the following examples:
 
 <h4 id="printer-ux-innovation">Printer user experience innovation</h4>
 
-Since <a abstract-op>Printer</a> is implementation-defined, it is common to see UX innovations in
-its implementations. The following is a non-exhaustive list of potential UX enhancements:
+Since <a abstract-op>Printer</a> is <a>implementation-defined</a>, it is common to see UX
+innovations in its implementations. The following is a non-exhaustive list of potential UX
+enhancements:
 
 <ul>
   <li>
@@ -506,13 +507,13 @@ its implementations. The following is a non-exhaustive list of potential UX enha
 
 Typically objects will be printed in a format that is suitable for their context. This section
 describes common ways in which objects are formatted to be most useful in their context. It should
-be noted that the formatting described in this section is applied to implementation-specific object
-representations that will eventually be passed into <a abstract-op>Printer</a>, where the actual
-side effect of formatting will be seen.
+be noted that the formatting described in this section is applied to <a>implementation-defined</a>
+object representations that will eventually be passed into <a abstract-op>Printer</a>, where the
+actual side effect of formatting will be seen.
 
 An object with <dfn>generic JavaScript object formatting</dfn> is a potentially expandable
 representation of a generic JavaScript object. An object with
-<dfn>optimally useful formatting</dfn> is an implementation-specific, potentially-interactive
+<dfn>optimally useful formatting</dfn> is an <a>implementation-defined</a>, potentially-interactive
 representation of an object judged to be maximally useful and informative.
 
 <h4 id="nodejs-printer">Example printer in Node.js</h4>
@@ -554,7 +555,7 @@ representation of an object judged to be maximally useful and informative.
 To <dfn export>report a warning to the console</dfn> given a generic description of a warning
 |description|, implementations must run these steps:
 
-1. Let |warning| be an implementation-defined string derived from |description|.
+1. Let |warning| be an <a>implementation-defined</a> string derived from |description|.
 1. Perform <a abstract-op>Printer</a>("reportWarning", « |warning| »).
 
 <h2 id="acks" class="no-num">Acknowledgments</h2>
