@@ -14,7 +14,6 @@ Markup Shorthands: markdown yes
 urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
   type: abstract-op
     text: ObjectCreate; url: sec-objectcreate
-    text: Type; url: sec-ecmascript-data-types-and-values
     text: ToString; url: sec-tostring
     text: Call; url: sec-call
   type: interface
@@ -24,6 +23,24 @@ urlPrefix: https://tc39.github.io/ecma262/#; spec: ECMASCRIPT
   type: dfn
     text: %parseFloat%; url: sec-parsefloat-string
     text: %parseInt%; url: sec-parseint-string-radix
+    url: sec-ecmascript-language-types-bigint-type
+      text: is a BigInt
+      text: is not a BigInt
+    url: sec-ecmascript-language-types-boolean-type
+      text: is a Boolean
+      text: is not a Boolean
+    url: sec-ecmascript-language-types-number-type
+      text: is a Number
+      text: is not a Number
+    url: sec-ecmascript-language-types-string-type
+      text: is a String
+      text: is not a String
+    url: sec-ecmascript-language-types-symbol-type
+      text: is a Symbol
+      text: is not a Symbol
+    url: sec-object-type
+      text: is an Object
+      text: is not an Object
 </pre>
 
 <h2 id="status" class="no-num no-toc">Status</h2>
@@ -92,7 +109,7 @@ its \[[Prototype]] an empty object, created as if by
 1. If |data| is [=list/is empty|empty=], [=list/append=] |message| to |data|.
 1. Otherwise:
   1. Let |first| be |data|[0].
-  1. If <a abstract-op>Type</a>(|first|) is not String, then [=list/prepend=] |message| to |data|.
+  1. If |first| [=is not a String=], then [=list/prepend=] |message| to |data|.
   1. Otherwise:
     1. Let |concat| be the concatenation of |message|, U+003A (:), U+0020 SPACE, and |first|.
     1. Set |data|[0] to |concat|.
@@ -315,11 +332,11 @@ more arguments are left. It returns a [=/list=] of objects suitable for printing
   1. If |specifier| is `%s`, let |converted| be the result of
      [$Call$](<a idl>%String%</a>, **undefined**, « |current| »).
   1. If |specifier| is `%d` or `%i`:
-    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`
+    1. If |current| [=is a Symbol=], let |converted| be `NaN`
     1. Otherwise, let |converted| be the result of
       [$Call$]([=%parseInt%=], **undefined**, « |current|, 10 »).
   1. If |specifier| is `%f`:
-    1. If [$Type$](|current|) is Symbol, let |converted| be `NaN`
+    1. If |current| [=is a Symbol=], let |converted| be `NaN`
     1. Otherwise, let |converted| be the result of
       [$Call$]([=%parseFloat%=], **undefined**, « |current| »).
   1. If |specifier| is `%o`, optionally let |converted| be |current| with
