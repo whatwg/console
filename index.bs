@@ -139,10 +139,47 @@ its \[[Prototype]] an empty object, created as if by
 <h4 id="table" oldids="table-tabulardata-properties,dom-console-table" method for="console">table(|tabularData|, |properties|)</h4>
 
 Try to construct a table with the columns of the properties of |tabularData| (or use
-|properties|) and rows of |tabularData| and log it with a logLevel of "log". Fall
-back to just logging the argument if it can't be parsed as tabular.
+|properties|) and rows of |tabularData| and log it with a logLevel of "log".
 
-<p class="XXX">TODO: This will need a good algorithm.</p>
+1. Let |finalRows| be the new [=/list=], initially empty
+2. Let |finalColumns| be the new [=/list=], initially empty
+3. If |tabularData| is a [=/list=], then:
+  1. Let |indices| be [=list/get the indices=] of |tabularData|
+  2. [=list/For each=] |index| of |indices|
+    1. Let |value| be |tabularData|[|index|]
+    2. Perform [create table row] with |index|, |value|, |finalColumns|, |properties| that returns |row|
+    3. [=list/Append=] |row| to |finalRows|
+4. Otherwise, if |tabularData| is a [=/map=], then:
+  1. [=map/For each=] |key| → |value| of |tabularData|
+    1. Perform [create table row] with |key|, |value|, |finalColumns|, and |properties| that returns |row|
+    2. [=list/Append=] |row| to |finalRows|
+5. If |finalRows| is not [=list/empty=], then:
+  1. Let |finalData| be a new [=/map=].
+  2. [=map/Set=] |finalData|["rows"] to |finalRows|
+  3. [=map/Set=] |finalData|["columns"] to |finalColumns|
+  3. Perform <a abstract-op>Printer</a>("table", « |finalData| »).
+6. Otherwise, perform <a abstract-op>Printer</a>("log", « |tabularData| »).
+
+To [create table row] given |rowIndex|, |tabularDataItem|, [=/list=] |finalColumns|, and optional [=/list=] |properties|, perform the following steps:
+
+1. Let |row| be a new [=/map=]
+2. [=map/Set=] |row|["(index)"] to |rowIndex|
+3. If |tabularDataItem| is a [=/list=], then:
+  1. Let |indices| be [=list/get the indices=] of |tabularDataItem|
+  2. [=list/For each=] |index| of |indices|
+    1. Let |value| be |tabularDataItem|[|index|]
+    2. If |properties| is not [=list/empty=] and |properties| does not [=list/contain=] |index|, [=iteration/continue=]
+    3. [=map/Set=] |row|[|index|] to |value|
+    4. If |finalColumns| does not [=list/contain=] |index|, [=list/append=] |index| to |finalColumns|
+4. Otherwise, if |tabularDataItem| is a [=/map=], then:
+  1. [=map/For each=] |key| → |value| of |tabularDataItem|
+    1. If |properties| is not [=list/empty=] and |properties| does not [=list/contain=] |key|, [=iteration/continue=]
+    2. [=map/Set=] |row|[|key|] to |value|
+    3. If |finalColumns| does not [=list/contain=] |key|, [=list/append=] |key| to |finalColumns|
+5. Otherwise:
+  1. [=map/Set=] |row|["Value"] to |tabularDataItem|
+  2. If |finalColumns| does not [=list/contain=] "Value", [=list/append=] "Value" to |finalColumns|
+6. Return |row|
 
 <h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...|data|)</h4>
 
