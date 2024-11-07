@@ -83,6 +83,7 @@ namespace console { // but see namespace object requirements below
   undefined time(optional DOMString label = "default");
   undefined timeLog(optional DOMString label = "default", any... data);
   undefined timeEnd(optional DOMString label = "default");
+  undefined timeStamp(optional DOMString label = "default");
 };
 </pre>
 
@@ -290,6 +291,10 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
 console when a given |label| does not exist in the associated <a>timer table</a>.
 </p>
+
+<h4 id="timestamp" oldids="timestamp-label,dom-console-timestamp" method for="console">timeStamp(|label|)</h4>
+
+1. If the developer is recording a performance trace, add a single marker to the performance trace with the |label|.
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
