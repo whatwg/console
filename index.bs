@@ -302,8 +302,8 @@ Each {{console}} namespace object has an associated <dfn>context name</dfn>, emp
 
 1. Let |context| be a new {{console}} namespace object.
 1. Let |contextName| be the empty string.
-1. If |label| is not null, let |contextName| be |label|.
-1. Let |context|'s <a>context name</a> be |contextName|.
+1. If |label| is not null, then set |contextName| to |label|.
+1. Set |context|'s <a>context name</a> to |contextName|.
 1. Return |context|.
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
