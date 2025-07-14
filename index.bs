@@ -6,6 +6,7 @@ Text Macro: TWITTER consolelog
 Text Macro: LATESTRD 2024-12
 Abstract: This specification defines APIs for console debugging facilities.
 Translation: ja https://triple-underscore.github.io/console-ja.html
+Translation: zh-Hans https://htmlspecs.com/console/
 Indent: 2
 Markup Shorthands: markdown yes
 </pre>
