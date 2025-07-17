@@ -84,6 +84,9 @@ namespace console { // but see namespace object requirements below
   undefined time(optional DOMString label = "default");
   undefined timeLog(optional DOMString label = "default", any... data);
   undefined timeEnd(optional DOMString label = "default");
+
+  // Contextualizing
+  console context(optional DOMString label = "");
 };
 </pre>
 
@@ -291,6 +294,18 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
 console when a given |label| does not exist in the associated <a>timer table</a>.
 </p>
+
+<h3 id="contextualizing">Contextualizing</h3>
+
+Each {{console}} namespace object has an associated <dfn>context name</dfn>, empty by default.
+
+<h4 id="context" method for="console">context(|label|)</h4>
+
+1. Let |context| be a new {{console}} namespace object.
+1. Let |contextName| be the empty string.
+1. If |label| is not null, then set |contextName| to |label|.
+1. Set |context|'s <a>context name</a> to |contextName|.
+1. Return |context|.
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
@@ -513,6 +528,9 @@ enhancements:
       <img alt="Indicating UI that allows filtering by log severity" width="494" height="58"
       src="images/severity-filter.png">
     </div>
+  </li>
+  <li>
+    Extra UI allowing the user to filter messages by context name
   </li>
   <li>
     Extra UI off to the side indicating the current state of the <a>timer table</a>,
