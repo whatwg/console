@@ -393,6 +393,11 @@ The following is an informative summary of the format specifiers processed by th
     <td>Applies provided CSS</td>
     <td>n/a</td>
   </tr>
+  <tr>
+    <td>`%%`</td>
+    <td>Escapes the `%` specifier</td>
+    <td>n/a</td>
+  </tr>
 </table>
 
 <h3 id="printer" abstract-op lt="Printer">Printer(|logLevel|, |args|[, |options|])</h3>
