@@ -85,6 +85,9 @@ namespace console { // but see namespace object requirements below
   undefined time(optional DOMString label = "default");
   undefined timeLog(optional DOMString label = "default", any... data);
   undefined timeEnd(optional DOMString label = "default");
+
+  // Contextualizing
+  ConsoleContext context(optional DOMString label = "");
 };
 </pre>
 
@@ -103,7 +106,7 @@ its \[[Prototype]] an empty object, created as if by
 
 <h3 id="logging">Logging functions</h3>
 
-<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console">assert(|condition|, ...|data|)</h4>
+<h4 id="assert" oldids="assert-condition-data,dom-console-assert" method for="console,ConsoleContext">assert(|condition|, ...|data|)</h4>
 
 1. If |condition| is true, return.
 1. Let |message| be a string without any formatting specifiers indicating generically an assertion
@@ -117,28 +120,28 @@ its \[[Prototype]] an empty object, created as if by
     1. Set |data|[0] to |concat|.
 1. Perform <a abstract-op>Logger</a>("assert", |data|).
 
-<h4 id="clear" oldids="dom-console-clear" method for="console">clear()</h4>
+<h4 id="clear" oldids="dom-console-clear" method for="console,ConsoleContext">clear()</h4>
 
 1. [=stack/Empty=] the appropriate <a>group stack</a>.
 1. If possible for the environment, clear the console. (Otherwise, do nothing.)
 
-<h4 id="debug" oldids="debug-data,dom-console-debug" method for="console">debug(...|data|)</h4>
+<h4 id="debug" oldids="debug-data,dom-console-debug" method for="console,ConsoleContext">debug(...|data|)</h4>
 
 1. Perform <a abstract-op>Logger</a>("debug", |data|).
 
-<h4 id="error" oldids="error-data,dom-console-error" method for="console">error(...|data|)</h4>
+<h4 id="error" oldids="error-data,dom-console-error" method for="console,ConsoleContext">error(...|data|)</h4>
 
 1. Perform <a abstract-op>Logger</a>("error", |data|).
 
-<h4 id="info" oldids="info-data,dom-console-info" method for="console">info(...|data|)</h4>
+<h4 id="info" oldids="info-data,dom-console-info" method for="console,ConsoleContext">info(...|data|)</h4>
 
 1. Perform <a abstract-op>Logger</a>("info", |data|).
 
-<h4 id="log" oldids="log-data,dom-console-log" method for="console">log(...|data|)</h4>
+<h4 id="log" oldids="log-data,dom-console-log" method for="console,ConsoleContext">log(...|data|)</h4>
 
 1. Perform <a abstract-op>Logger</a>("log", |data|).
 
-<h4 id="table" oldids="table-tabulardata-properties,dom-console-table" method for="console">table(|tabularData|, |properties|)</h4>
+<h4 id="table" oldids="table-tabulardata-properties,dom-console-table" method for="console,ConsoleContext">table(|tabularData|, |properties|)</h4>
 
 Try to construct a table with the columns of the properties of |tabularData| (or use
 |properties|) and rows of |tabularData| and log it with a logLevel of "log". Fall
@@ -146,7 +149,7 @@ back to just logging the argument if it can't be parsed as tabular.
 
 <p class="XXX">TODO: This will need a good algorithm.</p>
 
-<h4 id="trace" oldids="trace-data,dom-console-trace" method for="console">trace(...|data|)</h4>
+<h4 id="trace" oldids="trace-data,dom-console-trace" method for="console,ConsoleContext">trace(...|data|)</h4>
 
 1. Let |trace| be some <a>implementation-defined</a>, potentially-interactive representation of the
    callstack from where this function was called.
@@ -159,16 +162,16 @@ back to just logging the argument if it can't be parsed as tabular.
   not guaranteed to be the same identifier that would be seen in `new Error().stack`.
 </p>
 
-<h4 id="warn" oldids="warn-data,dom-console-warn" method for="console">warn(...|data|)</h4>
+<h4 id="warn" oldids="warn-data,dom-console-warn" method for="console,ConsoleContext">warn(...|data|)</h4>
 
 1. Perform <a abstract-op>Logger</a>("warn", |data|).
 
-<h4 id="dir" method for="console">dir(|item|, |options|)</h4>
+<h4 id="dir" method for="console,ConsoleContext">dir(|item|, |options|)</h4>
 
 1. Let |object| be |item| with <a>generic JavaScript object formatting</a> applied.
 1. Perform <a abstract-op>Printer</a>("dir", « |object| », |options|).
 
-<h4 id="dirxml" method for="console">dirxml(...|data|)</h4>
+<h4 id="dirxml" method for="console,ConsoleContext">dirxml(...|data|)</h4>
 
 1. Let |finalList| be a new [=/list=], initially empty.
 1. [=list/For each=] |item| of |data|:
@@ -179,10 +182,10 @@ back to just logging the argument if it can't be parsed as tabular.
 
 <h3 id="counting">Counting functions</h3>
 
-Each {{console}} namespace object has an associated <dfn>count map</dfn>, which is a <a>map</a> of
+Each {{console}} namespace object and {{ConsoleContext}} instance has an associated <dfn>count map</dfn>, which is a <a>map</a> of
 <a>strings</a> to numbers, initially empty.
 
-<h4 id="count" oldids="count-label,dom-console-count" method for="console">count(|label|)</h4>
+<h4 id="count" oldids="count-label,dom-console-count" method for="console,ConsoleContext">count(|label|)</h4>
 
 1. Let |map| be the associated <a>count map</a>.
 1. If |map|[|label|] [=map/exists=], [=map/set=] |map|[|label|] to |map|[|label|] + 1.
@@ -191,7 +194,7 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
    <a abstract-op>ToString</a>(|map|[|label|]).
 1. Perform <a abstract-op>Logger</a>("count", « |concat| »).
 
-<h4 id="countreset" method for="console">countReset(|label|)</h4>
+<h4 id="countreset" method for="console,ConsoleContext">countReset(|label|)</h4>
 
 1. Let |map| be the associated <a>count map</a>.
 1. If |map|[|label|] [=map/exists=], [=map/set=] |map|[|label|] to 0.
@@ -204,11 +207,11 @@ Each {{console}} namespace object has an associated <dfn>count map</dfn>, which 
 
 A <dfn id="concept-group">group</dfn> is an <a>implementation-defined</a>, potentially-interactive
 view for output produced by calls to <a abstract-op>Printer</a>, with one further level of
-indentation than its parent. Each {{console}} namespace object has an associated <dfn>group
+indentation than its parent. Each {{console}} namespace object and {{ConsoleContext}} instance has an associated <dfn>group
 stack</dfn>, which is a <a>stack</a>, initially empty. Only the last <a>group</a> in a <a>group
 stack</a> will host output produced by calls to <a abstract-op>Printer</a>.
 
-<h4 id="group" oldids="group-data,dom-console-group" method for="console">group(...|data|)</h4>
+<h4 id="group" oldids="group-data,dom-console-group" method for="console,ConsoleContext">group(...|data|)</h4>
 
 1. Let |group| be a new <a>group</a>.
 1. If |data| is not [=list/is empty|empty=], let |groupLabel| be the result of
@@ -220,7 +223,7 @@ stack</a> will host output produced by calls to <a abstract-op>Printer</a>.
 1. Perform <a abstract-op>Printer</a>("group", « |group| »).
 1. [=stack/Push=] |group| onto the appropriate <a>group stack</a>.
 
-<h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console">groupCollapsed(...|data|)</h4>
+<h4 id="groupcollapsed" oldids="groupcollapsed-data,dom-console-groupcollapsed" method for="console,ConsoleContext">groupCollapsed(...|data|)</h4>
 
 1. Let |group| be a new <a>group</a>.
 1. If |data| is not empty, let |groupLabel| be the result of
@@ -232,7 +235,7 @@ stack</a> will host output produced by calls to <a abstract-op>Printer</a>.
 1. Perform <a abstract-op>Printer</a>("groupCollapsed", « |group| »).
 1. [=stack/Push=] |group| onto the appropriate <a>group stack</a>.
 
-<h4 id="groupend" oldids="dom-console-groupend" method for="console">groupEnd()</h4>
+<h4 id="groupend" oldids="dom-console-groupend" method for="console,ConsoleContext">groupEnd()</h4>
 
 1. <a>Pop</a> the last <a>group</a> from the <a>group stack</a>.
 
@@ -241,7 +244,7 @@ stack</a> will host output produced by calls to <a abstract-op>Printer</a>.
 Each {{console}} namespace object has an associated <dfn>timer table</dfn>, which is a <a>map</a> of
 <a>strings</a> to times, initially empty.
 
-<h4 id="time" oldids="time-label,dom-console-time" method for="console">time(|label|)</h4>
+<h4 id="time" oldids="time-label,dom-console-time" method for="console,ConsoleContext">time(|label|)</h4>
 
 1. If the associated <a>timer table</a> [=map/contains=] an entry with key |label|, return,
    optionally reporting a warning to the console indicating that a timer with label |label| has
@@ -249,7 +252,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 1. Otherwise, [=map/set=] the value of the entry with key |label| in the associated
    <a>timer table</a> to the current time.
 
-<h4 id="timelog" method for="console">timeLog(|label|, ...|data|)</h4>
+<h4 id="timelog" method for="console,ConsoleContext">timeLog(|label|, ...|data|)</h4>
 
 1. Let |timerTable| be the associated <a>timer table</a>.
 1. Let |startTime| be |timerTable|[|label|].
@@ -278,7 +281,7 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
   </code></pre>
 </div>
 
-<h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console">timeEnd(|label|)</h4>
+<h4 id="timeend" oldids="timeend-label,dom-console-timeend" method for="console,ConsoleContext">timeEnd(|label|)</h4>
 
 1. Let |timerTable| be the associated <a>timer table</a>.
 1. Let |startTime| be |timerTable|[|label|].
@@ -292,6 +295,54 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
 for plans to make {{console/timeEnd()}} and {{console/timeLog()}} formally report warnings to the
 console when a given |label| does not exist in the associated <a>timer table</a>.
 </p>
+
+<h3 id="contextualizing">Contextualizing</h3>
+
+Each {{ConsoleContext}} instance has an associated <dfn>context name</dfn>, empty by default.
+
+<h4 id="context" method for="console">context(|label|)</h4>
+
+1. Let |context| be a new {{ConsoleContext}} instance.
+1. Let |contextName| be the empty string.
+1. If |label| is not null, then set |contextName| to |label|.
+1. Set |context|'s <a>context name</a> to |contextName|.
+1. Return |context|.
+
+<h2 id="the-consolecontext-interface">The {{ConsoleContext}} interface</h2>
+
+The IDL for the {{ConsoleContext}} interface is as follows, with the various methods defined in the {{console}} section:
+
+<pre class="idl">
+[Exposed=*]
+interface ConsoleContext {
+  // Logging
+  undefined assert(optional boolean condition = false, any... data);
+  undefined clear();
+  undefined debug(any... data);
+  undefined error(any... data);
+  undefined info(any... data);
+  undefined log(any... data);
+  undefined table(optional any tabularData, optional sequence&lt;DOMString> properties);
+  undefined trace(any... data);
+  undefined warn(any... data);
+  undefined dir(optional any item, optional object? options);
+  undefined dirxml(any... data);
+
+  // Counting
+  undefined count(optional DOMString label = "default");
+  undefined countReset(optional DOMString label = "default");
+
+  // Grouping
+  undefined group(any... data);
+  undefined groupCollapsed(any... data);
+  undefined groupEnd();
+
+  // Timing
+  undefined time(optional DOMString label = "default");
+  undefined timeLog(optional DOMString label = "default", any... data);
+  undefined timeEnd(optional DOMString label = "default");
+};
+</pre>
 
 <h2 id="supporting-ops">Supporting abstract operations</h2>
 
@@ -514,6 +565,9 @@ enhancements:
       <img alt="Indicating UI that allows filtering by log severity" width="494" height="58"
       src="images/severity-filter.png">
     </div>
+  </li>
+  <li>
+    Extra UI allowing the user to filter messages by context name
   </li>
   <li>
     Extra UI off to the side indicating the current state of the <a>timer table</a>,
