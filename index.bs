@@ -322,15 +322,21 @@ describes how it processes format specifiers while doing so.
 <h3 id="formatter" abstract-op lt="Formatter">Formatter(|args|)</h3>
 
 The formatter operation tries to format the first argument provided, using the other arguments. It
-will try to format the input until no formatting specifiers are left in the first argument, or no
-more arguments are left. It returns a [=/list=] of objects suitable for printing.
+will process formatting specifiers in the first argument from left to right until no formatting
+specifiers remain or no more arguments are left. Formatting specifiers introduced by converted
+values are not processed. It returns a [=/list=] of objects suitable for printing.
 
 1. If |args|'s [=list/size=] is 1, return |args|.
 1. Let |target| be the first element of |args|.
-1. Let |current| be the second element of |args|.
-1. Find the first possible format specifier |specifier|, from the left to the right in |target|.
-1. If no format specifier was found, return |args|.
-1. Otherwise:
+1. If |target| [=is not a String=], return |args|.
+1. Let |position| be the start of |target|.
+1. Let |currentIndex| be 1.
+1. While |currentIndex| is less than |args|'s [=list/size=]:
+  1. Find the first possible format specifier |specifier|, from the left to the right in |target|,
+     starting at |position|.
+  1. If no format specifier was found, break.
+  1. Let |current| be |args|[|currentIndex|].
+  1. Let |converted| be unset.
   1. If |specifier| is `%s`, let |converted| be the result of
      [$Call$](<a idl>%String%</a>, **undefined**, « |current| »).
   1. If |specifier| is `%d` or `%i`:
@@ -346,11 +352,19 @@ more arguments are left. It returns a [=/list=] of objects suitable for printing
   1. If |specifier| is `%O`, optionally let |converted| be |current| with
      <a>generic JavaScript object formatting</a> applied.
   1. <p class="XXX">TODO: process %c</p>
-  1. If any of the previous steps set |converted|, replace |specifier| in |target| with
-     |converted|.
-1. Let |result| be a [=/list=] containing |target| together with the elements of |args| starting
-   from the third onward.
-1. Return <a abstract-op>Formatter</a>(|result|).
+  1. If |converted| is set:
+    1. Replace the occurrence of |specifier| found in the previous step in |target| with
+       |converted|.
+    1. Set |position| to the position in |target| immediately following the inserted |converted|.
+  1. Otherwise, set |position| to the position immediately following |specifier| in |target|.
+  1. Set |currentIndex| to |currentIndex| + 1.
+1. Return a [=/list=] containing |target| together with the elements of |args| starting at index
+   |currentIndex|.
+
+<div class="example" id="formatter-substitution-example">
+  For example, <a abstract-op>Formatter</a>(« "%s", "hello %s world", 1 ») returns
+  « "hello %s world", 1 ». The format specifier introduced by the second argument is not processed.
+</div>
 
 <h4 id="formatting-specifiers">Summary of formatting specifiers</h4>
 
@@ -589,6 +603,7 @@ Jeff Carpenter,
 Joseph Pecoraro,
 Justin Woo,
 Luc Martin,
+Michael Reeves,
 Noah Bass,
 Paul Irish,
 Raphaël, and
