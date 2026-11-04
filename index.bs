@@ -259,11 +259,11 @@ Each {{console}} namespace object has an associated <dfn>timer table</dfn>, whic
    are all reasonable ways of displaying a 4650.69 ms duration.</p>
 1. Let |concat| be the concatenation of |label|, U+003A (:), U+0020 SPACE, and |duration|.
 1. [=list/prepend|Prepend=] |concat| to |data|.
-1. Perform <a abstract-op>Printer</a>("timeLog", data).
+1. Perform <a abstract-op>Printer</a>("timeLog", |data|).
 
 <div class="example" id="timelog-example">
   The |data| parameter in calls to {{console/timeLog()}} is included in the call to
-  <a abstract-op>Logger</a> to make it easier for users to supply intermediate timer logs with
+  <a abstract-op>Printer</a> to make it easier for users to supply intermediate timer logs with
   some extra data throughout the life of a timer. For example:
 
   <pre><code class="lang-javascript">
