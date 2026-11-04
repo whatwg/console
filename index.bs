@@ -377,7 +377,7 @@ The following is an informative summary of the format specifiers processed by th
   <tr>
     <td>`%f`</td>
     <td>Element which substitutes is converted to a float</td>
-    <td><a>%parseFloat%</a>(|element|, 10)</td>
+    <td><a>%parseFloat%</a>(|element|)</td>
   </tr>
   <tr>
     <td>`%o`</td>
